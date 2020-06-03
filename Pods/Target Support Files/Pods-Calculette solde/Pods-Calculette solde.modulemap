@@ -1,0 +1,6 @@
+framework module Pods_Calculette_solde {
+  umbrella header "Pods-Calculette solde-umbrella.h"
+
+  export *
+  module * { export * }
+}
