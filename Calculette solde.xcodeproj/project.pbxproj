@@ -3,10 +3,12 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
+		766A17FD2BD043ADC513B9FD /* Pods_Calculette_solde.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BD5A31A657C151D759867E81 /* Pods_Calculette_solde.framework */; };
+		BEA674B62486EDEB00EC99B2 /* CustomCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEA674B52486EDEB00EC99B2 /* CustomCollectionViewCell.swift */; };
 		BEA76CB624812F0B000244BA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEA76CB524812F0B000244BA /* AppDelegate.swift */; };
 		BEA76CB824812F0B000244BA /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEA76CB724812F0B000244BA /* SceneDelegate.swift */; };
 		BEA76CBA24812F0B000244BA /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEA76CB924812F0B000244BA /* ViewController.swift */; };
@@ -16,6 +18,10 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		1AAD6ED7263979C3C7C61B3E /* Pods-Calculette solde.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Calculette solde.release.xcconfig"; path = "Target Support Files/Pods-Calculette solde/Pods-Calculette solde.release.xcconfig"; sourceTree = "<group>"; };
+		9B6977597489A134979A52ED /* Pods-Calculette solde.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Calculette solde.debug.xcconfig"; path = "Target Support Files/Pods-Calculette solde/Pods-Calculette solde.debug.xcconfig"; sourceTree = "<group>"; };
+		BD5A31A657C151D759867E81 /* Pods_Calculette_solde.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Calculette_solde.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		BEA674B52486EDEB00EC99B2 /* CustomCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomCollectionViewCell.swift; sourceTree = "<group>"; };
 		BEA76CB224812F0B000244BA /* Calculette solde.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Calculette solde.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		BEA76CB524812F0B000244BA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		BEA76CB724812F0B000244BA /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -31,17 +37,28 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				766A17FD2BD043ADC513B9FD /* Pods_Calculette_solde.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		BD97443921C4684594755606 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				BD5A31A657C151D759867E81 /* Pods_Calculette_solde.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		BEA76CA924812F0B000244BA = {
 			isa = PBXGroup;
 			children = (
 				BEA76CB424812F0B000244BA /* Calculette solde */,
 				BEA76CB324812F0B000244BA /* Products */,
+				FAF7A620B092E17C94B0109C /* Pods */,
+				BD97443921C4684594755606 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -56,15 +73,49 @@
 		BEA76CB424812F0B000244BA /* Calculette solde */ = {
 			isa = PBXGroup;
 			children = (
+				BEA76CCB24813061000244BA /* Controleur */,
+				BEA76CCA24812F2D000244BA /* Vue */,
+				BEA76CC924812F24000244BA /* Modele */,
 				BEA76CB524812F0B000244BA /* AppDelegate.swift */,
 				BEA76CB724812F0B000244BA /* SceneDelegate.swift */,
-				BEA76CB924812F0B000244BA /* ViewController.swift */,
-				BEA76CBB24812F0B000244BA /* Main.storyboard */,
 				BEA76CBE24812F13000244BA /* Assets.xcassets */,
 				BEA76CC024812F13000244BA /* LaunchScreen.storyboard */,
 				BEA76CC324812F13000244BA /* Info.plist */,
 			);
 			path = "Calculette solde";
+			sourceTree = "<group>";
+		};
+		BEA76CC924812F24000244BA /* Modele */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Modele;
+			sourceTree = "<group>";
+		};
+		BEA76CCA24812F2D000244BA /* Vue */ = {
+			isa = PBXGroup;
+			children = (
+				BEA76CB924812F0B000244BA /* ViewController.swift */,
+				BEA674B52486EDEB00EC99B2 /* CustomCollectionViewCell.swift */,
+				BEA76CBB24812F0B000244BA /* Main.storyboard */,
+			);
+			path = Vue;
+			sourceTree = "<group>";
+		};
+		BEA76CCB24813061000244BA /* Controleur */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Controleur;
+			sourceTree = "<group>";
+		};
+		FAF7A620B092E17C94B0109C /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				9B6977597489A134979A52ED /* Pods-Calculette solde.debug.xcconfig */,
+				1AAD6ED7263979C3C7C61B3E /* Pods-Calculette solde.release.xcconfig */,
+			);
+			path = Pods;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -74,6 +125,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = BEA76CC624812F13000244BA /* Build configuration list for PBXNativeTarget "Calculette solde" */;
 			buildPhases = (
+				7B80332C1D24E4924EFC08AC /* [CP] Check Pods Manifest.lock */,
 				BEA76CAE24812F0B000244BA /* Sources */,
 				BEA76CAF24812F0B000244BA /* Frameworks */,
 				BEA76CB024812F0B000244BA /* Resources */,
@@ -133,11 +185,37 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		7B80332C1D24E4924EFC08AC /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Calculette solde-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		BEA76CAE24812F0B000244BA /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BEA674B62486EDEB00EC99B2 /* CustomCollectionViewCell.swift in Sources */,
 				BEA76CBA24812F0B000244BA /* ViewController.swift in Sources */,
 				BEA76CB624812F0B000244BA /* AppDelegate.swift in Sources */,
 				BEA76CB824812F0B000244BA /* SceneDelegate.swift in Sources */,
@@ -282,6 +360,7 @@
 		};
 		BEA76CC724812F13000244BA /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 9B6977597489A134979A52ED /* Pods-Calculette solde.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -300,6 +379,7 @@
 		};
 		BEA76CC824812F13000244BA /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 1AAD6ED7263979C3C7C61B3E /* Pods-Calculette solde.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
