@@ -45,8 +45,8 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="tk4-BO-itD">
-                                <rect key="frame" x="20" y="165" width="335" height="81"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <rect key="frame" x="-5" y="165" width="380" height="81"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="81" id="haf-Ho-bwj"/>
                                     <constraint firstAttribute="height" constant="81" id="yiJ-uk-ixn"/>
@@ -71,8 +71,8 @@
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" image="circle" catalog="system" id="ssw-se-SK4">
-                                                    <rect key="frame" x="8" y="7.5" width="65" height="65"/>
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" image="circle" catalog="system" id="YJ6-Xk-25m">
+                                                    <rect key="frame" x="6" y="5.5" width="68" height="68"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 </imageView>
                                             </subviews>
@@ -195,7 +195,7 @@
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="5Vt-hE-S03" secondAttribute="trailing" constant="20" id="S7K-gk-waf"/>
                             <constraint firstItem="eiQ-tM-iJA" firstAttribute="top" secondItem="tk4-BO-itD" secondAttribute="bottom" constant="53" id="S8o-Vc-RLE"/>
                             <constraint firstItem="eiQ-tM-iJA" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="20" id="SBz-27-8U4"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="tk4-BO-itD" secondAttribute="trailing" constant="20" id="Sco-ZC-Jix"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="tk4-BO-itD" secondAttribute="trailing" id="Sco-ZC-Jix"/>
                             <constraint firstItem="eCl-Jv-suC" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="16" id="YXe-8i-g4I"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="jdy-Qm-WSD" secondAttribute="trailing" constant="20" id="aKk-mz-vF0"/>
                             <constraint firstItem="Xr5-q3-9n1" firstAttribute="top" secondItem="Afn-rw-XMJ" secondAttribute="bottom" constant="42" id="alX-Dq-kDp"/>
@@ -204,7 +204,7 @@
                             <constraint firstItem="Xr5-q3-9n1" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="20" id="pj8-dj-FeL"/>
                             <constraint firstItem="5Vt-hE-S03" firstAttribute="top" secondItem="Afn-rw-XMJ" secondAttribute="bottom" constant="42" id="rEs-5R-JL6"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="IY8-GX-wkI" secondAttribute="trailing" constant="20" id="v7X-Bp-6gA"/>
-                            <constraint firstItem="tk4-BO-itD" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="20" id="zFh-Vn-tWF"/>
+                            <constraint firstItem="tk4-BO-itD" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="-5" id="zFh-Vn-tWF"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>

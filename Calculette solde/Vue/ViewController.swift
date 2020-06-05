@@ -15,13 +15,14 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
     
     @IBOutlet weak var btnAchete: CustomUIButton!
     @IBOutlet weak var lblTotalProduct: UILabel!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         self.hideKeyboard()
+        customTextField()
         
         lblPrixFinal.text = "0.0 €"
-        //lblReduction.text = "0.0 €"
         lblTotalProduct.text = "0.0 €"
         
         if myGlobalManager.myProductManager.listOfProduct.isEmpty {
@@ -79,20 +80,30 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
     
     @IBAction func addProductIntoListProduct(_ sender: UIButton)
     {
-        if pourcentageDeduire == "" {
-            calculPrixFinal(reduc: "0")
+        if !txtFldPrixDepart.text!.isEmpty {
+            //btnAchete.pulsate()
+            lblPulsate()
+            
+            if pourcentageDeduire == "" {
+                calculPrixFinal(reduc: "0")
+            }
+            
+            let myProduct = MyProduct(price: priceProduct, discount: discountProduct)
+            myGlobalManager.myProductManager.addProdcut(product: myProduct)
+            myTableView.isHidden = false
+            
+            var totalProduct: Double = 0.0
+            for item in myGlobalManager.myProductManager.listOfProduct {
+                totalProduct += item.price
+            }
+            lblTotalProduct.text = String(format: " %.2f", totalProduct) + " €"
+            myTableView.reloadData()
+        } else {
+            // Alert message
+            print("Il manque le prix !!!")
         }
         
-        let myProduct = MyProduct(price: priceProduct, discount: discountProduct)
-        myGlobalManager.myProductManager.addProdcut(product: myProduct)
-        myTableView.isHidden = false
         
-        var totalProduct: Double = 0.0
-        for item in myGlobalManager.myProductManager.listOfProduct {
-            totalProduct += item.price
-        }
-        lblTotalProduct.text = String(format: " %.2f", totalProduct) + " €"
-        myTableView.reloadData()
     }
     
 
@@ -108,6 +119,8 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
             cell.configure(discount: labelPourcentage[indexPath.row])
             mycell = cell
         }
+        
+        collectionView.layer.borderWidth = 0
         
         return mycell
     }
@@ -225,6 +238,27 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
             //pourcentagePerso = Double(txtPourcentage.text)
         }
         self.present(alert, animated: true)
+        
+    }
+    
+    private func lblPulsate ()
+    {
+        let pulse = CASpringAnimation(keyPath: "transform.scale")
+        pulse.duration = 0.6
+        pulse.toValue = 1
+        pulse.fromValue = 0.95
+        pulse.initialVelocity = 0.5
+        pulse.damping = 1.0
+        pulse.autoreverses = true
+        pulse.repeatCount = 2
+        
+        lblTotalProduct.layer.add(pulse, forKey: nil)
+    }
+    
+    private func customTextField ()
+    {
+        txtFldPrixDepart.layer.borderWidth = 1
+        txtFldPrixDepart.layer.cornerRadius = 10
         
     }
     
