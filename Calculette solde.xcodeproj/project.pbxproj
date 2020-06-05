@@ -19,6 +19,7 @@
 		BEBAFD4124893A8000A9EF15 /* ProductManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEBAFD4024893A8000A9EF15 /* ProductManager.swift */; };
 		BEBAFD4324893C0200A9EF15 /* GlobalManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEBAFD4224893C0200A9EF15 /* GlobalManager.swift */; };
 		BEBAFD45248943F900A9EF15 /* CustomTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEBAFD44248943F800A9EF15 /* CustomTableViewCell.swift */; };
+		BEE88759248AA1EF009BB96A /* CustomUIButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEE88758248AA1EF009BB96A /* CustomUIButton.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -38,6 +39,7 @@
 		BEBAFD4024893A8000A9EF15 /* ProductManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductManager.swift; sourceTree = "<group>"; };
 		BEBAFD4224893C0200A9EF15 /* GlobalManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlobalManager.swift; sourceTree = "<group>"; };
 		BEBAFD44248943F800A9EF15 /* CustomTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTableViewCell.swift; sourceTree = "<group>"; };
+		BEE88758248AA1EF009BB96A /* CustomUIButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomUIButton.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -108,6 +110,7 @@
 				BEA674B52486EDEB00EC99B2 /* CustomCollectionViewCell.swift */,
 				BEA76CBB24812F0B000244BA /* Main.storyboard */,
 				BEBAFD44248943F800A9EF15 /* CustomTableViewCell.swift */,
+				BEE88758248AA1EF009BB96A /* CustomUIButton.swift */,
 			);
 			path = Vue;
 			sourceTree = "<group>";
@@ -229,6 +232,7 @@
 			files = (
 				BEA674B62486EDEB00EC99B2 /* CustomCollectionViewCell.swift in Sources */,
 				BEBAFD4124893A8000A9EF15 /* ProductManager.swift in Sources */,
+				BEE88759248AA1EF009BB96A /* CustomUIButton.swift in Sources */,
 				BEBAFD45248943F900A9EF15 /* CustomTableViewCell.swift in Sources */,
 				BEA76CBA24812F0B000244BA /* ViewController.swift in Sources */,
 				BEBAFD4324893C0200A9EF15 /* GlobalManager.swift in Sources */,

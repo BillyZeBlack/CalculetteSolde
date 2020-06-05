@@ -13,6 +13,7 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
 
     
     
+    @IBOutlet weak var btnAchete: CustomUIButton!
     @IBOutlet weak var lblTotalProduct: UILabel!
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -40,8 +41,6 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
 
     //Marks : TextField
     @IBOutlet weak var txtFldPrixDepart: UITextField!
-    @IBOutlet weak var txtFldAutreRemise: UITextField!
-    @IBOutlet weak var lblReduction: UILabel!
     @IBOutlet weak var lblPrixFinal: UILabel!
     
     @IBOutlet weak var btnReduction: UIButton!
@@ -51,6 +50,8 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
     //@IBOutlet weak var sidebarConstraint: NSLayoutConstraint!
     //var sidebarshowed = false
     
+    
+    var pourcentageDeduire = ""
     var pourcentage = 0.0
     var remise = ""
     var labelPourcentage :[String] = ["+","5%","10%","15%",
@@ -78,6 +79,10 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
     
     @IBAction func addProductIntoListProduct(_ sender: UIButton)
     {
+        if pourcentageDeduire == "" {
+            calculPrixFinal(reduc: "0")
+        }
+        
         let myProduct = MyProduct(price: priceProduct, discount: discountProduct)
         myGlobalManager.myProductManager.addProdcut(product: myProduct)
         myTableView.isHidden = false
@@ -110,29 +115,40 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         //cache le clavier
         //txtFldPrixDepart.resignFirstResponder()
-        var pourcentageDeduire = labelPourcentage[indexPath.row]
-        if pourcentageDeduire != "+" {
+        pourcentageDeduire = labelPourcentage[indexPath.row]
+        
+        switch pourcentageDeduire {
+        case "+":
+            labelPourcentage = ["-","1%","2%","3%","4%","5%","6%","7%","8%","9%","10%",
+            "11%","12%","13%","14%","15%","16%","17%","18%","19%","20%",
+            "21%","22%","23%","24%","25%","26%","27%","28%","29%","30%",
+            "31%","32%","33%","34%","35%","36%","37%","38%","39%","40%",
+            "41%","42%","43%","44%","45%","46%","47%","48%","49%","50%",
+            "51%","52%","53%","54%","55%","56%","57%","58%","59%","60%",
+            "61%","62%","63%","64%","65%","66%","67%","68%","69%","70%",
+            "71%","72%","73%","74%","75%","76%","77%","78%","79%","80%",
+            "81%","82%","83%","84%","85%","86%","87%","88%","89%","90%",
+            "91%","92%","93%","94%","95%","96%","97%","98%","99%","-"]
+            collectionView.reloadData()
+            
+        case "-":
+            labelPourcentage = ["+","5%","10%","15%",
+            "20%","25%","30%","35%",
+            "40%","45%","50%","55%",
+            "60%","65%","70%","75%",
+            "80%","85%","90%","+"]
+            collectionView.reloadData()
+            
+        default:
             if txtFldPrixDepart.text != "" {
                 if let i = pourcentageDeduire.firstIndex(of: "%") {
                     pourcentageDeduire.remove(at: i)
                     calculPrixFinal(reduc: pourcentageDeduire)
                 }
-            } else {
-                print("il manque le prix !!!")
-            }
-        } else {
-            labelPourcentage = ["1%","2%","3%","4%","5%","6%","7%","8%","9%","10%",
-                                "11%","12%","13%","14%","15%","16%","17%","18%","19%","20%",
-                                "21%","22%","23%","24%","25%","26%","27%","28%","29%","30%",
-                                "31%","32%","33%","34%","35%","36%","37%","38%","39%","40%",
-                                "41%","42%","43%","44%","45%","46%","47%","48%","49%","50%",
-                                "51%","52%","53%","54%","55%","56%","57%","58%","59%","60%",
-                                "61%","62%","63%","64%","65%","66%","67%","68%","69%","70%",
-                                "71%","72%","73%","74%","75%","76%","77%","78%","79%","80%",
-                                "81%","82%","83%","84%","85%","86%","87%","88%","89%","90%",
-                                "91%","92%","93%","94%","95%","96%","97%","98%","99%"]
-            
-            collectionView.reloadData()
+            } /**else  {
+                calculPrixFinal(reduc: "0")
+                //print("il manque le prix !!!")
+            }**/
         }
     }
     
@@ -175,14 +191,14 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
     
     private func calculPrixFinal(reduc: String)
     {
-        let reducAppliquee = Double(reduc)
+        
+        let reducAppliquee = Double (reduc)
         
         let prixDepart = Double(txtFldPrixDepart.text!)!
         
         let prixFinal: Double = prixDepart * (1 - (reducAppliquee!/100))
         
         lblPrixFinal.text = String(format: " %.2f", prixFinal) + " €"
-        //lblPrixFinal.text = "\(prixFinal)€"
         
         priceProduct = prixFinal
         discountProduct = reducAppliquee!

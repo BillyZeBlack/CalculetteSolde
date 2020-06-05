@@ -85,6 +85,7 @@
                                                 <constraint firstAttribute="trailing" secondItem="dBt-XP-uAv" secondAttribute="trailing" id="rOj-vo-1nB"/>
                                             </constraints>
                                         </collectionViewCellContentView>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <size key="customSize" width="81" height="81"/>
                                         <connections>
                                             <outlet property="lblPourcentage" destination="dBt-XP-uAv" id="0Th-N4-EZV"/>
@@ -96,7 +97,7 @@
                                     <outlet property="delegate" destination="BYZ-38-t0r" id="0aU-vo-QsW"/>
                                 </connections>
                             </collectionView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Afn-rw-XMJ">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Afn-rw-XMJ" customClass="CustomUIButton" customModule="Calculette_solde" customModuleProvider="target">
                                 <rect key="frame" x="20" y="357" width="339" height="43"/>
                                 <constraints>
                                     <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="43" id="2Cp-np-bSa"/>
@@ -105,7 +106,8 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="30"/>
                                 <state key="normal" title="J'achete"/>
                                 <connections>
-                                    <action selector="addProductIntoListProduct:" destination="BYZ-38-t0r" eventType="touchUpInside" id="qsf-oO-5YI"/>
+                                    <action selector="addProductIntoListProduct:" destination="BYZ-38-t0r" eventType="touchUpInside" id="pLA-Je-28C"/>
+                                    <action selector="btnAchete:" destination="53W-RL-fTJ" eventType="touchUpInside" id="eMj-Qk-6n7"/>
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Total" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Xr5-q3-9n1">
@@ -207,6 +209,7 @@
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <connections>
+                        <outlet property="btnAchete" destination="Afn-rw-XMJ" id="XFI-AI-AWu"/>
                         <outlet property="lblPrixFinal" destination="eiQ-tM-iJA" id="ylu-DL-uX3"/>
                         <outlet property="lblTotalProduct" destination="5Vt-hE-S03" id="Hhr-7M-1Xz"/>
                         <outlet property="myTableView" destination="jdy-Qm-WSD" id="a0C-ie-DHN"/>
@@ -214,6 +217,7 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+                <exit id="53W-RL-fTJ" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="-356" y="-63.418290854572717"/>
         </scene>
