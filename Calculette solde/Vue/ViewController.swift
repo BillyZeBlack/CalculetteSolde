@@ -13,44 +13,20 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
 
     
     
+    @IBOutlet weak var sidebarConstraint: NSLayoutConstraint!
     @IBOutlet weak var btnAchete: CustomUIButton!
     @IBOutlet weak var lblTotalProduct: UILabel!
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
-        self.hideKeyboard()
-        customTextField()
-        
-        lblPrixFinal.text = "0.0 €"
-        lblTotalProduct.text = "0.0 €"
-        
-        if myGlobalManager.myProductManager.listOfProduct.isEmpty {
-            myTableView.isHidden = true
-        }
-        
-        // Affiche le clavier
-        txtFldPrixDepart.becomeFirstResponder()
-        
-        //sidebarConstraint.constant = -210
-    }
-    
     @IBOutlet weak var myTableView: UITableView!
     
     
-    let myGlobalManager = GlobalManager()
-
+    
     //Marks : TextField
     @IBOutlet weak var txtFldPrixDepart: UITextField!
     @IBOutlet weak var lblPrixFinal: UILabel!
     
-    @IBOutlet weak var btnReduction: UIButton!
-
     //Marks : sidebar
-    //@IBOutlet weak var sidebarReglages: UIView!
-    //@IBOutlet weak var sidebarConstraint: NSLayoutConstraint!
-    //var sidebarshowed = false
-    
+    @IBOutlet weak var sidebarReglages: UIView!
+    var sidebarshowed = false
     
     var pourcentageDeduire = ""
     var pourcentage = 0.0
@@ -63,19 +39,41 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
     var totalArticle : [Double] = []
     var priceProduct : Double = 0.0
     var discountProduct : Double = 0.0
-   
+    
+    let myGlobalManager = GlobalManager()
+    
+    override func viewDidLoad() {
+       super.viewDidLoad()
+       
+       self.hideKeyboard()
+       customTextField()
+       
+       lblPrixFinal.text = "0.0 €"
+       lblTotalProduct.text = "0.0 €"
+       
+       if myGlobalManager.myProductManager.listOfProduct.isEmpty {
+           myTableView.isHidden = true
+       }
+       
+       // Affiche le clavier
+       txtFldPrixDepart.becomeFirstResponder()
+       
+       sidebarConstraint.constant = -207
+       sidebarReglages.layer.borderWidth = 1
+       sidebarReglages.layer.cornerRadius = 5
+   }
 
     
     //IBAction functions
     @IBAction func showReglage(_ sender: Any)
     {
-        /**if sidebarshowed {
+        if sidebarshowed {
             closeSidebar()
         } else {
            openSidebar()
         }
         
-        sidebarshowed = !sidebarshowed**/
+        sidebarshowed = !sidebarshowed
     }
     
     @IBAction func addProductIntoListProduct(_ sender: UIButton)
@@ -85,7 +83,18 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
             lblPulsate()
             
             if pourcentageDeduire == "" {
-                calculPrixFinal(reduc: "0")
+                //calculPrixFinal(reduc: "0")
+                let reducAppliquee = 0.0//Double (pourcentageDeduire)
+                
+                let prixDepart = Double(txtFldPrixDepart.text!)!
+                
+                let prixFinal: Double = prixDepart * (1 - (reducAppliquee/100))
+                
+                lblPrixFinal.text = String(format: " %.2f", prixFinal) + " €"
+                
+                priceProduct = prixFinal
+                
+                discountProduct = reducAppliquee
             }
             
             let myProduct = MyProduct(price: priceProduct, discount: discountProduct)
@@ -102,6 +111,8 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
             // Alert message
             print("Il manque le prix !!!")
         }
+        
+        pourcentageDeduire = ""
         
         
     }
@@ -156,12 +167,20 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
             if txtFldPrixDepart.text != "" {
                 if let i = pourcentageDeduire.firstIndex(of: "%") {
                     pourcentageDeduire.remove(at: i)
-                    calculPrixFinal(reduc: pourcentageDeduire)
+                    //calculPrixFinal(reduc: pourcentageDeduire)
+                    let reducAppliquee = Double (pourcentageDeduire)
+                    
+                    let prixDepart = Double(txtFldPrixDepart.text!)!
+                    
+                    let prixFinal: Double = prixDepart * (1 - (reducAppliquee!/100))
+                    
+                    lblPrixFinal.text = String(format: " %.2f", prixFinal) + " €"
+                    
+                    priceProduct = prixFinal
+                    
+                    discountProduct = reducAppliquee!
                 }
-            } /**else  {
-                calculPrixFinal(reduc: "0")
-                //print("il manque le prix !!!")
-            }**/
+            }
         }
     }
     
@@ -185,7 +204,7 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
 
     
     
-   /** // Private function
+   // Private function
     private func closeSidebar()
     {
         sidebarConstraint.constant = -210
@@ -200,21 +219,22 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
         UIView.animate(withDuration: 0.3) {
             self.view.layoutIfNeeded()
         }  
-    }**/
+    }
     
     private func calculPrixFinal(reduc: String)
     {
-        
+        /**
         let reducAppliquee = Double (reduc)
         
         let prixDepart = Double(txtFldPrixDepart.text!)!
         
         let prixFinal: Double = prixDepart * (1 - (reducAppliquee!/100))
         
-        lblPrixFinal.text = String(format: " %.2f", prixFinal) + " €"
+        lblPrixFinal.text = String(format: " %.2f", prixFinal) + " €"**/
         
-        priceProduct = prixFinal
-        discountProduct = reducAppliquee!
+        //priceProduct = prixFinal
+        //discountProduct = reducAppliquee!
+        
 
     }
     
