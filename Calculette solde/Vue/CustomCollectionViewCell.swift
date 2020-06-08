@@ -16,13 +16,13 @@ class CustomCollectionViewCell: UICollectionViewCell {
     func configure (discount : String)
     {
         lblPourcentage.text = discount
-        clipsToBounds = false
+        /**clipsToBounds = false
         layer.cornerRadius = 20
         layer.borderWidth = 0
         layer.shadowColor = UIColor.black.cgColor
         layer.shadowOffset = CGSize(width: 0, height: 0)
         layer.shadowOpacity = 0.5
-        layer.shadowRadius = 10
+        layer.shadowRadius = 10**/
     }
  
 }

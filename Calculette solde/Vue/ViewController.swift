@@ -13,7 +13,10 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
 
     
     
-    @IBOutlet weak var sidebarConstraint: NSLayoutConstraint!
+    //@IBOutlet weak var sidebarConstraint: NSLayoutConstraint!
+    
+    
+    @IBOutlet weak var otherDiscountViewConstraint: NSLayoutConstraint!
     @IBOutlet weak var btnAchete: CustomUIButton!
     @IBOutlet weak var lblTotalProduct: UILabel!
     @IBOutlet weak var myTableView: UITableView!
@@ -23,10 +26,17 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
     //Marks : TextField
     @IBOutlet weak var txtFldPrixDepart: UITextField!
     @IBOutlet weak var lblPrixFinal: UILabel!
+    @IBOutlet weak var txtFldMaxBudget: UITextField!
+    @IBOutlet weak var otherDiscountView: UIView!
+    @IBOutlet weak var txtFldOtherDiscount: UITextField!
+    
     
     //Marks : sidebar
     @IBOutlet weak var sidebarReglages: UIView!
     var sidebarshowed = false
+    
+    @IBOutlet weak var stepperBudget: UIStepper!
+    
     
     var pourcentageDeduire = ""
     var pourcentage = 0.0
@@ -57,20 +67,23 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
        
        // Affiche le clavier
        txtFldPrixDepart.becomeFirstResponder()
-       
-       sidebarConstraint.constant = -207
-       sidebarReglages.layer.borderWidth = 1
-       sidebarReglages.layer.cornerRadius = 5
+        
+       // Gestion de la view
+       otherDiscountViewConstraint.constant = 415
+       otherDiscountView.layer.borderWidth = 1
+       otherDiscountView.layer.cornerRadius = 10
+        
    }
 
     
-    //IBAction functions
+                                                            //IBAction functions
+    
     @IBAction func showReglage(_ sender: Any)
     {
         if sidebarshowed {
-            closeSidebar()
+           // closeSidebar()
         } else {
-           openSidebar()
+          // openSidebar()
         }
         
         sidebarshowed = !sidebarshowed
@@ -83,18 +96,7 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
             lblPulsate()
             
             if pourcentageDeduire == "" {
-                //calculPrixFinal(reduc: "0")
-                let reducAppliquee = 0.0//Double (pourcentageDeduire)
-                
-                let prixDepart = Double(txtFldPrixDepart.text!)!
-                
-                let prixFinal: Double = prixDepart * (1 - (reducAppliquee/100))
-                
-                lblPrixFinal.text = String(format: " %.2f", prixFinal) + " €"
-                
-                priceProduct = prixFinal
-                
-                discountProduct = reducAppliquee
+                calculPrixFinal(reduc: "0")
             }
             
             let myProduct = MyProduct(price: priceProduct, discount: discountProduct)
@@ -106,19 +108,47 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
                 totalProduct += item.price
             }
             lblTotalProduct.text = String(format: " %.2f", totalProduct) + " €"
+            lblPrixFinal.text = "0.0€"
             myTableView.reloadData()
         } else {
             // Alert message
+            showAlertPopup(title: "Information manquante", message: "Veuillez renseigner le prix de départ.")
             print("Il manque le prix !!!")
         }
-        
         pourcentageDeduire = ""
-        
-        
+        txtFldPrixDepart.text = ""
     }
     
+    
+    @IBAction func setBudget(_ sender: UIStepper)
+    {
+        sender.stepValue = 10
+        txtFldMaxBudget.text = "\(stepperBudget.value)"
+        
+        //print(stepperBudget.value)
+    }
+    
+    
+    @IBAction func applyOtherdiscount(_ sender: UIButton)
+    {
+        if txtFldPrixDepart.text!.isEmpty && txtFldOtherDiscount.text != "" {
+            showAlertPopup(title: "Information", message: "Il manque le prix...")
+            closeSidebar()
+            return
+        }
+        
+        if !txtFldPrixDepart.text!.isEmpty && !txtFldOtherDiscount.text!.isEmpty{
+            calculPrixFinal(reduc: txtFldOtherDiscount.text!)
+        }
+        
+        btnAchete.isEnabled = true
+        closeSidebar()
+    }
+    
+    
 
-    // Marks : CollectionView protocol
+                                                // Marks : CollectionView protocol
+    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         labelPourcentage.count
     }
@@ -143,7 +173,7 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
         
         switch pourcentageDeduire {
         case "+":
-            labelPourcentage = ["-","1%","2%","3%","4%","5%","6%","7%","8%","9%","10%",
+            /**labelPourcentage = ["-","1%","2%","3%","4%","5%","6%","7%","8%","9%","10%",
             "11%","12%","13%","14%","15%","16%","17%","18%","19%","20%",
             "21%","22%","23%","24%","25%","26%","27%","28%","29%","30%",
             "31%","32%","33%","34%","35%","36%","37%","38%","39%","40%",
@@ -153,7 +183,8 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
             "71%","72%","73%","74%","75%","76%","77%","78%","79%","80%",
             "81%","82%","83%","84%","85%","86%","87%","88%","89%","90%",
             "91%","92%","93%","94%","95%","96%","97%","98%","99%","-"]
-            collectionView.reloadData()
+            collectionView.reloadData()**/
+            openSidebar()
             
         case "-":
             labelPourcentage = ["+","5%","10%","15%",
@@ -167,18 +198,7 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
             if txtFldPrixDepart.text != "" {
                 if let i = pourcentageDeduire.firstIndex(of: "%") {
                     pourcentageDeduire.remove(at: i)
-                    //calculPrixFinal(reduc: pourcentageDeduire)
-                    let reducAppliquee = Double (pourcentageDeduire)
-                    
-                    let prixDepart = Double(txtFldPrixDepart.text!)!
-                    
-                    let prixFinal: Double = prixDepart * (1 - (reducAppliquee!/100))
-                    
-                    lblPrixFinal.text = String(format: " %.2f", prixFinal) + " €"
-                    
-                    priceProduct = prixFinal
-                    
-                    discountProduct = reducAppliquee!
+                    calculPrixFinal(reduc: pourcentageDeduire)
                 }
             }
         }
@@ -204,18 +224,25 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
 
     
     
-   // Private function
+                                                    // Private function
     private func closeSidebar()
     {
-        sidebarConstraint.constant = -210
+        txtFldPrixDepart.isEnabled = true
+        btnAchete.isEnabled = true
+        
+        otherDiscountViewConstraint.constant = 414
         UIView.animate(withDuration: 0.3) {
             self.view.layoutIfNeeded()
         }
+        txtFldOtherDiscount.text = ""
     }
     
     private func openSidebar ()
     {
-        sidebarConstraint.constant = 0
+        btnAchete.isEnabled = false
+        txtFldPrixDepart.isEnabled = false
+        txtFldOtherDiscount.text = ""
+        otherDiscountViewConstraint.constant = 20
         UIView.animate(withDuration: 0.3) {
             self.view.layoutIfNeeded()
         }  
@@ -223,40 +250,44 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
     
     private func calculPrixFinal(reduc: String)
     {
-        /**
-        let reducAppliquee = Double (reduc)
+        var reducAppliquee = 0.0
+        var prixDepart = 0.0
+        var prixFinal = 0.0
         
-        let prixDepart = Double(txtFldPrixDepart.text!)!
+        if reduc == "" {
+            reducAppliquee = 0.0
+        } else {
+            reducAppliquee = Double (reduc)!
+        }
         
-        let prixFinal: Double = prixDepart * (1 - (reducAppliquee!/100))
+        if reducAppliquee <= 100 {
+            if !txtFldPrixDepart.text!.isEmpty {
+                prixDepart = Double (txtFldPrixDepart.text!)!
+                prixFinal = prixDepart * (1 - (reducAppliquee/100))
+                lblPrixFinal.text = String(format: " %.2f", prixFinal) + " €"
+                priceProduct = prixFinal
+                discountProduct = reducAppliquee
+            } else {
+                showAlertPopup(title: "Erreur", message: "Veuillez entrez un prix.")
+            }
+        } else {
+            showAlertPopup(title: "Erreur", message: "Verifiez le pourcentage")
+        }
+        // gerer l'erreur si pas de prix entrer \\\\\\\\
+
+
         
-        lblPrixFinal.text = String(format: " %.2f", prixFinal) + " €"**/
-        
-        //priceProduct = prixFinal
-        //discountProduct = reducAppliquee!
-        
+        /**if Double(lblTotalProduct.text!)! >= Double (txtFldMaxBudget.text!)! {
+            lblTotalProduct.textColor = UIColor.red
+        }**/
+
 
     }
     
-    private func showAlertPopup()
+    private func showAlertPopup(title : String, message: String)
     {
-        //var pourcentagePerso = ""
-        var test = ""
-        
-        let alert = UIAlertController(title: "Pourcentage de réduction", message: "Entrez votre pourcentage", preferredStyle: .alert)
-        
-        alert.addTextField { (txtPourcentage) in
-            txtPourcentage.text = ""
-            
-            /**if let doubleValue = Double(txtPourcentage.text!) {
-                pourcentagePerso = doubleValue
-            }**/
-            
-            alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
-            test = txtPourcentage.text!
-            self.calculPrixFinal(reduc: test)
-            //pourcentagePerso = Double(txtPourcentage.text)
-        }
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
         self.present(alert, animated: true)
         
     }
@@ -280,6 +311,9 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
         txtFldPrixDepart.layer.borderWidth = 1
         txtFldPrixDepart.layer.cornerRadius = 10
         
+        txtFldOtherDiscount.layer.borderWidth = 1
+        txtFldOtherDiscount.layer.cornerRadius = 10
+        
     }
     
 // fin de classe
@@ -290,17 +324,15 @@ extension UIViewController {
     func hideKeyboard()
     {
         let tap: UITapGestureRecognizer = UITapGestureRecognizer(target:  self, action: #selector(UIViewController.dismissKeyboard))
-        
         tap.cancelsTouchesInView = false
         view.addGestureRecognizer(tap)
-    
     }
     
     @objc func dismissKeyboard()
     {
         view.endEditing(true)
     }
-    
-    
+
+// fin de classe
 }
 
