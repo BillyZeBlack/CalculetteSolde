@@ -22,7 +22,7 @@
                                     <constraint firstAttribute="height" constant="34" id="Mld-7B-KYw"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                                <textInputTraits key="textInputTraits" autocorrectionType="no" keyboardType="numberPad"/>
+                                <textInputTraits key="textInputTraits" autocorrectionType="no" keyboardType="decimalPad"/>
                             </textField>
                             <button opaque="NO" alpha="0.5" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IY8-GX-wkI">
                                 <rect key="frame" x="348" y="52" width="46" height="46"/>
@@ -46,7 +46,7 @@
                             </label>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="tk4-BO-itD">
                                 <rect key="frame" x="-5" y="209" width="419" height="81"/>
-                                <color key="backgroundColor" red="0.94271534680000002" green="0.93070882560000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="backgroundColor" red="0.93744474649999998" green="0.93834370369999998" blue="0.99804288149999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="81" id="haf-Ho-bwj"/>
                                     <constraint firstAttribute="height" constant="81" id="yiJ-uk-ixn"/>
@@ -82,7 +82,6 @@
                                             </constraints>
                                         </collectionViewCellContentView>
                                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <size key="customSize" width="81" height="81"/>
                                         <connections>
                                             <outlet property="lblPourcentage" destination="dBt-XP-uAv" id="A7Y-fM-cxU"/>
@@ -118,7 +117,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5Vt-hE-S03">
-                                <rect key="frame" x="221.33333333333337" y="470" width="172.66666666666663" height="27"/>
+                                <rect key="frame" x="191" y="470" width="203" height="27"/>
                                 <constraints>
                                     <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="27" id="ZQG-DG-wGB"/>
                                     <constraint firstAttribute="height" constant="27" id="nvm-D2-hfI"/>
@@ -129,8 +128,8 @@
                             </label>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="jdy-Qm-WSD">
                                 <rect key="frame" x="20" y="523" width="374" height="339"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
-                                <color key="sectionIndexBackgroundColor" red="0.94271534680000002" green="0.93070882560000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="backgroundColor" red="0.93744474649999998" green="0.93834370369999998" blue="0.99804288149999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="sectionIndexTrackingBackgroundColor" red="0.0048598507420000003" green="0.096086271109999996" blue="0.57499289509999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="tableViewCell" id="Q7E-Xr-mKm" customClass="CustomTableViewCell" customModule="Calculette_solde" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="374" height="43.666667938232422"/>
@@ -165,6 +164,7 @@
                                                 <constraint firstItem="RqR-ne-7xn" firstAttribute="top" secondItem="K4U-D2-Oqr" secondAttribute="topMargin" id="Qiy-HW-zAY"/>
                                             </constraints>
                                         </tableViewCellContentView>
+                                        <color key="backgroundColor" red="0.84360206130000004" green="0.84367942809999996" blue="0.89633691309999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <connections>
                                             <outlet property="lblDiscountProduct" destination="RqR-ne-7xn" id="GVv-ta-iT2"/>
                                             <outlet property="lblPriceProduct" destination="6cu-tG-a2V" id="n40-1y-7YP"/>
@@ -185,7 +185,7 @@
                                             <constraint firstAttribute="height" constant="34" id="fX2-kL-UbS"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
+                                        <textInputTraits key="textInputTraits" keyboardType="decimalPad"/>
                                     </textField>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VcZ-l2-hcX">
                                         <rect key="frame" x="158" y="147" width="59" height="35"/>
@@ -229,7 +229,6 @@
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="eCl-Jv-suC" secondAttribute="trailing" constant="16" id="5Fw-fj-LjA"/>
                             <constraint firstItem="tk4-BO-itD" firstAttribute="top" secondItem="eCl-Jv-suC" secondAttribute="bottom" constant="66" id="8tG-gf-qZL"/>
                             <constraint firstItem="Afn-rw-XMJ" firstAttribute="top" secondItem="eiQ-tM-iJA" secondAttribute="bottom" constant="24" id="9YK-d9-VfI"/>
-                            <constraint firstItem="5Vt-hE-S03" firstAttribute="leading" secondItem="Xr5-q3-9n1" secondAttribute="trailing" constant="155.5" id="AIA-qf-dhs"/>
                             <constraint firstItem="eiQ-tM-iJA" firstAttribute="top" secondItem="tk4-BO-itD" secondAttribute="bottom" constant="37" id="BUI-DY-fRo"/>
                             <constraint firstItem="eCl-Jv-suC" firstAttribute="top" secondItem="IY8-GX-wkI" secondAttribute="bottom" constant="11" id="BoS-RM-Ywh"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="eiQ-tM-iJA" secondAttribute="trailing" constant="20" id="IQZ-5e-DeT"/>
@@ -247,6 +246,7 @@
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="buc-tz-dQq" secondAttribute="trailing" constant="20" id="ffi-jB-VWp"/>
                             <constraint firstItem="jdy-Qm-WSD" firstAttribute="bottom" secondItem="6Tk-OE-BBY" secondAttribute="bottom" id="gnJ-hQ-ZQ9"/>
                             <constraint firstItem="jdy-Qm-WSD" firstAttribute="top" secondItem="Xr5-q3-9n1" secondAttribute="bottom" constant="26" id="mge-Ab-csP"/>
+                            <constraint firstItem="5Vt-hE-S03" firstAttribute="leading" secondItem="Xr5-q3-9n1" secondAttribute="trailing" constant="125.33" id="nCA-ee-dw4"/>
                             <constraint firstItem="Xr5-q3-9n1" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="20" id="pj8-dj-FeL"/>
                             <constraint firstItem="5Vt-hE-S03" firstAttribute="top" secondItem="Afn-rw-XMJ" secondAttribute="bottom" constant="42" id="rEs-5R-JL6"/>
                             <constraint firstItem="jdy-Qm-WSD" firstAttribute="bottom" secondItem="6Tk-OE-BBY" secondAttribute="bottom" id="uc1-DY-orI"/>

@@ -73,6 +73,9 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
        otherDiscountView.layer.borderWidth = 1
        otherDiscountView.layer.cornerRadius = 10
         
+        lblTotalProduct.layer.borderWidth = 2
+        lblTotalProduct.layer.cornerRadius = 10
+        
    }
     
     
@@ -202,7 +205,7 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
         }
     }
     
-    //Marks : TableView Protocol
+                                                 //Marks : TableView Protocol
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         myGlobalManager.myProductManager.listOfProduct.count
     }
@@ -217,6 +220,18 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
         }
         
         return myCell
+    }
+    
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+            myGlobalManager.myProductManager.deleteProduct(index: indexPath.row)
+            var totalProduct: Double = 0.0
+            for item in myGlobalManager.myProductManager.listOfProduct {
+                totalProduct += item.price
+            }
+            lblTotalProduct.text = String(format: " %.2f", totalProduct) + " €"
+            tableView.reloadData()
+        }
     }
         
     
