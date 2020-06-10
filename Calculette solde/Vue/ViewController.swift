@@ -74,9 +74,9 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
        otherDiscountView.layer.cornerRadius = 10
         
    }
-
     
-                                                            //IBAction functions
+    
+                                                      //IBAction functions
     
     @IBAction func showReglage(_ sender: Any)
     {
@@ -144,8 +144,6 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
         btnAchete.isEnabled = true
         closeSidebar()
     }
-    
-    
 
                                                 // Marks : CollectionView protocol
     
@@ -220,9 +218,7 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
         
         return myCell
     }
-    
-
-    
+        
     
                                                     // Private function
     private func closeSidebar()
@@ -273,15 +269,6 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
         } else {
             showAlertPopup(title: "Erreur", message: "Verifiez le pourcentage")
         }
-        // gerer l'erreur si pas de prix entrer \\\\\\\\
-
-
-        
-        /**if Double(lblTotalProduct.text!)! >= Double (txtFldMaxBudget.text!)! {
-            lblTotalProduct.textColor = UIColor.red
-        }**/
-
-
     }
     
     private func showAlertPopup(title : String, message: String)
@@ -289,7 +276,6 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
         let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
         self.present(alert, animated: true)
-        
     }
     
     private func lblPulsate ()
@@ -332,7 +318,7 @@ extension UIViewController {
     {
         view.endEditing(true)
     }
-
+        
 // fin de classe
 }
 

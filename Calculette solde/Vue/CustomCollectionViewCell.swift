@@ -12,6 +12,13 @@ class CustomCollectionViewCell: UICollectionViewCell {
 
     @IBOutlet weak var lblPourcentage: UILabel!
     
+    override func draw(_ rect: CGRect) {
+        super.draw(rect)
+        self.layer.cornerRadius = self.frame.size.width / 2
+        self.layer.borderColor = UIColor.black.cgColor
+        self.layer.borderWidth = 5.5
+        //self.layer.backgroundColor = UIColor.white.cgColor
+    }
     
     func configure (discount : String)
     {
