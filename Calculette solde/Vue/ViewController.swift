@@ -49,6 +49,7 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
     var totalArticle : [Double] = []
     var priceProduct : Double = 0.0
     var discountProduct : Double = 0.0
+    var prixDepart = 0.0
     
     let myGlobalManager = GlobalManager()
     
@@ -100,9 +101,32 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
             
             if pourcentageDeduire == "" {
                 calculPrixFinal(reduc: "0")
+                //
+                let myProduct = MyProduct(price: priceProduct, discount: discountProduct)
+                    myGlobalManager.myProductManager.addProdcut(product: myProduct)
+                    myTableView.isHidden = false
+                    
+                    var totalProduct: Double = 0.0
+                    for item in myGlobalManager.myProductManager.listOfProduct {
+                        totalProduct += item.price
+                    }
+                    lblTotalProduct.text = String(format: " %.2f", totalProduct) + " €"
+                    lblPrixFinal.text = "0.0€"
+                    myTableView.reloadData()
+                } else {
+                    // Alert message
+                    showAlertPopup(title: "Information manquante", message: "Veuillez renseigner le prix de départ.")
+                    print("Il manque le prix !!!")
+                }
+                pourcentageDeduire = ""
+                txtFldPrixDepart.text = ""
+                //
+            } else {
+                showAlertPopup(title: "Erreur", message: "Vérifiez le prix.")
+                return
             }
             
-            let myProduct = MyProduct(price: priceProduct, discount: discountProduct)
+            /** let myProduct = MyProduct(price: priceProduct, discount: discountProduct)
             myGlobalManager.myProductManager.addProdcut(product: myProduct)
             myTableView.isHidden = false
             
@@ -119,7 +143,8 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
             print("Il manque le prix !!!")
         }
         pourcentageDeduire = ""
-        txtFldPrixDepart.text = ""
+        txtFldPrixDepart.text = "" **/
+
     }
     
     
@@ -262,7 +287,7 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
     private func calculPrixFinal(reduc: String)
     {
         var reducAppliquee = 0.0
-        var prixDepart = 0.0
+        //var prixDepart = 0.0
         var prixFinal = 0.0
         
         if reduc == "" {
@@ -272,8 +297,16 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
         }
         
         if reducAppliquee <= 100 {
-            if !txtFldPrixDepart.text!.isEmpty {
-                prixDepart = Double (txtFldPrixDepart.text!)!
+           if !txtFldPrixDepart.text!.isEmpty {
+            //
+            guard let tempPrice = Double (txtFldPrixDepart.text!) else {
+                showAlertPopup(title: "Erreur", message: "Vérifiez le prix de départ"); return
+                
+            }
+            prixDepart = tempPrice
+            
+            //
+                //prixDepart = Double (txtFldPrixDepart.text!)!
                 prixFinal = prixDepart * (1 - (reducAppliquee/100))
                 lblPrixFinal.text = String(format: " %.2f", prixFinal) + " €"
                 priceProduct = prixFinal
