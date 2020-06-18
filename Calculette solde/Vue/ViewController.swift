@@ -49,7 +49,8 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
     var totalArticle : [Double] = []
     var priceProduct : Double = 0.0
     var discountProduct : Double = 0.0
-    var prixDepart = 0.0
+    var prixDeDepart : Double = 0.0
+    var reduction : Double = 0.0
     
     let myGlobalManager = GlobalManager()
     
@@ -71,8 +72,12 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
         
        // Gestion de la view
        otherDiscountViewConstraint.constant = 415
-       otherDiscountView.layer.borderWidth = 1
+       otherDiscountView.layer.borderWidth = 2
        otherDiscountView.layer.cornerRadius = 10
+       otherDiscountView.layer.shadowColor = UIColor.black.cgColor
+       otherDiscountView.layer.shadowOffset = CGSize(width: 15, height: -8)
+       otherDiscountView.layer.shadowOpacity = 0.7
+       otherDiscountView.layer.shadowRadius = 10
         
         lblTotalProduct.layer.borderWidth = 2
         lblTotalProduct.layer.cornerRadius = 10
@@ -83,7 +88,7 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
                                                       //IBAction functions
     
     @IBAction func showReglage(_ sender: Any)
-    {
+    {/**
         if sidebarshowed {
            // closeSidebar()
         } else {
@@ -91,60 +96,26 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
         }
         
         sidebarshowed = !sidebarshowed
+ **/
     }
     
     @IBAction func addProductIntoListProduct(_ sender: UIButton)
     {
-        if !txtFldPrixDepart.text!.isEmpty {
-            //btnAchete.pulsate()
-            lblPulsate()
-            
-            if pourcentageDeduire == "" {
-                calculPrixFinal(reduc: "0")
-                //
-                let myProduct = MyProduct(price: priceProduct, discount: discountProduct)
-                    myGlobalManager.myProductManager.addProdcut(product: myProduct)
-                    myTableView.isHidden = false
-                    
-                    var totalProduct: Double = 0.0
-                    for item in myGlobalManager.myProductManager.listOfProduct {
-                        totalProduct += item.price
-                    }
-                    lblTotalProduct.text = String(format: " %.2f", totalProduct) + " €"
-                    lblPrixFinal.text = "0.0€"
-                    myTableView.reloadData()
-                } else {
-                    // Alert message
-                    showAlertPopup(title: "Information manquante", message: "Veuillez renseigner le prix de départ.")
-                    print("Il manque le prix !!!")
+        if txtFldPrixDepart.text!.isEmpty {
+            showAlertPopup(title: "Information", message: "Veuillez entrer un prix")
+        } else {
+                if pourcentageDeduire == "" {
+                    reduction = 0.0
+                    let prixDep = txtFldPrixDepart.text!
+                    guard let tempPrixDep = Double (prixDep) else { return showAlertPopup(title: "Erreur", message: "Vérifiez le prix initial.") }
+                    prixDeDepart = tempPrixDep
+                    calculDuPrix(prixDepart: prixDeDepart, reduction: reduction)
                 }
+                ajouterALaListe(prixFinal: priceProduct, reduction: reduction)
+            
                 pourcentageDeduire = ""
                 txtFldPrixDepart.text = ""
-                //
-            } else {
-                showAlertPopup(title: "Erreur", message: "Vérifiez le prix.")
-                return
-            }
-            
-            /** let myProduct = MyProduct(price: priceProduct, discount: discountProduct)
-            myGlobalManager.myProductManager.addProdcut(product: myProduct)
-            myTableView.isHidden = false
-            
-            var totalProduct: Double = 0.0
-            for item in myGlobalManager.myProductManager.listOfProduct {
-                totalProduct += item.price
-            }
-            lblTotalProduct.text = String(format: " %.2f", totalProduct) + " €"
-            lblPrixFinal.text = "0.0€"
-            myTableView.reloadData()
-        } else {
-            // Alert message
-            showAlertPopup(title: "Information manquante", message: "Veuillez renseigner le prix de départ.")
-            print("Il manque le prix !!!")
         }
-        pourcentageDeduire = ""
-        txtFldPrixDepart.text = "" **/
-
     }
     
     
@@ -159,18 +130,32 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
     
     @IBAction func applyOtherdiscount(_ sender: UIButton)
     {
-        if txtFldPrixDepart.text!.isEmpty && txtFldOtherDiscount.text != "" {
-            showAlertPopup(title: "Information", message: "Il manque le prix...")
+        if txtFldPrixDepart.text!.isEmpty && txtFldOtherDiscount.text!.isEmpty {
             closeSidebar()
-            return
+        } else {
+            let prixInitial = txtFldPrixDepart.text!
+            guard let tempPrxInit = Double (prixInitial) else { return showAlertPopup(title: "Erreur", message: "Le prix de départ n'est pas valide.") }
+            
+            if txtFldOtherDiscount.text!.isEmpty {
+                txtFldOtherDiscount.text = "0.0"
+            }
+            
+            let reducPerso = txtFldOtherDiscount.text!
+            guard let tempReducPerso = Double (reducPerso) else { return showAlertPopup(title: "Erreur", message: "La réduction n'est pas valide.") }
+            
+            if tempReducPerso <= 100 {
+                prixDeDepart = tempPrxInit
+                reduction = tempReducPerso
+                
+                calculDuPrix(prixDepart: prixDeDepart, reduction: reduction)
+                
+            } else {
+                showAlertPopup(title: "Erreur", message: "Vérifiez votre réduction")
+            }
+
+            btnAchete.isEnabled = true
+            closeSidebar()
         }
-        
-        if !txtFldPrixDepart.text!.isEmpty && !txtFldOtherDiscount.text!.isEmpty{
-            calculPrixFinal(reduc: txtFldOtherDiscount.text!)
-        }
-        
-        btnAchete.isEnabled = true
-        closeSidebar()
     }
 
                                                 // Marks : CollectionView protocol
@@ -224,7 +209,16 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
             if txtFldPrixDepart.text != "" {
                 if let i = pourcentageDeduire.firstIndex(of: "%") {
                     pourcentageDeduire.remove(at: i)
-                    calculPrixFinal(reduc: pourcentageDeduire)
+                    //calculPrixFinal(reduc: pourcentageDeduire)
+                    let prixInit = txtFldPrixDepart.text!
+                    let reduc = pourcentageDeduire
+                    guard let tempPrixInit = Double (prixInit) else { return showAlertPopup(title: "Erreur", message: "Vérifiez votre prix.") }
+                    guard let tempReduc = Double (reduc) else { return showAlertPopup(title: "Erreur", message: "Vérifiez votre réduction.") }
+                    
+                    prixDeDepart = tempPrixInit
+                    reduction = tempReduc
+                    
+                    calculDuPrix(prixDepart: prixDeDepart, reduction: reduction)
                 }
             }
         }
@@ -281,43 +275,42 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
         otherDiscountViewConstraint.constant = 20
         UIView.animate(withDuration: 0.3) {
             self.view.layoutIfNeeded()
-        }  
+        }
     }
     
-    private func calculPrixFinal(reduc: String)
+
+    private func calculDuPrix(prixDepart: Double, reduction: Double)
     {
-        var reducAppliquee = 0.0
-        //var prixDepart = 0.0
-        var prixFinal = 0.0
-        
-        if reduc == "" {
-            reducAppliquee = 0.0
-        } else {
-            reducAppliquee = Double (reduc)!
-        }
-        
-        if reducAppliquee <= 100 {
-           if !txtFldPrixDepart.text!.isEmpty {
-            //
-            guard let tempPrice = Double (txtFldPrixDepart.text!) else {
-                showAlertPopup(title: "Erreur", message: "Vérifiez le prix de départ"); return
-                
-            }
-            prixDepart = tempPrice
-            
-            //
-                //prixDepart = Double (txtFldPrixDepart.text!)!
-                prixFinal = prixDepart * (1 - (reducAppliquee/100))
-                lblPrixFinal.text = String(format: " %.2f", prixFinal) + " €"
-                priceProduct = prixFinal
-                discountProduct = reducAppliquee
-            } else {
-                showAlertPopup(title: "Erreur", message: "Veuillez entrez un prix.")
-            }
-        } else {
-            showAlertPopup(title: "Erreur", message: "Verifiez le pourcentage")
-        }
+        priceProduct = prixDepart * (1 - (reduction/100))
+        lblPrixFinal.text = "\(priceProduct) €"
+        //ajouterALaListe(prixFinal: priceProduct, reduction: reduction)
     }
+    
+    private func ajouterALaListe(prixFinal : Double, reduction : Double)
+    {
+        let article = MyProduct(price: prixFinal, discount: reduction)
+        myGlobalManager.myProductManager.addProdcut(product: article)
+        
+        var totalArticle = 0.0
+        for item in myGlobalManager.myProductManager.listOfProduct {
+            totalArticle += item.price
+        }
+        myTableView.reloadData()
+        myTableView.isHidden = false
+        lblTotalProduct.text = "\(totalArticle)€"
+        updateLabel()
+        priceProduct = 0.0
+        self.reduction = 0.0
+        
+    }
+    
+    private func updateLabel()
+    {
+        txtFldPrixDepart.text = "0.0 €"
+        lblPrixFinal.text = "0.0 €"
+        
+    }
+    //
     
     private func showAlertPopup(title : String, message: String)
     {
