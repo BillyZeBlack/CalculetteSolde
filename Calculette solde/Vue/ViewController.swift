@@ -312,6 +312,7 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
         for item in myGlobalManager.myProductManager.listOfProduct {
             totalArticle += item.price
         }
+        lblPulsate()
         myTableView.reloadData()
         myTableView.isHidden = false
         lblTotalProduct.text = String(format: " %.2f", totalArticle) + " €"
@@ -323,7 +324,7 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
     
     private func updateLabel()
     {
-        txtFldPrixDepart.text = "0.0 €"
+        txtFldPrixDepart.text = ""
         lblPrixFinal.text = "0.0 €"
         
     }
@@ -340,7 +341,7 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
     private func lblPulsate ()
     {
         let pulse = CASpringAnimation(keyPath: "transform.scale")
-        pulse.duration = 0.6
+        pulse.duration = 0.3
         pulse.toValue = 1
         pulse.fromValue = 0.95
         pulse.initialVelocity = 0.5

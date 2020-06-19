@@ -20,6 +20,8 @@
 		BEBAFD4324893C0200A9EF15 /* GlobalManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEBAFD4224893C0200A9EF15 /* GlobalManager.swift */; };
 		BEBAFD45248943F900A9EF15 /* CustomTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEBAFD44248943F800A9EF15 /* CustomTableViewCell.swift */; };
 		BEE88759248AA1EF009BB96A /* CustomUIButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEE88758248AA1EF009BB96A /* CustomUIButton.swift */; };
+		BEFD3633249D26C70053E857 /* LogoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEFD3632249D26C70053E857 /* LogoViewController.swift */; };
+		BEFD3635249D6AA60053E857 /* CustomUiTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEFD3634249D6AA60053E857 /* CustomUiTextField.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -40,6 +42,8 @@
 		BEBAFD4224893C0200A9EF15 /* GlobalManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlobalManager.swift; sourceTree = "<group>"; };
 		BEBAFD44248943F800A9EF15 /* CustomTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTableViewCell.swift; sourceTree = "<group>"; };
 		BEE88758248AA1EF009BB96A /* CustomUIButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomUIButton.swift; sourceTree = "<group>"; };
+		BEFD3632249D26C70053E857 /* LogoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogoViewController.swift; sourceTree = "<group>"; };
+		BEFD3634249D6AA60053E857 /* CustomUiTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomUiTextField.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -108,9 +112,11 @@
 			children = (
 				BEA76CB924812F0B000244BA /* ViewController.swift */,
 				BEA674B52486EDEB00EC99B2 /* CustomCollectionViewCell.swift */,
-				BEA76CBB24812F0B000244BA /* Main.storyboard */,
 				BEBAFD44248943F800A9EF15 /* CustomTableViewCell.swift */,
 				BEE88758248AA1EF009BB96A /* CustomUIButton.swift */,
+				BEA76CBB24812F0B000244BA /* Main.storyboard */,
+				BEFD3632249D26C70053E857 /* LogoViewController.swift */,
+				BEFD3634249D6AA60053E857 /* CustomUiTextField.swift */,
 			);
 			path = Vue;
 			sourceTree = "<group>";
@@ -237,7 +243,9 @@
 				BEA76CBA24812F0B000244BA /* ViewController.swift in Sources */,
 				BEBAFD4324893C0200A9EF15 /* GlobalManager.swift in Sources */,
 				BEBAFD3F2489389C00A9EF15 /* MyProduct.swift in Sources */,
+				BEFD3633249D26C70053E857 /* LogoViewController.swift in Sources */,
 				BEA76CB624812F0B000244BA /* AppDelegate.swift in Sources */,
+				BEFD3635249D6AA60053E857 /* CustomUiTextField.swift in Sources */,
 				BEA76CB824812F0B000244BA /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
