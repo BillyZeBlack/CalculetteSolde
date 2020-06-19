@@ -101,10 +101,10 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
     
     @IBAction func addProductIntoListProduct(_ sender: UIButton)
     {
-        if txtFldPrixDepart.text!.isEmpty {
+        /**if txtFldPrixDepart.text!.isEmpty {
             showAlertPopup(title: "Information", message: "Veuillez entrer un prix")
         } else {
-                if pourcentageDeduire == "" {
+                if pourcentageDeduire == "" || pourcentageDeduire == "+"{
                     reduction = 0.0
                     let prixDep = txtFldPrixDepart.text!
                     guard let tempPrixDep = Double (prixDep) else { return showAlertPopup(title: "Erreur", message: "Vérifiez le prix initial.") }
@@ -115,6 +115,20 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
             
                 pourcentageDeduire = ""
                 txtFldPrixDepart.text = ""
+        }**/
+        
+        if lblPrixFinal.text! != "0.0 €" {
+            var prixFinal = lblPrixFinal.text!
+            
+            if let i = prixFinal.firstIndex(of: "€") {
+                prixFinal.remove(at: i)
+            }
+            
+            guard let constant = Double (prixFinal) else { return showAlertPopup(title: "Erreur", message: "Une erreur s'est produite.") }
+            
+            ajouterALaListe(prixFinal: constant, reduction: reduction)
+        } else {
+            
         }
     }
     
@@ -134,7 +148,7 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
             closeSidebar()
         } else {
             let prixInitial = txtFldPrixDepart.text!
-            guard let tempPrxInit = Double (prixInitial) else { return showAlertPopup(title: "Erreur", message: "Le prix de départ n'est pas valide.") }
+            guard let tempPrxInit = Double (prixInitial) else { return showAlertPopup(title: "Erreur", message: "Le prix de départ n'est pas valide.")}
             
             if txtFldOtherDiscount.text!.isEmpty {
                 txtFldOtherDiscount.text = "0.0"
@@ -220,6 +234,9 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
                     
                     calculDuPrix(prixDepart: prixDeDepart, reduction: reduction)
                 }
+            } else {
+                showAlertPopup(title: "Information", message: "Entrez un prix.")
+                pourcentageDeduire = ""
             }
         }
     }
@@ -282,7 +299,7 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
     private func calculDuPrix(prixDepart: Double, reduction: Double)
     {
         priceProduct = prixDepart * (1 - (reduction/100))
-        lblPrixFinal.text = "\(priceProduct) €"
+        lblPrixFinal.text = String(format: "%.2f", priceProduct) + "€"
         //ajouterALaListe(prixFinal: priceProduct, reduction: reduction)
     }
     
@@ -297,7 +314,7 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
         }
         myTableView.reloadData()
         myTableView.isHidden = false
-        lblTotalProduct.text = "\(totalArticle)€"
+        lblTotalProduct.text = String(format: " %.2f", totalArticle) + " €"
         updateLabel()
         priceProduct = 0.0
         self.reduction = 0.0
@@ -317,6 +334,7 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
         let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
         self.present(alert, animated: true)
+        closeSidebar()
     }
     
     private func lblPulsate ()
