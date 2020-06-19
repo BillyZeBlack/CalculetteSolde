@@ -110,12 +110,12 @@
 		BEA76CCA24812F2D000244BA /* Vue */ = {
 			isa = PBXGroup;
 			children = (
+				BEA76CBB24812F0B000244BA /* Main.storyboard */,
 				BEA76CB924812F0B000244BA /* ViewController.swift */,
+				BEFD3632249D26C70053E857 /* LogoViewController.swift */,
 				BEA674B52486EDEB00EC99B2 /* CustomCollectionViewCell.swift */,
 				BEBAFD44248943F800A9EF15 /* CustomTableViewCell.swift */,
 				BEE88758248AA1EF009BB96A /* CustomUIButton.swift */,
-				BEA76CBB24812F0B000244BA /* Main.storyboard */,
-				BEFD3632249D26C70053E857 /* LogoViewController.swift */,
 				BEFD3634249D6AA60053E857 /* CustomUiTextField.swift */,
 			);
 			path = Vue;

@@ -20,6 +20,8 @@ class CustomTableViewCell: UITableViewCell {
         let myDiscount : Int = Int(theDiscount)
         lblPriceProduct.text = String(format: " %.2f", thePrice) + " €"
         lblDiscountProduct.text = "\(myDiscount)%"
+        layer.cornerRadius = 10
+        
     }
     
     override func awakeFromNib() {

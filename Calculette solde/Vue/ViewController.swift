@@ -20,15 +20,16 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
     @IBOutlet weak var btnAchete: CustomUIButton!
     @IBOutlet weak var lblTotalProduct: UILabel!
     @IBOutlet weak var myTableView: UITableView!
+    @IBOutlet weak var myCollectionView: UICollectionView!
     
     
     
     //Marks : TextField
-    @IBOutlet weak var txtFldPrixDepart: UITextField!
+    @IBOutlet weak var txtFldPrixDepart: CustomUiTextField!//UITextField!
     @IBOutlet weak var lblPrixFinal: UILabel!
     @IBOutlet weak var txtFldMaxBudget: UITextField!
     @IBOutlet weak var otherDiscountView: UIView!
-    @IBOutlet weak var txtFldOtherDiscount: UITextField!
+    @IBOutlet weak var txtFldOtherDiscount: CustomUiTextField!//UITextField!
     
     
     //Marks : sidebar
@@ -56,9 +57,18 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
     
     override func viewDidLoad() {
        super.viewDidLoad()
-       
+        myCollectionView.backgroundView = nil
+        myCollectionView.backgroundColor = .clear
+        
+        /**let gradientLayer = CAGradientLayer()
+        gradientLayer.frame = self.view.bounds
+        gradientLayer.colors = [UIColor.red.cgColor, UIColor.yellow.cgColor]
+        self.view.layer.insertSublayer(gradientLayer, at: 0)**/
+        
+        
+        
        self.hideKeyboard()
-       customTextField()
+       //customTextField()
        
        lblPrixFinal.text = "0.0 €"
        lblTotalProduct.text = "0.0 €"
@@ -125,10 +135,12 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
             }
             
             guard let constant = Double (prixFinal) else { return showAlertPopup(title: "Erreur", message: "Une erreur s'est produite.") }
-            
             ajouterALaListe(prixFinal: constant, reduction: reduction)
         } else {
+            let prixFinal = txtFldPrixDepart.text!
             
+            guard let constant = Double (prixFinal) else { return showAlertPopup(title: "Erreur", message: "Une erreur s'est produite.") }
+            ajouterALaListe(prixFinal: constant, reduction: reduction)
         }
     }
     
