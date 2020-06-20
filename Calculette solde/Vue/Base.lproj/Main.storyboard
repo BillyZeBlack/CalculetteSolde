@@ -47,7 +47,7 @@
                                     <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 </collectionViewFlowLayout>
                                 <cells>
-                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="cell" id="rhl-Ak-eCc" customClass="CustomCollectionViewCell" customModule="Calculette_solde" customModuleProvider="target">
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" alpha="0.0" contentMode="center" reuseIdentifier="cell" id="rhl-Ak-eCc" customClass="CustomCollectionViewCell" customModule="Calculette_solde" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="0.0" width="81" height="81"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="b9v-aQ-PLc">
@@ -64,13 +64,13 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
-                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <constraints>
                                                 <constraint firstItem="dBt-XP-uAv" firstAttribute="centerY" secondItem="b9v-aQ-PLc" secondAttribute="centerY" id="Psy-NN-20w"/>
                                                 <constraint firstItem="dBt-XP-uAv" firstAttribute="centerX" secondItem="b9v-aQ-PLc" secondAttribute="centerX" id="ujc-TQ-4mY"/>
                                             </constraints>
                                         </collectionViewCellContentView>
-                                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <size key="customSize" width="81" height="81"/>
                                         <connections>
                                             <outlet property="lblPourcentage" destination="dBt-XP-uAv" id="A7Y-fM-cxU"/>
@@ -101,16 +101,16 @@
                                     <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="27" id="ZQG-DG-wGB"/>
                                     <constraint firstAttribute="height" constant="27" id="nvm-D2-hfI"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="22"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="22"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="jdy-Qm-WSD">
                                 <rect key="frame" x="20" y="523" width="374" height="339"/>
-                                <color key="backgroundColor" red="0.93744474649999998" green="0.93834370369999998" blue="0.99804288149999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <color key="sectionIndexTrackingBackgroundColor" red="0.0048598507420000003" green="0.096086271109999996" blue="0.57499289509999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="tableViewCell" id="Q7E-Xr-mKm" customClass="CustomTableViewCell" customModule="Calculette_solde" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" alpha="0.0" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="tableViewCell" id="Q7E-Xr-mKm" customClass="CustomTableViewCell" customModule="Calculette_solde" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="374" height="43.5"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Q7E-Xr-mKm" id="K4U-D2-Oqr">
@@ -121,6 +121,7 @@
                                                     <rect key="frame" x="312" y="11" width="42" height="21"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="21" id="4R7-Ua-iNB"/>
+                                                        <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="42" id="g3f-QL-C3U"/>
                                                     </constraints>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
@@ -129,6 +130,7 @@
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6cu-tG-a2V">
                                                     <rect key="frame" x="20" y="11" width="42" height="21"/>
                                                     <constraints>
+                                                        <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="42" id="XC6-AD-DMi"/>
                                                         <constraint firstAttribute="height" constant="21" id="fqN-Z1-iEL"/>
                                                     </constraints>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -137,13 +139,18 @@
                                                 </label>
                                             </subviews>
                                             <constraints>
+                                                <constraint firstItem="6cu-tG-a2V" firstAttribute="top" secondItem="K4U-D2-Oqr" secondAttribute="topMargin" id="Dnz-Kx-o29"/>
                                                 <constraint firstItem="RqR-ne-7xn" firstAttribute="trailing" secondItem="K4U-D2-Oqr" secondAttribute="trailingMargin" id="EWv-tt-sqF"/>
                                                 <constraint firstItem="6cu-tG-a2V" firstAttribute="leading" secondItem="K4U-D2-Oqr" secondAttribute="leadingMargin" id="Gbq-ZY-odq"/>
+                                                <constraint firstItem="6cu-tG-a2V" firstAttribute="leading" secondItem="K4U-D2-Oqr" secondAttribute="leadingMargin" id="Hpa-2P-wtz"/>
                                                 <constraint firstItem="6cu-tG-a2V" firstAttribute="top" secondItem="K4U-D2-Oqr" secondAttribute="topMargin" id="MYw-T1-e0S"/>
                                                 <constraint firstItem="RqR-ne-7xn" firstAttribute="top" secondItem="K4U-D2-Oqr" secondAttribute="topMargin" id="Qiy-HW-zAY"/>
+                                                <constraint firstItem="RqR-ne-7xn" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="6cu-tG-a2V" secondAttribute="trailing" constant="8" symbolic="YES" id="Rgt-YK-IdY"/>
+                                                <constraint firstItem="RqR-ne-7xn" firstAttribute="trailing" secondItem="K4U-D2-Oqr" secondAttribute="trailingMargin" id="jCR-93-VWw"/>
+                                                <constraint firstItem="RqR-ne-7xn" firstAttribute="top" secondItem="K4U-D2-Oqr" secondAttribute="topMargin" id="kE2-G0-bJM"/>
                                             </constraints>
                                         </tableViewCellContentView>
-                                        <color key="backgroundColor" red="0.84360206130000004" green="0.84367942809999996" blue="0.89633691309999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <connections>
                                             <outlet property="lblDiscountProduct" destination="RqR-ne-7xn" id="GVv-ta-iT2"/>
                                             <outlet property="lblPriceProduct" destination="6cu-tG-a2V" id="n40-1y-7YP"/>

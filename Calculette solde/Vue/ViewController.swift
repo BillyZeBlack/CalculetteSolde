@@ -11,20 +11,14 @@ import UIKit
 
 class ViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate, UITableViewDelegate, UITableViewDataSource {
 
-    
-    @IBOutlet weak var test: CustomUiTextField!
-    
-    //@IBOutlet weak var sidebarConstraint: NSLayoutConstraint!
-    
-    
+
     @IBOutlet weak var otherDiscountViewConstraint: NSLayoutConstraint!
     @IBOutlet weak var btnAchete: CustomUIButton!
     @IBOutlet weak var lblTotalProduct: UILabel!
     @IBOutlet weak var myTableView: UITableView!
     @IBOutlet weak var myCollectionView: UICollectionView!
     @IBOutlet weak var btnValider: CustomUIButton!
-    
-    
+
     
     //Marks : TextField
     @IBOutlet weak var txtFldPrixDepart: CustomUiTextField!
@@ -35,10 +29,9 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
     
     
     //Marks : sidebar
-    @IBOutlet weak var sidebarReglages: UIView!
     var sidebarshowed = false
     
-    @IBOutlet weak var stepperBudget: UIStepper!
+   
     
     
     var pourcentageDeduire = ""
@@ -62,10 +55,13 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
         myCollectionView.backgroundView = nil
         myCollectionView.backgroundColor = .clear
         
-        /**let gradientLayer = CAGradientLayer()
+        let gradientLayer = CAGradientLayer()
         gradientLayer.frame = self.view.bounds
-        gradientLayer.colors = [UIColor.red.cgColor, UIColor.yellow.cgColor]
-        self.view.layer.insertSublayer(gradientLayer, at: 0)**/
+        gradientLayer.colors = [UIColor.yellow.cgColor, UIColor.green.cgColor]
+        /**gradientLayer.startPoint = CGPoint(x: 0,y: 0)
+        gradientLayer.startPoint = CGPoint(x: 1,y: 1)**/
+        view.layer.insertSublayer(gradientLayer, at: 0)
+        //self.view.layer.insertSublayer(gradientLayer, at: 0)
         
         
         
@@ -76,7 +72,7 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
        lblTotalProduct.text = "0.0 €"
        
        if myGlobalManager.myProductManager.listOfProduct.isEmpty {
-           myTableView.isHidden = true
+           myTableView.isHidden = false//true
        }
        
        // Affiche le clavier
@@ -97,20 +93,7 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
    }
     
     
-                                                      //IBAction functions
-    
-    @IBAction func showReglage(_ sender: Any)
-    {/**
-        if sidebarshowed {
-           // closeSidebar()
-        } else {
-          // openSidebar()
-        }
-        
-        sidebarshowed = !sidebarshowed
- **/
-    }
-    
+                                                                             /////////////////IBAction functions//////////////////
     @IBAction func addProductIntoListProduct(_ sender: UIButton)
     {
         /**if txtFldPrixDepart.text!.isEmpty {
@@ -144,15 +127,6 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
             guard let constant = Double (prixFinal) else { return showAlertPopup(title: "Erreur", message: "Une erreur s'est produite.") }
             ajouterALaListe(prixFinal: constant, reduction: reduction)
         }
-    }
-    
-    
-    @IBAction func setBudget(_ sender: UIStepper)
-    {
-        sender.stepValue = 10
-        txtFldMaxBudget.text = "\(stepperBudget.value)"
-        
-        //print(stepperBudget.value)
     }
     
     
@@ -200,6 +174,7 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
             mycell = cell
         }
         
+                
         collectionView.layer.borderWidth = 0
         
         return mycell
