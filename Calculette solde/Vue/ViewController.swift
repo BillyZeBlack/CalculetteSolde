@@ -12,6 +12,7 @@ import UIKit
 class ViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate, UITableViewDelegate, UITableViewDataSource {
 
     
+    @IBOutlet weak var test: CustomUiTextField!
     
     //@IBOutlet weak var sidebarConstraint: NSLayoutConstraint!
     
@@ -21,15 +22,16 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
     @IBOutlet weak var lblTotalProduct: UILabel!
     @IBOutlet weak var myTableView: UITableView!
     @IBOutlet weak var myCollectionView: UICollectionView!
+    @IBOutlet weak var btnValider: CustomUIButton!
     
     
     
     //Marks : TextField
-    @IBOutlet weak var txtFldPrixDepart: CustomUiTextField!//UITextField!
+    @IBOutlet weak var txtFldPrixDepart: CustomUiTextField!
     @IBOutlet weak var lblPrixFinal: UILabel!
     @IBOutlet weak var txtFldMaxBudget: UITextField!
     @IBOutlet weak var otherDiscountView: UIView!
-    @IBOutlet weak var txtFldOtherDiscount: CustomUiTextField!//UITextField!
+    @IBOutlet weak var txtFldOtherDiscount: CustomUiTextField!
     
     
     //Marks : sidebar
@@ -81,7 +83,7 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
        txtFldPrixDepart.becomeFirstResponder()
         
        // Gestion de la view
-       otherDiscountViewConstraint.constant = 415
+       otherDiscountViewConstraint.constant = 1004//415
        otherDiscountView.layer.borderWidth = 2
        otherDiscountView.layer.cornerRadius = 10
        otherDiscountView.layer.shadowColor = UIColor.black.cgColor
@@ -89,8 +91,8 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
        otherDiscountView.layer.shadowOpacity = 0.7
        otherDiscountView.layer.shadowRadius = 10
         
-        lblTotalProduct.layer.borderWidth = 2
-        lblTotalProduct.layer.cornerRadius = 10
+       //lblTotalProduct.layer.borderWidth = 2
+       //lblTotalProduct.layer.cornerRadius = 10
         
    }
     
@@ -289,7 +291,7 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
         txtFldPrixDepart.isEnabled = true
         btnAchete.isEnabled = true
         
-        otherDiscountViewConstraint.constant = 414
+        otherDiscountViewConstraint.constant = 1004//414
         UIView.animate(withDuration: 0.3) {
             self.view.layoutIfNeeded()
         }
