@@ -61,12 +61,8 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
         /**gradientLayer.startPoint = CGPoint(x: 0,y: 0)
         gradientLayer.startPoint = CGPoint(x: 1,y: 1)**/
         view.layer.insertSublayer(gradientLayer, at: 0)
-        //self.view.layer.insertSublayer(gradientLayer, at: 0)
-        
-        
-        
+  
        self.hideKeyboard()
-       //customTextField()
        
        lblPrixFinal.text = "0.0 €"
        lblTotalProduct.text = "0.0 €"
@@ -87,31 +83,12 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
        otherDiscountView.layer.shadowOpacity = 0.7
        otherDiscountView.layer.shadowRadius = 10
         
-       //lblTotalProduct.layer.borderWidth = 2
-       //lblTotalProduct.layer.cornerRadius = 10
-        
    }
     
     
                                                                              /////////////////IBAction functions//////////////////
     @IBAction func addProductIntoListProduct(_ sender: UIButton)
     {
-        /**if txtFldPrixDepart.text!.isEmpty {
-            showAlertPopup(title: "Information", message: "Veuillez entrer un prix")
-        } else {
-                if pourcentageDeduire == "" || pourcentageDeduire == "+"{
-                    reduction = 0.0
-                    let prixDep = txtFldPrixDepart.text!
-                    guard let tempPrixDep = Double (prixDep) else { return showAlertPopup(title: "Erreur", message: "Vérifiez le prix initial.") }
-                    prixDeDepart = tempPrixDep
-                    calculDuPrix(prixDepart: prixDeDepart, reduction: reduction)
-                }
-                ajouterALaListe(prixFinal: priceProduct, reduction: reduction)
-            
-                pourcentageDeduire = ""
-                txtFldPrixDepart.text = ""
-        }**/
-        
         if lblPrixFinal.text! != "0.0 €" {
             var prixFinal = lblPrixFinal.text!
             
@@ -160,7 +137,7 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
         }
     }
 
-                                                // Marks : CollectionView protocol
+                                                                       ///////////////////////////// Marks : CollectionView protocol//////////////////////////////////////
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         labelPourcentage.count
@@ -181,8 +158,6 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        //cache le clavier
-        //txtFldPrixDepart.resignFirstResponder()
         pourcentageDeduire = labelPourcentage[indexPath.row]
         
         switch pourcentageDeduire {
@@ -230,7 +205,7 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
         }
     }
     
-                                                 //Marks : TableView Protocol
+                                                                         /////////////////////////////////////Marks : TableView Protocol////////////////////////////////////
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         myGlobalManager.myProductManager.listOfProduct.count
     }
@@ -250,17 +225,14 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
             myGlobalManager.myProductManager.deleteProduct(index: indexPath.row)
-            var totalProduct: Double = 0.0
-            for item in myGlobalManager.myProductManager.listOfProduct {
-                totalProduct += item.price
-            }
+            let totalProduct = myGlobalManager.myProductManager.myCart(myListOfProduct: myGlobalManager.myProductManager.listOfProduct)
             lblTotalProduct.text = String(format: " %.2f", totalProduct) + " €"
             tableView.reloadData()
         }
     }
         
     
-                                                    // Private function
+                                                                   /////////////////////////////////////////////////////////// Private function//////////////////////////////////
     private func closeSidebar()
     {
         txtFldPrixDepart.isEnabled = true
@@ -284,7 +256,6 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
         }
     }
     
-
     private func calculDuPrix(prixDepart: Double, reduction: Double)
     {
         priceProduct = prixDepart * (1 - (reduction/100))
@@ -297,10 +268,8 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
         let article = MyProduct(price: prixFinal, discount: reduction)
         myGlobalManager.myProductManager.addProdcut(product: article)
         
-        var totalArticle = 0.0
-        for item in myGlobalManager.myProductManager.listOfProduct {
-            totalArticle += item.price
-        }
+        let totalArticle = myGlobalManager.myProductManager.myCart(myListOfProduct: myGlobalManager.myProductManager.listOfProduct)
+
         lblPulsate()
         myTableView.reloadData()
         myTableView.isHidden = false
@@ -317,7 +286,6 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
         lblPrixFinal.text = "0.0 €"
         
     }
-    //
     
     private func showAlertPopup(title : String, message: String)
     {
@@ -341,16 +309,6 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
         lblTotalProduct.layer.add(pulse, forKey: nil)
     }
     
-    private func customTextField ()
-    {
-        txtFldPrixDepart.layer.borderWidth = 1
-        txtFldPrixDepart.layer.cornerRadius = 10
-        
-        txtFldOtherDiscount.layer.borderWidth = 1
-        txtFldOtherDiscount.layer.cornerRadius = 10
-        
-    }
-    
 // fin de classe
 }
 
@@ -367,7 +325,5 @@ extension UIViewController {
     {
         view.endEditing(true)
     }
-        
-// fin de classe
-}
 
+}
