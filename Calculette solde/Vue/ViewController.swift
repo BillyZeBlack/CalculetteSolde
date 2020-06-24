@@ -30,10 +30,7 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
     
     //Marks : sidebar
     var sidebarshowed = false
-    
-   
-    
-    
+
     var pourcentageDeduire = ""
     var pourcentage = 0.0
     var remise = ""
@@ -52,12 +49,15 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
     
     override func viewDidLoad() {
        super.viewDidLoad()
+        
+
+        
         myCollectionView.backgroundView = nil
         myCollectionView.backgroundColor = .clear
         
         let gradientLayer = CAGradientLayer()
         gradientLayer.frame = self.view.bounds
-        gradientLayer.colors = [UIColor.yellow.cgColor, UIColor.green.cgColor]
+        gradientLayer.colors = [UIColor.green.cgColor, UIColor.blue.cgColor]
         /**gradientLayer.startPoint = CGPoint(x: 0,y: 0)
         gradientLayer.startPoint = CGPoint(x: 1,y: 1)**/
         view.layer.insertSublayer(gradientLayer, at: 0)
@@ -89,20 +89,47 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
                                                                              /////////////////IBAction functions//////////////////
     @IBAction func addProductIntoListProduct(_ sender: UIButton)
     {
-        if lblPrixFinal.text! != "0.0 €" {
-            var prixFinal = lblPrixFinal.text!
+        if txtFldPrixDepart.text == "" {
+            lblPrixFinal.text = "0.0 €"
+            
+        }
+        
+        if lblPrixFinal.text! == "0.0 €" && txtFldPrixDepart.text! == "" {
+            
+             
+            var prixFinal = replaceString(myString: txtFldPrixDepart.text!)  // lblPrixFinal.text!
+            
+            
             
             if let i = prixFinal.firstIndex(of: "€") {
                 prixFinal.remove(at: i)
             }
             
-            guard let constant = Double (prixFinal) else { return showAlertPopup(title: "Erreur", message: "Une erreur s'est produite.") }
-            ajouterALaListe(prixFinal: constant, reduction: reduction)
-        } else {
-            let prixFinal = txtFldPrixDepart.text!
+            if let i = prixFinal.firstIndex(of: " ") {
+                prixFinal.remove(at: i)
+            }
             
-            guard let constant = Double (prixFinal) else { return showAlertPopup(title: "Erreur", message: "Une erreur s'est produite.") }
-            ajouterALaListe(prixFinal: constant, reduction: reduction)
+            guard let constant = Double (prixFinal) else { return showAlertPopup(title: "Erreur", message: "Le prix n'est pas valide.") }
+            
+            if constant == 0.0 {
+                showAlertPopup(title: "Message", message: "Entrez un prix.")
+            } else {
+                ajouterALaListe(prixFinal: constant, reduction: reduction)
+            }
+            
+        } else {
+            var prix : Double = 0
+            let prixFinal =  replaceString(myString: txtFldPrixDepart.text!)
+            
+            guard let constant = Double (prixFinal) else { return showAlertPopup(title: "Erreur", message: "Entrez un prix.") }
+            
+            if reduction != 0 {
+                prix = priceProduct
+            } else {
+                prix = constant
+            }
+            
+            ajouterALaListe(prixFinal: prix, reduction: reduction)
         }
     }
     
@@ -112,14 +139,14 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
         if txtFldPrixDepart.text!.isEmpty && txtFldOtherDiscount.text!.isEmpty {
             closeSidebar()
         } else {
-            let prixInitial = txtFldPrixDepart.text!
+            let prixInitial = replaceString(myString: txtFldPrixDepart.text!) 
             guard let tempPrxInit = Double (prixInitial) else { return showAlertPopup(title: "Erreur", message: "Le prix de départ n'est pas valide.")}
             
             if txtFldOtherDiscount.text!.isEmpty {
                 txtFldOtherDiscount.text = "0.0"
             }
             
-            let reducPerso = txtFldOtherDiscount.text!
+            let reducPerso = replaceString(myString: txtFldOtherDiscount.text!)
             guard let tempReducPerso = Double (reducPerso) else { return showAlertPopup(title: "Erreur", message: "La réduction n'est pas valide.") }
             
             if tempReducPerso <= 100 {
@@ -127,6 +154,7 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
                 reduction = tempReducPerso
                 
                 calculDuPrix(prixDepart: prixDeDepart, reduction: reduction)
+                ajouterALaListe(prixFinal: priceProduct, reduction: reduction)
                 
             } else {
                 showAlertPopup(title: "Erreur", message: "Vérifiez votre réduction")
@@ -188,8 +216,12 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
                 if let i = pourcentageDeduire.firstIndex(of: "%") {
                     pourcentageDeduire.remove(at: i)
                     //calculPrixFinal(reduc: pourcentageDeduire)
-                    let prixInit = txtFldPrixDepart.text!
-                    let reduc = pourcentageDeduire
+
+                    
+                    let prixInit = replaceString(myString: txtFldPrixDepart.text!)
+                    
+                    let reduc = replaceString(myString: pourcentageDeduire)
+                    
                     guard let tempPrixInit = Double (prixInit) else { return showAlertPopup(title: "Erreur", message: "Vérifiez votre prix.") }
                     guard let tempReduc = Double (reduc) else { return showAlertPopup(title: "Erreur", message: "Vérifiez votre réduction.") }
                     
@@ -197,6 +229,7 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
                     reduction = tempReduc
                     
                     calculDuPrix(prixDepart: prixDeDepart, reduction: reduction)
+                    //ajouterALaListe(prixFinal: priceProduct, reduction: reduction)
                 }
             } else {
                 showAlertPopup(title: "Information", message: "Entrez un prix.")
@@ -309,6 +342,14 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
         lblTotalProduct.layer.add(pulse, forKey: nil)
     }
     
+    private func replaceString(myString : String)-> String
+    {
+        let newString = myString.replacingOccurrences(of: ",", with: ".")
+        return newString
+    }
+    
+
+    
 // fin de classe
 }
 
@@ -327,3 +368,6 @@ extension UIViewController {
     }
 
 }
+
+
+

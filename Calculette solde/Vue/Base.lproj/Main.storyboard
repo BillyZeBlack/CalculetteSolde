@@ -22,7 +22,7 @@
                                     <constraint firstAttribute="height" constant="34" id="Mld-7B-KYw"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                                <textInputTraits key="textInputTraits" autocorrectionType="no" keyboardType="decimalPad"/>
+                                <textInputTraits key="textInputTraits" autocorrectionType="no" keyboardAppearance="light"/>
                             </textField>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eiQ-tM-iJA">
                                 <rect key="frame" x="20" y="327" width="374" height="34"/>
@@ -83,7 +83,8 @@
                                 </connections>
                             </collectionView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Afn-rw-XMJ" customClass="CustomUIButton" customModule="Calculette_solde" customModuleProvider="target">
-                                <rect key="frame" x="20" y="385" width="378" height="43"/>
+                                <rect key="frame" x="20" y="385" width="374" height="43"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="43" id="2Cp-np-bSa"/>
                                     <constraint firstAttribute="height" constant="43" id="dM6-WY-KJw"/>
@@ -185,14 +186,14 @@
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="byL-tA-D5h" customClass="CustomUiTextField" customModule="Calculette_solde" customModuleProvider="target">
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="byL-tA-D5h" customClass="CustomUiTextField" customModule="Calculette_solde" customModuleProvider="target">
                                         <rect key="frame" x="83" y="90" width="208" height="34"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="208" id="4C3-KC-BXz"/>
                                             <constraint firstAttribute="height" constant="34" id="za7-89-mU3"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits"/>
+                                        <textInputTraits key="textInputTraits" keyboardType="decimalPad" keyboardAppearance="light"/>
                                     </textField>
                                 </subviews>
                                 <color key="backgroundColor" systemColor="opaqueSeparatorColor" red="0.77647058820000003" green="0.77647058820000003" blue="0.7843137255" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -222,7 +223,7 @@
                             <constraint firstItem="5Vt-hE-S03" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="20" id="InQ-Jt-nk5"/>
                             <constraint firstItem="buc-tz-dQq" firstAttribute="top" secondItem="eCl-Jv-suC" secondAttribute="bottom" constant="20" id="KxU-ao-ra4"/>
                             <constraint firstItem="Afn-rw-XMJ" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="20" id="LBH-15-scW"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="Afn-rw-XMJ" secondAttribute="trailing" constant="16" id="QgJ-vE-i8q"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="Afn-rw-XMJ" secondAttribute="trailing" constant="20" id="QgJ-vE-i8q"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="5Vt-hE-S03" secondAttribute="trailing" constant="20" id="S7K-gk-waf"/>
                             <constraint firstItem="eiQ-tM-iJA" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="20" id="SBz-27-8U4"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="tk4-BO-itD" secondAttribute="trailing" id="Sco-ZC-Jix"/>
