@@ -15,11 +15,11 @@ class CustomTableViewCell: UITableViewCell {
     @IBOutlet weak var lblPriceProduct: UILabel!
     @IBOutlet weak var lblDiscountProduct: UILabel!
     
-    func configure (thePrice : Double, theDiscount : Double)
+    func configure (firstPrice : Double, finalPrice: Double, theDiscount : Double)
     {
-        let myDiscount : Int = Int(theDiscount)
-        lblPriceProduct.text = String(format: " %.2f", thePrice) + " €"
-        lblDiscountProduct.text = "\(myDiscount)%"
+        let myDiscount : Double = theDiscount
+        lblPriceProduct.text = String(format: " %.2f", firstPrice) + "€  - \(firstPrice - finalPrice)€"
+        lblDiscountProduct.text = String(format: " %.2f", finalPrice)+"€"
         layer.cornerRadius = 10
         
     }

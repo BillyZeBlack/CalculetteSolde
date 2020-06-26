@@ -26,6 +26,8 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
     @IBOutlet weak var txtFldMaxBudget: UITextField!
     @IBOutlet weak var otherDiscountView: UIView!
     @IBOutlet weak var txtFldOtherDiscount: CustomUiTextField!
+    @IBOutlet weak var lblMontantEconomise: UILabel!
+    
     
     
     //Marks : sidebar
@@ -41,6 +43,7 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
                                       "80%","85%","90%","+"]
     var totalArticle : [Double] = []
     var priceProduct : Double = 0.0
+    var montantReduction : Double = 0.0
     var discountProduct : Double = 0.0
     var prixDeDepart : Double = 0.0
     var reduction : Double = 0.0
@@ -114,7 +117,7 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
             if constant == 0.0 {
                 showAlertPopup(title: "Message", message: "Entrez un prix.")
             } else {
-                ajouterALaListe(prixFinal: constant, reduction: reduction)
+                ajouterALaListe(prixInitial: constant, prixFinal: constant, reduction: reduction)
             }
             
         } else {
@@ -129,8 +132,7 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
                 prix = constant
             }
             
-            ajouterALaListe(prixFinal: prix, reduction: reduction)
-        }
+            ajouterALaListe(prixInitial: constant, prixFinal: prix, reduction: reduction)        }
     }
     
     
@@ -154,7 +156,7 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
                 reduction = tempReducPerso
                 
                 calculDuPrix(prixDepart: prixDeDepart, reduction: reduction)
-                ajouterALaListe(prixFinal: priceProduct, reduction: reduction)
+                ajouterALaListe(prixInitial: prixDeDepart, prixFinal: priceProduct, reduction: reduction)
                 
             } else {
                 showAlertPopup(title: "Erreur", message: "Vérifiez votre réduction")
@@ -248,7 +250,7 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
         var myCell = UITableViewCell()
         let product = myGlobalManager.myProductManager.listOfProduct[indexPath.row]
         if let cell = tableView.dequeueReusableCell(withIdentifier: "tableViewCell", for: indexPath) as? CustomTableViewCell {
-            cell.configure(thePrice: product.price, theDiscount: product.discount)
+            cell.configure(firstPrice: product.firstPrice, finalPrice: product.finalPrice,theDiscount: product.discount)
             myCell = cell
         }
         
@@ -259,7 +261,9 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
         if editingStyle == .delete {
             myGlobalManager.myProductManager.deleteProduct(index: indexPath.row)
             let totalProduct = myGlobalManager.myProductManager.myCart(myListOfProduct: myGlobalManager.myProductManager.listOfProduct)
+            let totalEconomie = myGlobalManager.myProductManager.myDiscounts(myListOfPrduct: myGlobalManager.myProductManager.listOfProduct)
             lblTotalProduct.text = String(format: " %.2f", totalProduct) + " €"
+            lblMontantEconomise.text = String(format: " %.2f", totalEconomie) + " €"
             tableView.reloadData()
         }
     }
@@ -292,17 +296,22 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
     private func calculDuPrix(prixDepart: Double, reduction: Double)
     {
         priceProduct = prixDepart * (1 - (reduction/100))
+        montantReduction = priceProduct - prixDepart
         lblPrixFinal.text = String(format: "%.2f", priceProduct) + "€"
         //ajouterALaListe(prixFinal: priceProduct, reduction: reduction)
     }
     
-    private func ajouterALaListe(prixFinal : Double, reduction : Double)
+    private func ajouterALaListe(prixInitial: Double, prixFinal : Double, reduction : Double)
     {
-        let article = MyProduct(price: prixFinal, discount: reduction)
+        let article = MyProduct(price: prixInitial, finalPrice: prixFinal, discount: reduction)
         myGlobalManager.myProductManager.addProdcut(product: article)
         
         let totalArticle = myGlobalManager.myProductManager.myCart(myListOfProduct: myGlobalManager.myProductManager.listOfProduct)
-
+        
+        let totalEconomise = myGlobalManager.myProductManager.myDiscounts(myListOfPrduct: myGlobalManager.myProductManager.listOfProduct)
+        lblMontantEconomise.text = String(format: " %.2f", totalEconomise) + " €"
+        
+        
         lblPulsate()
         myTableView.reloadData()
         myTableView.isHidden = false

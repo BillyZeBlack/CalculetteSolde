@@ -9,11 +9,13 @@
 import Foundation
 
 class MyProduct  {
-    var price : Double = 0.0
+    var firstPrice : Double = 0.0
+    var finalPrice : Double = 0.0
     var discount : Double = 0.0
     
-    init(price : Double, discount: Double) {
-        self.price = price
+    init(price : Double, finalPrice : Double, discount: Double) {
+        self.firstPrice = price
+        self.finalPrice = finalPrice
         self.discount = discount
     }
     

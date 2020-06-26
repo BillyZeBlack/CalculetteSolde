@@ -20,7 +20,8 @@
 		BEBAFD4324893C0200A9EF15 /* GlobalManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEBAFD4224893C0200A9EF15 /* GlobalManager.swift */; };
 		BEBAFD45248943F900A9EF15 /* CustomTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEBAFD44248943F800A9EF15 /* CustomTableViewCell.swift */; };
 		BEE88759248AA1EF009BB96A /* CustomUIButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEE88758248AA1EF009BB96A /* CustomUIButton.swift */; };
-		BEFD3633249D26C70053E857 /* LogoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEFD3632249D26C70053E857 /* LogoViewController.swift */; };
+		BEF5EF4424A4F458001E5F9C /* LogoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEF5EF4324A4F458001E5F9C /* LogoViewController.swift */; };
+		BEFD3633249D26C70053E857 /* IntroViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEFD3632249D26C70053E857 /* IntroViewController.swift */; };
 		BEFD3635249D6AA60053E857 /* CustomUiTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEFD3634249D6AA60053E857 /* CustomUiTextField.swift */; };
 /* End PBXBuildFile section */
 
@@ -29,7 +30,7 @@
 		9B6977597489A134979A52ED /* Pods-Calculette solde.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Calculette solde.debug.xcconfig"; path = "Target Support Files/Pods-Calculette solde/Pods-Calculette solde.debug.xcconfig"; sourceTree = "<group>"; };
 		BD5A31A657C151D759867E81 /* Pods_Calculette_solde.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Calculette_solde.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		BEA674B52486EDEB00EC99B2 /* CustomCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomCollectionViewCell.swift; sourceTree = "<group>"; };
-		BEA76CB224812F0B000244BA /* Calculette solde.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Calculette solde.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		BEA76CB224812F0B000244BA /* Solde facile.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Solde facile.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		BEA76CB524812F0B000244BA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		BEA76CB724812F0B000244BA /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		BEA76CB924812F0B000244BA /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -42,7 +43,8 @@
 		BEBAFD4224893C0200A9EF15 /* GlobalManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlobalManager.swift; sourceTree = "<group>"; };
 		BEBAFD44248943F800A9EF15 /* CustomTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTableViewCell.swift; sourceTree = "<group>"; };
 		BEE88758248AA1EF009BB96A /* CustomUIButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomUIButton.swift; sourceTree = "<group>"; };
-		BEFD3632249D26C70053E857 /* LogoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogoViewController.swift; sourceTree = "<group>"; };
+		BEF5EF4324A4F458001E5F9C /* LogoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogoViewController.swift; sourceTree = "<group>"; };
+		BEFD3632249D26C70053E857 /* IntroViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntroViewController.swift; sourceTree = "<group>"; };
 		BEFD3634249D6AA60053E857 /* CustomUiTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomUiTextField.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -79,7 +81,7 @@
 		BEA76CB324812F0B000244BA /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				BEA76CB224812F0B000244BA /* Calculette solde.app */,
+				BEA76CB224812F0B000244BA /* Solde facile.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -112,7 +114,8 @@
 			children = (
 				BEA76CBB24812F0B000244BA /* Main.storyboard */,
 				BEA76CB924812F0B000244BA /* ViewController.swift */,
-				BEFD3632249D26C70053E857 /* LogoViewController.swift */,
+				BEFD3632249D26C70053E857 /* IntroViewController.swift */,
+				BEF5EF4324A4F458001E5F9C /* LogoViewController.swift */,
 				BEA674B52486EDEB00EC99B2 /* CustomCollectionViewCell.swift */,
 				BEBAFD44248943F800A9EF15 /* CustomTableViewCell.swift */,
 				BEE88758248AA1EF009BB96A /* CustomUIButton.swift */,
@@ -157,7 +160,7 @@
 			);
 			name = "Calculette solde";
 			productName = "Calculette solde";
-			productReference = BEA76CB224812F0B000244BA /* Calculette solde.app */;
+			productReference = BEA76CB224812F0B000244BA /* Solde facile.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -243,10 +246,11 @@
 				BEA76CBA24812F0B000244BA /* ViewController.swift in Sources */,
 				BEBAFD4324893C0200A9EF15 /* GlobalManager.swift in Sources */,
 				BEBAFD3F2489389C00A9EF15 /* MyProduct.swift in Sources */,
-				BEFD3633249D26C70053E857 /* LogoViewController.swift in Sources */,
+				BEFD3633249D26C70053E857 /* IntroViewController.swift in Sources */,
 				BEA76CB624812F0B000244BA /* AppDelegate.swift in Sources */,
 				BEFD3635249D6AA60053E857 /* CustomUiTextField.swift in Sources */,
 				BEA76CB824812F0B000244BA /* SceneDelegate.swift in Sources */,
+				BEF5EF4424A4F458001E5F9C /* LogoViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -392,15 +396,16 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1.1.3;
+				CURRENT_PROJECT_VERSION = 1.2;
 				DEVELOPMENT_TEAM = JW5QDUDC7K;
 				INFOPLIST_FILE = "Calculette solde/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.slideofdigital.Calculette-solde";
-				PRODUCT_NAME = "Calculette solde";
+				PRODUCT_NAME = "Solde facile";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
@@ -412,15 +417,16 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1.1.3;
+				CURRENT_PROJECT_VERSION = 1.2;
 				DEVELOPMENT_TEAM = JW5QDUDC7K;
 				INFOPLIST_FILE = "Calculette solde/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.slideofdigital.Calculette-solde";
-				PRODUCT_NAME = "Calculette solde";
+				PRODUCT_NAME = "Solde facile";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
