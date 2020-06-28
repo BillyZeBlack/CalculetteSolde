@@ -26,6 +26,6 @@ class CustomUiTextField: UITextField {
         
         layer.addSublayer(border)
         layer.masksToBounds = true
-        
+   
     }
 }

@@ -15,16 +15,16 @@ class CustomUIButton: UIButton {
     required init?(coder aDecoder: NSCoder) {
         super.init(coder : aDecoder)
         
-        layer.borderWidth = 1
-        layer.cornerRadius = 10
+        layer.borderWidth = 0
+        //layer.cornerRadius = 10
       
         clipsToBounds = true
         //Crée un dégradé
-        let gradientLayer = CAGradientLayer()
+        /**let gradientLayer = CAGradientLayer()
         gradientLayer.frame = self.bounds
         gradientLayer.colors = [UIColor.darkGray.cgColor, UIColor.black.cgColor]
-        layer.insertSublayer(gradientLayer, at: 0)
+        layer.insertSublayer(gradientLayer, at: 0)**/
         
-        
+        layer.backgroundColor = UIColor.white.cgColor
     }
 }

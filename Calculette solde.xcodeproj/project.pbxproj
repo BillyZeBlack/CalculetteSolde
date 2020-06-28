@@ -8,6 +8,11 @@
 
 /* Begin PBXBuildFile section */
 		766A17FD2BD043ADC513B9FD /* Pods_Calculette_solde.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BD5A31A657C151D759867E81 /* Pods_Calculette_solde.framework */; };
+		BE48FFD624A8E24400131D31 /* Teko-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = BE48FFD124A8E24400131D31 /* Teko-Regular.ttf */; };
+		BE48FFD724A8E24400131D31 /* Teko-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = BE48FFD224A8E24400131D31 /* Teko-Medium.ttf */; };
+		BE48FFD824A8E24400131D31 /* Teko-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = BE48FFD324A8E24400131D31 /* Teko-SemiBold.ttf */; };
+		BE48FFD924A8E24400131D31 /* Teko-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = BE48FFD424A8E24400131D31 /* Teko-Light.ttf */; };
+		BE48FFDA24A8E24400131D31 /* Teko-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = BE48FFD524A8E24400131D31 /* Teko-Bold.ttf */; };
 		BEA674B62486EDEB00EC99B2 /* CustomCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEA674B52486EDEB00EC99B2 /* CustomCollectionViewCell.swift */; };
 		BEA76CB624812F0B000244BA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEA76CB524812F0B000244BA /* AppDelegate.swift */; };
 		BEA76CB824812F0B000244BA /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEA76CB724812F0B000244BA /* SceneDelegate.swift */; };
@@ -29,6 +34,11 @@
 		1AAD6ED7263979C3C7C61B3E /* Pods-Calculette solde.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Calculette solde.release.xcconfig"; path = "Target Support Files/Pods-Calculette solde/Pods-Calculette solde.release.xcconfig"; sourceTree = "<group>"; };
 		9B6977597489A134979A52ED /* Pods-Calculette solde.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Calculette solde.debug.xcconfig"; path = "Target Support Files/Pods-Calculette solde/Pods-Calculette solde.debug.xcconfig"; sourceTree = "<group>"; };
 		BD5A31A657C151D759867E81 /* Pods_Calculette_solde.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Calculette_solde.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		BE48FFD124A8E24400131D31 /* Teko-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Teko-Regular.ttf"; path = "Polices/Teko/Teko-Regular.ttf"; sourceTree = SOURCE_ROOT; };
+		BE48FFD224A8E24400131D31 /* Teko-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Teko-Medium.ttf"; path = "Polices/Teko/Teko-Medium.ttf"; sourceTree = SOURCE_ROOT; };
+		BE48FFD324A8E24400131D31 /* Teko-SemiBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Teko-SemiBold.ttf"; path = "Polices/Teko/Teko-SemiBold.ttf"; sourceTree = SOURCE_ROOT; };
+		BE48FFD424A8E24400131D31 /* Teko-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Teko-Light.ttf"; path = "Polices/Teko/Teko-Light.ttf"; sourceTree = SOURCE_ROOT; };
+		BE48FFD524A8E24400131D31 /* Teko-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Teko-Bold.ttf"; path = "Polices/Teko/Teko-Bold.ttf"; sourceTree = SOURCE_ROOT; };
 		BEA674B52486EDEB00EC99B2 /* CustomCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomCollectionViewCell.swift; sourceTree = "<group>"; };
 		BEA76CB224812F0B000244BA /* Solde facile.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Solde facile.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		BEA76CB524812F0B000244BA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -89,6 +99,11 @@
 		BEA76CB424812F0B000244BA /* Calculette solde */ = {
 			isa = PBXGroup;
 			children = (
+				BE48FFD524A8E24400131D31 /* Teko-Bold.ttf */,
+				BE48FFD424A8E24400131D31 /* Teko-Light.ttf */,
+				BE48FFD224A8E24400131D31 /* Teko-Medium.ttf */,
+				BE48FFD124A8E24400131D31 /* Teko-Regular.ttf */,
+				BE48FFD324A8E24400131D31 /* Teko-SemiBold.ttf */,
 				BEA76CCB24813061000244BA /* Controleur */,
 				BEA76CCA24812F2D000244BA /* Vue */,
 				BEA76CC924812F24000244BA /* Modele */,
@@ -201,8 +216,13 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BE48FFD924A8E24400131D31 /* Teko-Light.ttf in Resources */,
 				BEA76CC224812F13000244BA /* LaunchScreen.storyboard in Resources */,
+				BE48FFDA24A8E24400131D31 /* Teko-Bold.ttf in Resources */,
 				BEA76CBF24812F13000244BA /* Assets.xcassets in Resources */,
+				BE48FFD824A8E24400131D31 /* Teko-SemiBold.ttf in Resources */,
+				BE48FFD724A8E24400131D31 /* Teko-Medium.ttf in Resources */,
+				BE48FFD624A8E24400131D31 /* Teko-Regular.ttf in Resources */,
 				BEA76CBD24812F0B000244BA /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

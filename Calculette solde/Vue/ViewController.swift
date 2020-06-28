@@ -25,7 +25,7 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
     @IBOutlet weak var lblPrixFinal: UILabel!
     @IBOutlet weak var txtFldMaxBudget: UITextField!
     @IBOutlet weak var otherDiscountView: UIView!
-    @IBOutlet weak var txtFldOtherDiscount: CustomUiTextField!
+    @IBOutlet weak var txtFldOtherDiscount: UITextField!// CustomUiTextField!
     @IBOutlet weak var lblMontantEconomise: UILabel!
     
     
@@ -57,13 +57,13 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
         
         myCollectionView.backgroundView = nil
         myCollectionView.backgroundColor = .clear
-        
+        /**
         let gradientLayer = CAGradientLayer()
         gradientLayer.frame = self.view.bounds
         gradientLayer.colors = [UIColor.green.cgColor, UIColor.blue.cgColor]
         /**gradientLayer.startPoint = CGPoint(x: 0,y: 0)
         gradientLayer.startPoint = CGPoint(x: 1,y: 1)**/
-        view.layer.insertSublayer(gradientLayer, at: 0)
+        view.layer.insertSublayer(gradientLayer, at: 0)**/
   
        self.hideKeyboard()
        
@@ -71,7 +71,7 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
        lblTotalProduct.text = "0.0 €"
        
        if myGlobalManager.myProductManager.listOfProduct.isEmpty {
-           myTableView.isHidden = false//true
+           myTableView.isHidden = true
        }
        
        // Affiche le clavier
@@ -85,6 +85,11 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
        otherDiscountView.layer.shadowOffset = CGSize(width: 15, height: -8)
        otherDiscountView.layer.shadowOpacity = 0.7
        otherDiscountView.layer.shadowRadius = 10
+        
+       // change la couleur du palceholder
+        txtFldPrixDepart.attributedPlaceholder = NSAttributedString(string: "ENTREZ LE PRIX INITIAL", attributes: [NSAttributedString.Key.foregroundColor: UIColor.systemYellow])
+        
+        btnAchete.imageView?.tintColor = UIColor.darkGray
         
    }
     
@@ -265,6 +270,9 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
             lblTotalProduct.text = String(format: " %.2f", totalProduct) + " €"
             lblMontantEconomise.text = String(format: " %.2f", totalEconomie) + " €"
             tableView.reloadData()
+            if myGlobalManager.myProductManager.listOfProduct.isEmpty {
+                myTableView.isHidden = true
+            }
         }
     }
         

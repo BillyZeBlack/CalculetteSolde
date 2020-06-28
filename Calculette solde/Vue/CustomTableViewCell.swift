@@ -17,11 +17,13 @@ class CustomTableViewCell: UITableViewCell {
     
     func configure (firstPrice : Double, finalPrice: Double, theDiscount : Double)
     {
-        let myDiscount : Double = theDiscount
-        lblPriceProduct.text = String(format: " %.2f", firstPrice) + "€  - \(firstPrice - finalPrice)€"
+        //let myDiscount : Double = theDiscount
+        
+        let theDiscount = (firstPrice * theDiscount)/100
+        lblPriceProduct.text = String(format: " %.2f", firstPrice) + "€  - \(theDiscount)€"//
         lblDiscountProduct.text = String(format: " %.2f", finalPrice)+"€"
         layer.cornerRadius = 10
-        
+        //String(format: " %.2f", totalEconomie) + " €"
     }
     
     override func awakeFromNib() {

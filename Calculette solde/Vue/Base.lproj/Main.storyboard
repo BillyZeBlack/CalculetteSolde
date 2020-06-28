@@ -7,21 +7,32 @@
         <capability name="collection view cell content view" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
+    <customFonts key="customFonts">
+        <array key="Teko-Bold.ttf">
+            <string>Teko-Bold</string>
+        </array>
+        <array key="Teko-Light.ttf">
+            <string>Teko-Light</string>
+        </array>
+        <array key="Teko-Medium.ttf">
+            <string>Teko-Medium</string>
+        </array>
+    </customFonts>
     <scenes>
         <!--View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="Calculette_solde" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="Solde_facile" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Entrez le prix initial. " textAlignment="center" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="eCl-Jv-suC" customClass="CustomUiTextField" customModule="Calculette_solde" customModuleProvider="target">
-                                <rect key="frame" x="16" y="109" width="382" height="34"/>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="ENTREZ LE PRIX INITIAL" textAlignment="center" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="eCl-Jv-suC" customClass="CustomUiTextField" customModule="Solde_facile" customModuleProvider="target">
+                                <rect key="frame" x="20" y="109" width="374" height="34"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="34" id="Mld-7B-KYw"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <fontDescription key="fontDescription" name="Teko-Medium" family="Teko" pointSize="24"/>
                                 <textInputTraits key="textInputTraits" autocorrectionType="no" keyboardType="decimalPad" keyboardAppearance="light"/>
                             </textField>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eiQ-tM-iJA">
@@ -29,7 +40,7 @@
                                 <constraints>
                                     <constraint firstAttribute="height" constant="34" id="ALL-zB-Tel"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="22"/>
+                                <fontDescription key="fontDescription" name="Teko-Medium" family="Teko" pointSize="20"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
@@ -47,7 +58,7 @@
                                     <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 </collectionViewFlowLayout>
                                 <cells>
-                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" alpha="0.0" contentMode="center" reuseIdentifier="cell" id="rhl-Ak-eCc" customClass="CustomCollectionViewCell" customModule="Calculette_solde" customModuleProvider="target">
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" alpha="0.0" contentMode="center" reuseIdentifier="cell" id="rhl-Ak-eCc" customClass="CustomCollectionViewCell" customModule="Solde_facile" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="0.0" width="81" height="81"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="b9v-aQ-PLc">
@@ -55,12 +66,12 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="12%" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dBt-XP-uAv">
-                                                    <rect key="frame" x="25" y="30" width="31" height="21"/>
+                                                    <rect key="frame" x="31.5" y="30" width="18.5" height="21"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="21" id="VcN-Oq-Sne"/>
                                                     </constraints>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <fontDescription key="fontDescription" name="Teko-Light" family="Teko" pointSize="17"/>
+                                                    <color key="textColor" red="1" green="0.51272587253692359" blue="0.99086229959601779" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
@@ -82,15 +93,17 @@
                                     <outlet property="delegate" destination="BYZ-38-t0r" id="0aU-vo-QsW"/>
                                 </connections>
                             </collectionView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Afn-rw-XMJ" customClass="CustomUIButton" customModule="Calculette_solde" customModuleProvider="target">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Afn-rw-XMJ" customClass="CustomUIButton" customModule="Solde_facile" customModuleProvider="target">
                                 <rect key="frame" x="20" y="385" width="374" height="43"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="43" id="2Cp-np-bSa"/>
                                     <constraint firstAttribute="height" constant="43" id="dM6-WY-KJw"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="30"/>
-                                <state key="normal" title="J'achète"/>
+                                <fontDescription key="fontDescription" name="Teko-Medium" family="Teko" pointSize="22"/>
+                                <state key="normal" title="J'ACHETE" image="cart" catalog="system">
+                                    <color key="titleColor" red="0.96950906520000002" green="0.74939441679999996" blue="0.2060991824" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
                                 <connections>
                                     <action selector="addProductIntoListProduct:" destination="BYZ-38-t0r" eventType="touchUpInside" id="pLA-Je-28C"/>
                                     <action selector="btnAchete:" destination="53W-RL-fTJ" eventType="touchUpInside" id="eMj-Qk-6n7"/>
@@ -102,7 +115,7 @@
                                     <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="27" id="ZQG-DG-wGB"/>
                                     <constraint firstAttribute="height" constant="27" id="nvm-D2-hfI"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="22"/>
+                                <fontDescription key="fontDescription" name="Teko-Bold" family="Teko" pointSize="20"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
@@ -111,11 +124,11 @@
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <color key="sectionIndexTrackingBackgroundColor" red="0.0048598507420000003" green="0.096086271109999996" blue="0.57499289509999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" alpha="0.0" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="tableViewCell" id="Q7E-Xr-mKm" customClass="CustomTableViewCell" customModule="Calculette_solde" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="28" width="374" height="43.5"/>
+                                    <tableViewCell clipsSubviews="YES" alpha="0.0" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="tableViewCell" id="Q7E-Xr-mKm" customClass="CustomTableViewCell" customModule="Solde_facile" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="374" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Q7E-Xr-mKm" id="K4U-D2-Oqr">
-                                            <rect key="frame" x="0.0" y="0.0" width="374" height="43.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="374" height="44"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RqR-ne-7xn">
@@ -124,31 +137,38 @@
                                                         <constraint firstAttribute="height" constant="21" id="4R7-Ua-iNB"/>
                                                         <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="42" id="g3f-QL-C3U"/>
                                                     </constraints>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <fontDescription key="fontDescription" name="Teko-Medium" family="Teko" pointSize="20"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6cu-tG-a2V">
-                                                    <rect key="frame" x="20" y="11" width="42" height="21"/>
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="etiquette" translatesAutoresizingMaskIntoConstraints="NO" id="ryo-eY-WbS">
+                                                    <rect key="frame" x="8" y="8" width="27" height="27.5"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="42" id="XC6-AD-DMi"/>
-                                                        <constraint firstAttribute="height" constant="21" id="fqN-Z1-iEL"/>
+                                                        <constraint firstAttribute="width" constant="27" id="Rew-qa-Vrz"/>
+                                                        <constraint firstAttribute="height" constant="27" id="mYF-Az-gjZ"/>
                                                     </constraints>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                </imageView>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6cu-tG-a2V">
+                                                    <rect key="frame" x="43" y="8" width="200" height="28"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="200" id="SkC-50-LWO"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" name="Teko-Medium" family="Teko" pointSize="20"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstItem="6cu-tG-a2V" firstAttribute="top" secondItem="K4U-D2-Oqr" secondAttribute="topMargin" id="Dnz-Kx-o29"/>
+                                                <constraint firstItem="ryo-eY-WbS" firstAttribute="top" secondItem="K4U-D2-Oqr" secondAttribute="top" constant="8" id="5yA-rt-PMj"/>
+                                                <constraint firstItem="6cu-tG-a2V" firstAttribute="top" secondItem="K4U-D2-Oqr" secondAttribute="top" constant="8" id="Dnr-4K-9AX"/>
                                                 <constraint firstItem="RqR-ne-7xn" firstAttribute="trailing" secondItem="K4U-D2-Oqr" secondAttribute="trailingMargin" id="EWv-tt-sqF"/>
-                                                <constraint firstItem="6cu-tG-a2V" firstAttribute="leading" secondItem="K4U-D2-Oqr" secondAttribute="leadingMargin" id="Gbq-ZY-odq"/>
-                                                <constraint firstItem="6cu-tG-a2V" firstAttribute="leading" secondItem="K4U-D2-Oqr" secondAttribute="leadingMargin" id="Hpa-2P-wtz"/>
-                                                <constraint firstItem="6cu-tG-a2V" firstAttribute="top" secondItem="K4U-D2-Oqr" secondAttribute="topMargin" id="MYw-T1-e0S"/>
+                                                <constraint firstItem="6cu-tG-a2V" firstAttribute="leading" secondItem="ryo-eY-WbS" secondAttribute="trailing" constant="8" id="JaF-ig-JwY"/>
+                                                <constraint firstItem="ryo-eY-WbS" firstAttribute="leading" secondItem="K4U-D2-Oqr" secondAttribute="leading" constant="8" id="LkY-8f-d6U"/>
                                                 <constraint firstItem="RqR-ne-7xn" firstAttribute="top" secondItem="K4U-D2-Oqr" secondAttribute="topMargin" id="Qiy-HW-zAY"/>
-                                                <constraint firstItem="RqR-ne-7xn" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="6cu-tG-a2V" secondAttribute="trailing" constant="8" symbolic="YES" id="Rgt-YK-IdY"/>
+                                                <constraint firstAttribute="bottom" secondItem="6cu-tG-a2V" secondAttribute="bottom" constant="8" id="Thr-5h-HWS"/>
                                                 <constraint firstItem="RqR-ne-7xn" firstAttribute="trailing" secondItem="K4U-D2-Oqr" secondAttribute="trailingMargin" id="jCR-93-VWw"/>
                                                 <constraint firstItem="RqR-ne-7xn" firstAttribute="top" secondItem="K4U-D2-Oqr" secondAttribute="topMargin" id="kE2-G0-bJM"/>
+                                                <constraint firstAttribute="bottom" secondItem="ryo-eY-WbS" secondAttribute="bottom" constant="8.5" id="wmn-41-w3f"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -166,7 +186,7 @@
                             <view alpha="0.90000000000000002" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="buc-tz-dQq">
                                 <rect key="frame" x="20" y="163" width="374" height="228"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VcZ-l2-hcX" customClass="CustomUIButton" customModule="Calculette_solde" customModuleProvider="target">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VcZ-l2-hcX" customClass="CustomUIButton" customModule="Solde_facile" customModuleProvider="target">
                                         <rect key="frame" x="20" y="147" width="334" height="35"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="35" id="rsM-g0-J29"/>
@@ -186,7 +206,7 @@
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="byL-tA-D5h" customClass="CustomUiTextField" customModule="Calculette_solde" customModuleProvider="target">
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="byL-tA-D5h" customClass="CustomUiTextField" customModule="Solde_facile" customModuleProvider="target">
                                         <rect key="frame" x="83" y="90" width="208" height="34"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="208" id="4C3-KC-BXz"/>
@@ -228,10 +248,10 @@
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
-                        <color key="backgroundColor" red="0.9418709318570665" green="0.93507824538115192" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="jdy-Qm-WSD" firstAttribute="top" secondItem="5Vt-hE-S03" secondAttribute="bottom" constant="26" id="3yT-Wq-Rw6"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="eCl-Jv-suC" secondAttribute="trailing" constant="16" id="5Fw-fj-LjA"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="eCl-Jv-suC" secondAttribute="trailing" constant="20" id="5Fw-fj-LjA"/>
                             <constraint firstItem="cqf-ZE-A1N" firstAttribute="bottom" secondItem="6Tk-OE-BBY" secondAttribute="bottom" id="83R-bC-nWD"/>
                             <constraint firstItem="tk4-BO-itD" firstAttribute="top" secondItem="eCl-Jv-suC" secondAttribute="bottom" constant="66" id="8tG-gf-qZL"/>
                             <constraint firstItem="Afn-rw-XMJ" firstAttribute="top" secondItem="eiQ-tM-iJA" secondAttribute="bottom" constant="24" id="9YK-d9-VfI"/>
@@ -249,7 +269,7 @@
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="5Vt-hE-S03" secondAttribute="trailing" constant="20" id="S7K-gk-waf"/>
                             <constraint firstItem="eiQ-tM-iJA" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="20" id="SBz-27-8U4"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="tk4-BO-itD" secondAttribute="trailing" id="Sco-ZC-Jix"/>
-                            <constraint firstItem="eCl-Jv-suC" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="16" id="YXe-8i-g4I"/>
+                            <constraint firstItem="eCl-Jv-suC" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="20" id="YXe-8i-g4I"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="jdy-Qm-WSD" secondAttribute="trailing" constant="20" id="asp-qa-CbU"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="jdy-Qm-WSD" secondAttribute="trailing" constant="20" id="dDM-8w-pCT"/>
                             <constraint firstItem="buc-tz-dQq" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="20" id="eDN-Tb-4wc"/>
@@ -282,12 +302,12 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
                 <exit id="53W-RL-fTJ" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="63.200000000000003" y="-267.48768472906403"/>
+            <point key="canvasLocation" x="62.318840579710148" y="-267.85714285714283"/>
         </scene>
         <!--Intro View Controller-->
         <scene sceneID="ulm-S2-Okt">
             <objects>
-                <viewController modalPresentationStyle="fullScreen" id="Czk-PZ-4aC" customClass="IntroViewController" customModule="Calculette_solde" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController modalPresentationStyle="fullScreen" id="Czk-PZ-4aC" customClass="IntroViewController" customModule="Solde_facile" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="hUZ-NA-j0B">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -351,6 +371,8 @@
         </scene>
     </scenes>
     <resources>
+        <image name="cart" catalog="system" width="64" height="50"/>
+        <image name="etiquette" width="96" height="96"/>
         <image name="slice of digital - NB - fond noir" width="3508" height="1176"/>
     </resources>
 </document>

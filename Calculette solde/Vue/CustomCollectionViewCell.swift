@@ -15,7 +15,7 @@ class CustomCollectionViewCell: UICollectionViewCell {
     override func draw(_ rect: CGRect) {
         super.draw(rect)
         self.layer.cornerRadius = self.frame.size.width / 2
-        self.layer.borderColor = UIColor.darkGray.cgColor
+        self.layer.borderColor = UIColor.orange.cgColor
         self.layer.borderWidth = 3
         self.layer.backgroundColor = UIColor.clear.cgColor
     }
