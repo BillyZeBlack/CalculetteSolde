@@ -25,6 +25,6 @@ class CustomUIButton: UIButton {
         gradientLayer.colors = [UIColor.darkGray.cgColor, UIColor.black.cgColor]
         layer.insertSublayer(gradientLayer, at: 0)**/
         
-        layer.backgroundColor = UIColor.white.cgColor
+        layer.backgroundColor = UIColor.clear.cgColor
     }
 }

@@ -25,7 +25,7 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
     @IBOutlet weak var lblPrixFinal: UILabel!
     @IBOutlet weak var txtFldMaxBudget: UITextField!
     @IBOutlet weak var otherDiscountView: UIView!
-    @IBOutlet weak var txtFldOtherDiscount: UITextField!// CustomUiTextField!
+    @IBOutlet weak var txtFldOtherDiscount: CustomUiTextField!
     @IBOutlet weak var lblMontantEconomise: UILabel!
     
     
@@ -72,6 +72,7 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
        
        if myGlobalManager.myProductManager.listOfProduct.isEmpty {
            myTableView.isHidden = true
+        lblMontantEconomise.isHidden = true
        }
        
        // Affiche le clavier
@@ -91,6 +92,8 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
         
         btnAchete.imageView?.tintColor = UIColor.darkGray
         
+        
+        otherDiscountView.layer.borderColor = UIColor.orange.cgColor
    }
     
     
@@ -142,7 +145,10 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
     
     
     @IBAction func applyOtherdiscount(_ sender: UIButton)
-    {
+    { /**
+         ici changer l'algo :
+         ne doit pas valider mais seulement prendre en compte la reduc et fermer la fenetre
+         */
         if txtFldPrixDepart.text!.isEmpty && txtFldOtherDiscount.text!.isEmpty {
             closeSidebar()
         } else {
@@ -266,12 +272,13 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
         if editingStyle == .delete {
             myGlobalManager.myProductManager.deleteProduct(index: indexPath.row)
             let totalProduct = myGlobalManager.myProductManager.myCart(myListOfProduct: myGlobalManager.myProductManager.listOfProduct)
-            let totalEconomie = myGlobalManager.myProductManager.myDiscounts(myListOfPrduct: myGlobalManager.myProductManager.listOfProduct)
+            let totalEconomie = 0 - myGlobalManager.myProductManager.myDiscounts(myListOfPrduct: myGlobalManager.myProductManager.listOfProduct)
             lblTotalProduct.text = String(format: " %.2f", totalProduct) + " €"
             lblMontantEconomise.text = String(format: " %.2f", totalEconomie) + " €"
             tableView.reloadData()
             if myGlobalManager.myProductManager.listOfProduct.isEmpty {
                 myTableView.isHidden = true
+                lblMontantEconomise.isHidden = true
             }
         }
     }
@@ -316,13 +323,14 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
         
         let totalArticle = myGlobalManager.myProductManager.myCart(myListOfProduct: myGlobalManager.myProductManager.listOfProduct)
         
-        let totalEconomise = myGlobalManager.myProductManager.myDiscounts(myListOfPrduct: myGlobalManager.myProductManager.listOfProduct)
+        let totalEconomise = 0 - myGlobalManager.myProductManager.myDiscounts(myListOfPrduct: myGlobalManager.myProductManager.listOfProduct)
         lblMontantEconomise.text = String(format: " %.2f", totalEconomise) + " €"
         
         
         lblPulsate()
         myTableView.reloadData()
         myTableView.isHidden = false
+        lblMontantEconomise.isHidden = false
         lblTotalProduct.text = String(format: " %.2f", totalArticle) + " €"
         updateLabel()
         priceProduct = 0.0

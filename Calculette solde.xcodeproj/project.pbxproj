@@ -25,7 +25,6 @@
 		BEBAFD4324893C0200A9EF15 /* GlobalManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEBAFD4224893C0200A9EF15 /* GlobalManager.swift */; };
 		BEBAFD45248943F900A9EF15 /* CustomTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEBAFD44248943F800A9EF15 /* CustomTableViewCell.swift */; };
 		BEE88759248AA1EF009BB96A /* CustomUIButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEE88758248AA1EF009BB96A /* CustomUIButton.swift */; };
-		BEF5EF4424A4F458001E5F9C /* LogoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEF5EF4324A4F458001E5F9C /* LogoViewController.swift */; };
 		BEFD3633249D26C70053E857 /* IntroViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEFD3632249D26C70053E857 /* IntroViewController.swift */; };
 		BEFD3635249D6AA60053E857 /* CustomUiTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEFD3634249D6AA60053E857 /* CustomUiTextField.swift */; };
 /* End PBXBuildFile section */
@@ -53,7 +52,6 @@
 		BEBAFD4224893C0200A9EF15 /* GlobalManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlobalManager.swift; sourceTree = "<group>"; };
 		BEBAFD44248943F800A9EF15 /* CustomTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTableViewCell.swift; sourceTree = "<group>"; };
 		BEE88758248AA1EF009BB96A /* CustomUIButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomUIButton.swift; sourceTree = "<group>"; };
-		BEF5EF4324A4F458001E5F9C /* LogoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogoViewController.swift; sourceTree = "<group>"; };
 		BEFD3632249D26C70053E857 /* IntroViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntroViewController.swift; sourceTree = "<group>"; };
 		BEFD3634249D6AA60053E857 /* CustomUiTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomUiTextField.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -130,7 +128,6 @@
 				BEA76CBB24812F0B000244BA /* Main.storyboard */,
 				BEA76CB924812F0B000244BA /* ViewController.swift */,
 				BEFD3632249D26C70053E857 /* IntroViewController.swift */,
-				BEF5EF4324A4F458001E5F9C /* LogoViewController.swift */,
 				BEA674B52486EDEB00EC99B2 /* CustomCollectionViewCell.swift */,
 				BEBAFD44248943F800A9EF15 /* CustomTableViewCell.swift */,
 				BEE88758248AA1EF009BB96A /* CustomUIButton.swift */,
@@ -270,7 +267,6 @@
 				BEA76CB624812F0B000244BA /* AppDelegate.swift in Sources */,
 				BEFD3635249D6AA60053E857 /* CustomUiTextField.swift in Sources */,
 				BEA76CB824812F0B000244BA /* SceneDelegate.swift in Sources */,
-				BEF5EF4424A4F458001E5F9C /* LogoViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
