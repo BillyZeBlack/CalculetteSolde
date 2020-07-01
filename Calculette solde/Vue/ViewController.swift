@@ -11,14 +11,14 @@ import UIKit
 
 class ViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate, UITableViewDelegate, UITableViewDataSource {
 
-
+    let myGlobalManager = GlobalManager()
+    
     @IBOutlet weak var otherDiscountViewConstraint: NSLayoutConstraint!
     @IBOutlet weak var btnAchete: CustomUIButton!
     @IBOutlet weak var lblTotalProduct: UILabel!
     @IBOutlet weak var myTableView: UITableView!
     @IBOutlet weak var myCollectionView: UICollectionView!
     @IBOutlet weak var btnValider: CustomUIButton!
-
     
     //Marks : TextField
     @IBOutlet weak var txtFldPrixDepart: CustomUiTextField!
@@ -27,8 +27,6 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
     @IBOutlet weak var otherDiscountView: UIView!
     @IBOutlet weak var txtFldOtherDiscount: CustomUiTextField!
     @IBOutlet weak var lblMontantEconomise: UILabel!
-    
-    
     
     //Marks : sidebar
     var sidebarshowed = false
@@ -48,12 +46,23 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
     var prixDeDepart : Double = 0.0
     var reduction : Double = 0.0
     
-    let myGlobalManager = GlobalManager()
-    
+                                                        /////////////////////////////////// viewDidLoad///////////////////////
     override func viewDidLoad() {
        super.viewDidLoad()
         
-
+        self.hideKeyboard()
+        
+        // Affiche le clavier
+        txtFldPrixDepart.becomeFirstResponder()
+        
+        txtFldPrixDepart.textColor = UIColor.black
+        txtFldOtherDiscount.textColor = UIColor.black
+                
+        lblPrixFinal.textColor = UIColor.black
+        lblTotalProduct.textColor = UIColor.black
+        lblMontantEconomise.textColor = UIColor.black
+        lblPrixFinal.text = "Nouveau prix"
+        lblTotalProduct.text = "Total des achats"
         
         myCollectionView.backgroundView = nil
         myCollectionView.backgroundColor = .clear
@@ -65,20 +74,13 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
         gradientLayer.startPoint = CGPoint(x: 1,y: 1)**/
         view.layer.insertSublayer(gradientLayer, at: 0)**/
   
-       self.hideKeyboard()
-       
-       lblPrixFinal.text = "0.0 €"
-       lblTotalProduct.text = "0.0 €"
-       
        if myGlobalManager.myProductManager.listOfProduct.isEmpty {
            myTableView.isHidden = true
         lblMontantEconomise.isHidden = true
        }
-       
-       // Affiche le clavier
-       txtFldPrixDepart.becomeFirstResponder()
+    
+       // Gestion de la view
         
-       // Gestion de la view
        otherDiscountViewConstraint.constant = 1004//415
        otherDiscountView.layer.borderWidth = 2
        otherDiscountView.layer.cornerRadius = 10
@@ -89,11 +91,16 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
         
        // change la couleur du palceholder
         txtFldPrixDepart.attributedPlaceholder = NSAttributedString(string: "ENTREZ LE PRIX INITIAL", attributes: [NSAttributedString.Key.foregroundColor: UIColor.systemYellow])
+        txtFldOtherDiscount.attributedPlaceholder = NSAttributedString(string: "ENTREZ VOTRE REDUCTION", attributes: [NSAttributedString.Key.foregroundColor: UIColor.systemYellow])
         
+        //Image boutons
         btnAchete.imageView?.tintColor = UIColor.darkGray
-        
+        btnValider.imageView?.tintColor = UIColor.darkGray
         
         otherDiscountView.layer.borderColor = UIColor.orange.cgColor
+        
+        
+        
    }
     
     
@@ -104,6 +111,7 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
             lblPrixFinal.text = "0.0 €"
             
         }
+        
         
         if lblPrixFinal.text! == "0.0 €" && txtFldPrixDepart.text! == "" {
             
@@ -139,8 +147,12 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
             } else {
                 prix = constant
             }
-            
-            ajouterALaListe(prixInitial: constant, prixFinal: prix, reduction: reduction)        }
+            if constant != 0 {
+                ajouterALaListe(prixInitial: constant, prixFinal: prix, reduction: reduction)
+            } else {
+                showAlertPopup(title: "Message", message: "Votre prix est à \"0\".")
+            }
+                    }
     }
     
     
@@ -149,7 +161,37 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
          ici changer l'algo :
          ne doit pas valider mais seulement prendre en compte la reduc et fermer la fenetre
          */
-        if txtFldPrixDepart.text!.isEmpty && txtFldOtherDiscount.text!.isEmpty {
+        //
+         if txtFldPrixDepart.text != "" && txtFldOtherDiscount.text! != ""{
+
+            let prixInit = replaceString(myString: txtFldPrixDepart.text!)
+                 
+            let reduc = replaceString(myString: txtFldOtherDiscount.text!)
+                 
+            guard let tempPrixInit = Double (prixInit) else { return showAlertPopup(title: "Erreur", message: "Vérifiez votre prix.") }
+                 guard let tempReduc = Double (reduc) else { return showAlertPopup(title: "Erreur", message: "Vérifiez votre réduction.") }
+                 
+            prixDeDepart = tempPrixInit
+            reduction = tempReduc
+            
+            if reduction <= 100 {
+                calculDuPrix(prixDepart: prixDeDepart, reduction: reduction)
+            } else {
+                showAlertPopup(title: "Message", message: "Vérifiez votre réduction")
+            }
+
+            closeSidebar()
+                                          
+         } else if txtFldPrixDepart.text! == "" && txtFldOtherDiscount.text! == "" {
+             closeSidebar()
+         } else if txtFldPrixDepart.text! != "" && txtFldOtherDiscount.text! == ""{
+            closeSidebar()
+         } else {
+            showAlertPopup(title: "Information", message: "Entrez un prix.")
+        }
+         
+         //
+       /** if txtFldPrixDepart.text!.isEmpty && txtFldOtherDiscount.text!.isEmpty {
             closeSidebar()
         } else {
             let prixInitial = replaceString(myString: txtFldPrixDepart.text!) 
@@ -167,7 +209,13 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
                 reduction = tempReducPerso
                 
                 calculDuPrix(prixDepart: prixDeDepart, reduction: reduction)
-                ajouterALaListe(prixInitial: prixDeDepart, prixFinal: priceProduct, reduction: reduction)
+                
+                if priceProduct != 0 {
+                    ajouterALaListe(prixInitial: prixDeDepart, prixFinal: priceProduct, reduction: reduction)
+                } else {
+                    showAlertPopup(title: "Message", message: "Votre prix est à \"0\".")
+                }
+                
                 
             } else {
                 showAlertPopup(title: "Erreur", message: "Vérifiez votre réduction")
@@ -175,8 +223,16 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
 
             btnAchete.isEnabled = true
             closeSidebar()
-        }
+        }**/
     }
+    
+    //Remet à zéro la reduction, à chaque modification du prix
+    @IBAction func txtFldValuechanged(_ sender: Any) {
+        print("La valeur a été modifiée !!!")
+        reduction = 0
+        
+    }
+    
 
                                                                        ///////////////////////////// Marks : CollectionView protocol//////////////////////////////////////
     
@@ -237,7 +293,9 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
                     
                     guard let tempPrixInit = Double (prixInit) else { return showAlertPopup(title: "Erreur", message: "Vérifiez votre prix.") }
                     guard let tempReduc = Double (reduc) else { return showAlertPopup(title: "Erreur", message: "Vérifiez votre réduction.") }
+                    //
                     
+                    //
                     prixDeDepart = tempPrixInit
                     reduction = tempReduc
                     
@@ -250,6 +308,8 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
             }
         }
     }
+    
+
     
                                                                          /////////////////////////////////////Marks : TableView Protocol////////////////////////////////////
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -282,6 +342,12 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
             }
         }
     }
+    /**
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let prixTest = myGlobalManager.myProductManager.listOfProduct[indexPath.row].finalPrice
+        let reductionTest = myGlobalManager.myProductManager.listOfProduct[indexPath.row].discount
+        print("prix : \(prixTest)€ \nréduction : \(reductionTest)")
+    }**/
         
     
                                                                    /////////////////////////////////////////////////////////// Private function//////////////////////////////////
@@ -303,7 +369,7 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
         txtFldPrixDepart.isEnabled = false
         txtFldOtherDiscount.text = ""
         otherDiscountViewConstraint.constant = 20
-        UIView.animate(withDuration: 0.3) {
+        UIView.animate(withDuration: 0.6) {
             self.view.layoutIfNeeded()
         }
     }

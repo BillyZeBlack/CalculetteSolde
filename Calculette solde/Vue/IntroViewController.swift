@@ -9,12 +9,15 @@
 import UIKit
 
 class IntroViewController: UIViewController {
-
+    
+    
+    @IBOutlet weak var lblNomAppli: UILabel!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        lblNomAppli.textColor = UIColor.white
         transition()
+        
     }
     
     private func transition()

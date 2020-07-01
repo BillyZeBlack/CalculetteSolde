@@ -10,20 +10,19 @@ import UIKit
 
 class CustomTableViewCell: UITableViewCell {
 
-    //let myGlobalManager = GlobalManager()
-    
+        
     @IBOutlet weak var lblPriceProduct: UILabel!
     @IBOutlet weak var lblDiscountProduct: UILabel!
     
     func configure (firstPrice : Double, finalPrice: Double, theDiscount : Double)
     {
-        //let myDiscount : Double = theDiscount
+        lblPriceProduct.textColor = UIColor.black
+        lblDiscountProduct.textColor = UIColor.black
         
-        let theDiscount = (firstPrice * theDiscount)/100
+        let theDiscount = String(format: "%.2f",(firstPrice * theDiscount)/100)
         lblPriceProduct.text = String(format: " %.2f", firstPrice) + "€  - \(theDiscount)€"//
         lblDiscountProduct.text = String(format: " %.2f", finalPrice)+"€"
         layer.cornerRadius = 10
-        //String(format: " %.2f", totalEconomie) + " €"
     }
     
     override func awakeFromNib() {
