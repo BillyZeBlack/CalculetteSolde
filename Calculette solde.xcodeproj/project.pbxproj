@@ -20,7 +20,6 @@
 		BEA76CBD24812F0B000244BA /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BEA76CBB24812F0B000244BA /* Main.storyboard */; };
 		BEA76CBF24812F13000244BA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BEA76CBE24812F13000244BA /* Assets.xcassets */; };
 		BEA76CC224812F13000244BA /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BEA76CC024812F13000244BA /* LaunchScreen.storyboard */; };
-		BEB2DD5324ACE35F0055D5B9 /* TutorielViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEB2DD5224ACE35F0055D5B9 /* TutorielViewController.swift */; };
 		BEBAFD3F2489389C00A9EF15 /* MyProduct.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEBAFD3E2489389C00A9EF15 /* MyProduct.swift */; };
 		BEBAFD4124893A8000A9EF15 /* ProductManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEBAFD4024893A8000A9EF15 /* ProductManager.swift */; };
 		BEBAFD4324893C0200A9EF15 /* GlobalManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEBAFD4224893C0200A9EF15 /* GlobalManager.swift */; };
@@ -48,7 +47,6 @@
 		BEA76CBE24812F13000244BA /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		BEA76CC124812F13000244BA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		BEA76CC324812F13000244BA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		BEB2DD5224ACE35F0055D5B9 /* TutorielViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TutorielViewController.swift; sourceTree = "<group>"; };
 		BEBAFD3E2489389C00A9EF15 /* MyProduct.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyProduct.swift; sourceTree = "<group>"; };
 		BEBAFD4024893A8000A9EF15 /* ProductManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductManager.swift; sourceTree = "<group>"; };
 		BEBAFD4224893C0200A9EF15 /* GlobalManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlobalManager.swift; sourceTree = "<group>"; };
@@ -130,7 +128,6 @@
 				BEA76CBB24812F0B000244BA /* Main.storyboard */,
 				BEA76CB924812F0B000244BA /* ViewController.swift */,
 				BEFD3632249D26C70053E857 /* IntroViewController.swift */,
-				BEB2DD5224ACE35F0055D5B9 /* TutorielViewController.swift */,
 				BEA674B52486EDEB00EC99B2 /* CustomCollectionViewCell.swift */,
 				BEBAFD44248943F800A9EF15 /* CustomTableViewCell.swift */,
 				BEE88758248AA1EF009BB96A /* CustomUIButton.swift */,
@@ -265,7 +262,6 @@
 				BEBAFD45248943F900A9EF15 /* CustomTableViewCell.swift in Sources */,
 				BEA76CBA24812F0B000244BA /* ViewController.swift in Sources */,
 				BEBAFD4324893C0200A9EF15 /* GlobalManager.swift in Sources */,
-				BEB2DD5324ACE35F0055D5B9 /* TutorielViewController.swift in Sources */,
 				BEBAFD3F2489389C00A9EF15 /* MyProduct.swift in Sources */,
 				BEFD3633249D26C70053E857 /* IntroViewController.swift in Sources */,
 				BEA76CB624812F0B000244BA /* AppDelegate.swift in Sources */,
