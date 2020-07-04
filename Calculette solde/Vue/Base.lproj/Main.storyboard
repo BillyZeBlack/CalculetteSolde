@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Czk-PZ-4aC">
-    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <device id="retina5_5" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
@@ -25,13 +25,13 @@
         <!--View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="Solde_facile" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="Soldes_faciles" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="ENTREZ LE PRIX INITIAL" textAlignment="center" clearsOnBeginEditing="YES" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="eCl-Jv-suC" customClass="CustomUiTextField" customModule="Solde_facile" customModuleProvider="target">
-                                <rect key="frame" x="20" y="109" width="374" height="34"/>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="ENTREZ LE PRIX INITIAL" textAlignment="center" clearsOnBeginEditing="YES" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="eCl-Jv-suC" customClass="CustomUiTextField" customModule="Soldes_faciles" customModuleProvider="target">
+                                <rect key="frame" x="20" y="65" width="374" height="34"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="34" id="Mld-7B-KYw"/>
                                 </constraints>
@@ -42,7 +42,7 @@
                                 </connections>
                             </textField>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eiQ-tM-iJA">
-                                <rect key="frame" x="20" y="327" width="374" height="34"/>
+                                <rect key="frame" x="20" y="283" width="374" height="34"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="34" id="ALL-zB-Tel"/>
                                 </constraints>
@@ -51,7 +51,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" alpha="0.94999999999999996" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="tk4-BO-itD">
-                                <rect key="frame" x="-5" y="209" width="419" height="81"/>
+                                <rect key="frame" x="-5" y="165" width="419" height="81"/>
                                 <color key="backgroundColor" red="0.93744474649999998" green="0.93834370369999998" blue="0.99804288149999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="81" id="haf-Ho-bwj"/>
@@ -64,7 +64,7 @@
                                     <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 </collectionViewFlowLayout>
                                 <cells>
-                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" alpha="0.0" contentMode="center" reuseIdentifier="cell" id="rhl-Ak-eCc" customClass="CustomCollectionViewCell" customModule="Solde_facile" customModuleProvider="target">
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" alpha="0.0" contentMode="center" reuseIdentifier="cell" id="rhl-Ak-eCc" customClass="CustomCollectionViewCell" customModule="Soldes_faciles" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="0.0" width="81" height="81"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="b9v-aQ-PLc">
@@ -99,8 +99,8 @@
                                     <outlet property="delegate" destination="BYZ-38-t0r" id="0aU-vo-QsW"/>
                                 </connections>
                             </collectionView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Afn-rw-XMJ" customClass="CustomUIButton" customModule="Solde_facile" customModuleProvider="target">
-                                <rect key="frame" x="20" y="385" width="374" height="43"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Afn-rw-XMJ" customClass="CustomUIButton" customModule="Soldes_faciles" customModuleProvider="target">
+                                <rect key="frame" x="20" y="341" width="374" height="43"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="43" id="2Cp-np-bSa"/>
@@ -116,7 +116,7 @@
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5Vt-hE-S03">
-                                <rect key="frame" x="20" y="470" width="374" height="27"/>
+                                <rect key="frame" x="20" y="426" width="374" height="27"/>
                                 <constraints>
                                     <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="27" id="ZQG-DG-wGB"/>
                                     <constraint firstAttribute="height" constant="27" id="nvm-D2-hfI"/>
@@ -126,11 +126,11 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="jdy-Qm-WSD">
-                                <rect key="frame" x="20" y="523" width="374" height="307"/>
+                                <rect key="frame" x="20" y="479" width="374" height="225"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <color key="sectionIndexTrackingBackgroundColor" red="0.0048598507420000003" green="0.096086271109999996" blue="0.57499289509999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" alpha="0.0" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="tableViewCell" id="Q7E-Xr-mKm" customClass="CustomTableViewCell" customModule="Solde_facile" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" alpha="0.0" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="tableViewCell" id="Q7E-Xr-mKm" customClass="CustomTableViewCell" customModule="Soldes_faciles" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="374" height="46"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Q7E-Xr-mKm" id="K4U-D2-Oqr">
@@ -138,7 +138,10 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RqR-ne-7xn">
-                                                    <rect key="frame" x="231" y="8" width="108" height="30"/>
+                                                    <rect key="frame" x="217" y="8" width="122" height="30"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="122" id="aTW-ze-IiR"/>
+                                                    </constraints>
                                                     <fontDescription key="fontDescription" name="Teko-Medium" family="Teko" pointSize="23"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -151,9 +154,8 @@
                                                     </constraints>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6cu-tG-a2V">
-                                                    <rect key="frame" x="20" y="8" width="203" height="30"/>
+                                                    <rect key="frame" x="20" y="8" width="189" height="30"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="width" constant="203" id="4ww-cF-0n4"/>
                                                         <constraint firstAttribute="height" constant="29.5" id="kWi-ER-I4d"/>
                                                     </constraints>
                                                     <fontDescription key="fontDescription" name="Teko-Medium" family="Teko" pointSize="20"/>
@@ -164,9 +166,7 @@
                                             <constraints>
                                                 <constraint firstItem="ryo-eY-WbS" firstAttribute="leading" secondItem="RqR-ne-7xn" secondAttribute="trailing" constant="8" id="211-DT-RTZ"/>
                                                 <constraint firstItem="6cu-tG-a2V" firstAttribute="top" secondItem="K4U-D2-Oqr" secondAttribute="top" constant="8" id="9XY-pn-UsJ"/>
-                                                <constraint firstItem="6cu-tG-a2V" firstAttribute="top" secondItem="K4U-D2-Oqr" secondAttribute="top" constant="8" id="Dnr-4K-9AX"/>
                                                 <constraint firstItem="ryo-eY-WbS" firstAttribute="top" secondItem="K4U-D2-Oqr" secondAttribute="top" constant="8" id="SkE-xD-xLV"/>
-                                                <constraint firstAttribute="bottom" secondItem="6cu-tG-a2V" secondAttribute="bottom" constant="8" id="Thr-5h-HWS"/>
                                                 <constraint firstItem="6cu-tG-a2V" firstAttribute="leading" secondItem="K4U-D2-Oqr" secondAttribute="leading" constant="20" id="Yxq-Ld-Y3G"/>
                                                 <constraint firstAttribute="bottom" secondItem="ryo-eY-WbS" secondAttribute="bottom" constant="9" id="Zlo-A6-kg2"/>
                                                 <constraint firstAttribute="bottom" secondItem="RqR-ne-7xn" secondAttribute="bottom" constant="8" id="mDI-Og-ddr"/>
@@ -189,9 +189,9 @@
                                 </connections>
                             </tableView>
                             <view alpha="0.90000000000000002" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="buc-tz-dQq">
-                                <rect key="frame" x="20" y="163" width="374" height="228"/>
+                                <rect key="frame" x="20" y="119" width="374" height="228"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VcZ-l2-hcX" customClass="CustomUIButton" customModule="Solde_facile" customModuleProvider="target">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VcZ-l2-hcX" customClass="CustomUIButton" customModule="Soldes_faciles" customModuleProvider="target">
                                         <rect key="frame" x="20" y="147" width="334" height="35"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
@@ -206,7 +206,7 @@
                                             <action selector="applyOtherdiscount:" destination="BYZ-38-t0r" eventType="touchUpInside" id="GLv-S5-Mcr"/>
                                         </connections>
                                     </button>
-                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="ENTREZ VOTRE REDUCTION" textAlignment="center" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="byL-tA-D5h" customClass="CustomUiTextField" customModule="Solde_facile" customModuleProvider="target">
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="ENTREZ VOTRE REDUCTION" textAlignment="center" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="byL-tA-D5h" customClass="CustomUiTextField" customModule="Soldes_faciles" customModuleProvider="target">
                                         <rect key="frame" x="87" y="97" width="200" height="34"/>
                                         <constraints>
                                             <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="34" id="ZIf-ai-UwG"/>
@@ -228,12 +228,18 @@
                                 </constraints>
                             </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0.0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="U8V-f0-fge">
-                                <rect key="frame" x="132.5" y="830" width="149" height="32"/>
+                                <rect key="frame" x="132.66666666666666" y="704" width="148.99999999999997" height="32"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="149" id="4Zr-U7-dzB"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" name="Teko-Medium" family="Teko" pointSize="22"/>
                                 <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="SOLDES FACILES" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wx7-Cp-U0i">
+                                <rect key="frame" x="20" y="54" width="374" height="43"/>
+                                <fontDescription key="fontDescription" name="Teko-Light" family="Teko" pointSize="30"/>
+                                <color key="textColor" red="0.94359302519999999" green="0.77213090660000006" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
@@ -246,7 +252,7 @@
                             <constraint firstItem="Afn-rw-XMJ" firstAttribute="top" secondItem="eiQ-tM-iJA" secondAttribute="bottom" constant="24" id="9YK-d9-VfI"/>
                             <constraint firstItem="eiQ-tM-iJA" firstAttribute="top" secondItem="tk4-BO-itD" secondAttribute="bottom" constant="37" id="BUI-DY-fRo"/>
                             <constraint firstItem="U8V-f0-fge" firstAttribute="centerX" secondItem="jdy-Qm-WSD" secondAttribute="centerX" id="C7w-ZV-Hgu"/>
-                            <constraint firstItem="eCl-Jv-suC" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="65" id="CGU-pm-jjm"/>
+                            <constraint firstItem="eCl-Jv-suC" firstAttribute="top" secondItem="wx7-Cp-U0i" secondAttribute="bottom" constant="12" id="ELG-On-lQV"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="eiQ-tM-iJA" secondAttribute="trailing" constant="20" id="IQZ-5e-DeT"/>
                             <constraint firstItem="jdy-Qm-WSD" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="20" id="IZE-s7-YMc"/>
                             <constraint firstItem="5Vt-hE-S03" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="20" id="InQ-Jt-nk5"/>
@@ -256,8 +262,10 @@
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="5Vt-hE-S03" secondAttribute="trailing" constant="20" id="S7K-gk-waf"/>
                             <constraint firstItem="eiQ-tM-iJA" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="20" id="SBz-27-8U4"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="tk4-BO-itD" secondAttribute="trailing" id="Sco-ZC-Jix"/>
+                            <constraint firstItem="wx7-Cp-U0i" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="XQG-tV-6k7"/>
                             <constraint firstItem="eCl-Jv-suC" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="20" id="YXe-8i-g4I"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="jdy-Qm-WSD" secondAttribute="trailing" constant="20" id="asp-qa-CbU"/>
+                            <constraint firstItem="wx7-Cp-U0i" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="10" id="b77-Cc-DbI"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="jdy-Qm-WSD" secondAttribute="trailing" constant="20" id="dDM-8w-pCT"/>
                             <constraint firstItem="buc-tz-dQq" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="20" id="eDN-Tb-4wc"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="buc-tz-dQq" secondAttribute="trailing" constant="20" id="ffi-jB-VWp"/>
@@ -274,6 +282,7 @@
                         <outlet property="btnValider" destination="VcZ-l2-hcX" id="rVu-7p-eNC"/>
                         <outlet property="lblMontantEconomise" destination="U8V-f0-fge" id="jx8-Wy-9Mq"/>
                         <outlet property="lblPrixFinal" destination="eiQ-tM-iJA" id="ylu-DL-uX3"/>
+                        <outlet property="lblTitle" destination="wx7-Cp-U0i" id="goU-sY-ch1"/>
                         <outlet property="lblTotalProduct" destination="5Vt-hE-S03" id="Hhr-7M-1Xz"/>
                         <outlet property="myCollectionView" destination="tk4-BO-itD" id="CDR-mX-O6W"/>
                         <outlet property="myTableView" destination="jdy-Qm-WSD" id="a0C-ie-DHN"/>
@@ -286,46 +295,44 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
                 <exit id="53W-RL-fTJ" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="-807.24637681159425" y="-194.19642857142856"/>
+            <point key="canvasLocation" x="102.89855072463769" y="-194.19642857142856"/>
         </scene>
         <!--Intro View Controller-->
         <scene sceneID="ulm-S2-Okt">
             <objects>
-                <viewController modalPresentationStyle="fullScreen" id="Czk-PZ-4aC" customClass="IntroViewController" customModule="Solde_facile" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController modalPresentationStyle="fullScreen" id="Czk-PZ-4aC" customClass="IntroViewController" customModule="Soldes_faciles" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="hUZ-NA-j0B">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="slice of digital - NB - fond noir" translatesAutoresizingMaskIntoConstraints="NO" id="QrV-nC-NWP">
-                                <rect key="frame" x="-1547" y="725" width="3508" height="77"/>
+                                <rect key="frame" x="-1547" y="599" width="3508" height="77"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="77" id="t1E-8y-TNY"/>
                                 </constraints>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="SOLDE FACILE" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8VT-fT-8xN">
-                                <rect key="frame" x="32.5" y="377.5" width="349" height="141"/>
-                                <fontDescription key="fontDescription" name="Teko-Light" family="Teko" pointSize="98"/>
-                                <color key="textColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="titre appli" translatesAutoresizingMaskIntoConstraints="NO" id="sdk-pu-TZN">
+                                <rect key="frame" x="20" y="328" width="374" height="80"/>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" cocoaTouchSystemColor="darkTextColor"/>
                         <constraints>
+                            <constraint firstItem="sdk-pu-TZN" firstAttribute="centerX" secondItem="hUZ-NA-j0B" secondAttribute="centerX" id="Mwh-lt-7g0"/>
                             <constraint firstItem="QrV-nC-NWP" firstAttribute="centerX" secondItem="hUZ-NA-j0B" secondAttribute="centerX" id="UOI-Tl-ktm"/>
+                            <constraint firstItem="sdk-pu-TZN" firstAttribute="centerY" secondItem="hUZ-NA-j0B" secondAttribute="centerY" id="Xk2-no-GCG"/>
                             <constraint firstItem="r2P-gc-dSO" firstAttribute="bottom" secondItem="QrV-nC-NWP" secondAttribute="bottom" constant="60" id="ZNl-Ew-ahW"/>
-                            <constraint firstItem="8VT-fT-8xN" firstAttribute="centerX" secondItem="hUZ-NA-j0B" secondAttribute="centerX" id="asd-sA-nFb"/>
-                            <constraint firstItem="8VT-fT-8xN" firstAttribute="centerY" secondItem="hUZ-NA-j0B" secondAttribute="centerY" id="bt2-M4-v0m"/>
+                            <constraint firstItem="sdk-pu-TZN" firstAttribute="leading" secondItem="r2P-gc-dSO" secondAttribute="leading" constant="20" id="gRj-iX-0Li"/>
+                            <constraint firstItem="r2P-gc-dSO" firstAttribute="trailing" secondItem="sdk-pu-TZN" secondAttribute="trailing" constant="20" id="h1d-44-RtO"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="r2P-gc-dSO"/>
                     </view>
                     <connections>
-                        <outlet property="lblNomAppli" destination="8VT-fT-8xN" id="8dO-Yh-VoE"/>
-                        <segue destination="BYZ-38-t0r" kind="presentation" identifier="segue" modalPresentationStyle="fullScreen" id="Rsw-w7-HVu"/>
+                        <segue destination="BYZ-38-t0r" kind="presentation" identifier="segue" modalPresentationStyle="fullScreen" id="AXF-UY-FtW"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="sCG-53-vp6" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1742.0289855072465" y="-202.23214285714286"/>
+            <point key="canvasLocation" x="-884.05797101449286" y="-194.19642857142856"/>
         </scene>
     </scenes>
     <resources>
@@ -333,5 +340,6 @@
         <image name="checkmark" catalog="system" width="64" height="56"/>
         <image name="etiquette" width="96" height="96"/>
         <image name="slice of digital - NB - fond noir" width="3508" height="1176"/>
+        <image name="titre appli" width="273" height="80"/>
     </resources>
 </document>

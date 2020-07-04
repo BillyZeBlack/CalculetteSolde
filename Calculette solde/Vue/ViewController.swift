@@ -19,6 +19,8 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
     @IBOutlet weak var myTableView: UITableView!
     @IBOutlet weak var myCollectionView: UICollectionView!
     @IBOutlet weak var btnValider: CustomUIButton!
+    @IBOutlet weak var lblTitle: UILabel!
+    
     
     //Marks : TextField
     @IBOutlet weak var txtFldPrixDepart: CustomUiTextField!
@@ -34,11 +36,11 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
     var pourcentageDeduire = ""
     var pourcentage = 0.0
     var remise = ""
-    var labelPourcentage :[String] = ["+","5%","10%","15%",
+    var labelPourcentage :[String] = ["...%","5%","10%","15%",
                                       "20%","25%","30%","35%",
                                       "40%","45%","50%","55%",
                                       "60%","65%","70%","75%",
-                                      "80%","85%","90%","+"]
+                                      "80%","85%","90%","95%","...%"]
     var totalArticle : [Double] = []
     var priceProduct : Double = 0.0
     var montantReduction : Double = 0.0
@@ -61,6 +63,7 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
         lblPrixFinal.textColor = UIColor.black
         lblTotalProduct.textColor = UIColor.black
         lblMontantEconomise.textColor = UIColor.black
+        lblTitle.textColor = UIColor.black
         lblPrixFinal.text = "Nouveau prix"
         lblTotalProduct.text = "Total des achats"
         
@@ -103,6 +106,10 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
         
    }
     
+   /* override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        performSegue(withIdentifier: "toTutoriel", sender: self)
+    }*/
+    
     
                                                                              /////////////////IBAction functions//////////////////
     @IBAction func addProductIntoListProduct(_ sender: UIButton)
@@ -128,7 +135,7 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
                 prixFinal.remove(at: i)
             }
             
-            guard let constant = Double (prixFinal) else { return showAlertPopup(title: "Erreur", message: "Le prix n'est pas valide.") }
+            guard let constant = Double (prixFinal) else { return showAlertPopup(title: "Erreur", message: "Vérifiez le prix.") }
             
             if constant == 0.0 {
                 showAlertPopup(title: "Message", message: "Entrez un prix.")
@@ -140,7 +147,7 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
             var prix : Double = 0
             let prixFinal =  replaceString(myString: txtFldPrixDepart.text!)
             
-            guard let constant = Double (prixFinal) else { return showAlertPopup(title: "Erreur", message: "Entrez un prix.") }
+            guard let constant = Double (prixFinal) else { return showAlertPopup(title: "Erreur", message: "Vérifiez le prix.") }
             
             if reduction != 0 {
                 prix = priceProduct
@@ -168,8 +175,8 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
                  
             let reduc = replaceString(myString: txtFldOtherDiscount.text!)
                  
-            guard let tempPrixInit = Double (prixInit) else { return showAlertPopup(title: "Erreur", message: "Vérifiez votre prix.") }
-                 guard let tempReduc = Double (reduc) else { return showAlertPopup(title: "Erreur", message: "Vérifiez votre réduction.") }
+            guard let tempPrixInit = Double (prixInit) else { return showAlertPopup(title: "Erreur", message: "Vérifiez le prix.") }
+            guard let tempReduc = Double (reduc) else { return showAlertPopup(title: "Erreur", message: "Vérifiez votre réduction.") }
                  
             prixDeDepart = tempPrixInit
             reduction = tempReduc
@@ -187,7 +194,7 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
          } else if txtFldPrixDepart.text! != "" && txtFldOtherDiscount.text! == ""{
             closeSidebar()
          } else {
-            showAlertPopup(title: "Information", message: "Entrez un prix.")
+            showAlertPopup(title: "Information", message: "Vérifiez le prix.")
         }
          
          //
@@ -228,9 +235,7 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
     
     //Remet à zéro la reduction, à chaque modification du prix
     @IBAction func txtFldValuechanged(_ sender: Any) {
-        print("La valeur a été modifiée !!!")
         reduction = 0
-        
     }
     
 
@@ -258,7 +263,7 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
         pourcentageDeduire = labelPourcentage[indexPath.row]
         
         switch pourcentageDeduire {
-        case "+":
+        case "...%":
             /**labelPourcentage = ["-","1%","2%","3%","4%","5%","6%","7%","8%","9%","10%",
             "11%","12%","13%","14%","15%","16%","17%","18%","19%","20%",
             "21%","22%","23%","24%","25%","26%","27%","28%","29%","30%",
@@ -291,7 +296,7 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
                     
                     let reduc = replaceString(myString: pourcentageDeduire)
                     
-                    guard let tempPrixInit = Double (prixInit) else { return showAlertPopup(title: "Erreur", message: "Vérifiez votre prix.") }
+                    guard let tempPrixInit = Double (prixInit) else { return showAlertPopup(title: "Erreur", message: "Vérifiez le prix.") }
                     guard let tempReduc = Double (reduc) else { return showAlertPopup(title: "Erreur", message: "Vérifiez votre réduction.") }
                     //
                     
@@ -341,6 +346,10 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
                 lblMontantEconomise.isHidden = true
             }
         }
+    }
+    
+    func tableView(_ tableView: UITableView, titleForDeleteConfirmationButtonForRowAt indexPath: IndexPath) -> String? {
+        return "Supprimer"
     }
     /**
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {

@@ -15,7 +15,7 @@ class IntroViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        lblNomAppli.textColor = UIColor.white
+        //lblNomAppli.textColor = UIColor.white
         transition()
         
     }
