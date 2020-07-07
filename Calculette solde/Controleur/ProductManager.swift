@@ -21,6 +21,11 @@ class ProductManager {
         listOfProduct.remove(at: index)
     }
     
+    func deleteallProduct()
+    {
+        listOfProduct.removeAll()
+    }
+    
     func myCart (myListOfProduct: [MyProduct]) -> Double
     {
         var totalCart = 0.0

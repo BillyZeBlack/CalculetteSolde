@@ -8,15 +8,18 @@
 
 import Foundation
 
+
 class MyProduct  {
-    var firstPrice : Double = 0.0
-    var finalPrice : Double = 0.0
-    var discount : Double = 0.0
+    var firstPrice : Double
+    var finalPrice : Double
+    var discount : Double
+    //var categorie : Categorie?
     
     init(price : Double, finalPrice : Double, discount: Double) {
         self.firstPrice = price
         self.finalPrice = finalPrice
         self.discount = discount
+        //self.categorie = categorie
     }
-    
+
 }

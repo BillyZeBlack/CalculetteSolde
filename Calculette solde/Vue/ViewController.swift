@@ -8,8 +8,7 @@
 
 import UIKit
 
-
-class ViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate, UITableViewDelegate, UITableViewDataSource {
+class ViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate, UITableViewDelegate, UITableViewDataSource, OptionsDelegate {
 
     let myGlobalManager = GlobalManager()
     
@@ -20,6 +19,7 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
     @IBOutlet weak var myCollectionView: UICollectionView!
     @IBOutlet weak var btnValider: CustomUIButton!
     @IBOutlet weak var lblTitle: UILabel!
+    @IBOutlet weak var btnTrash: UIButton!
     
     
     //Marks : TextField
@@ -29,6 +29,9 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
     @IBOutlet weak var otherDiscountView: UIView!
     @IBOutlet weak var txtFldOtherDiscount: CustomUiTextField!
     @IBOutlet weak var lblMontantEconomise: UILabel!
+    @IBOutlet weak var optionView: UIView!
+    @IBOutlet weak var txtFldBugetMax: UITextField!
+    @IBOutlet weak var stpBudgetMax: UIStepper!
     
     //Marks : sidebar
     var sidebarshowed = false
@@ -47,12 +50,18 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
     var discountProduct : Double = 0.0
     var prixDeDepart : Double = 0.0
     var reduction : Double = 0.0
+    //
+    var mesArticles: Double = 0
+    var limiteMaxi : Double = 0
+    var choixLimite : Bool = false
     
-                                                        /////////////////////////////////// viewDidLoad///////////////////////
+    
+                                                            /////////////////////////////////// viewDidLoad///////////////////////
     override func viewDidLoad() {
        super.viewDidLoad()
         
         self.hideKeyboard()
+        view.backgroundColor = UIColor.white
         
         // Affiche le clavier
         txtFldPrixDepart.becomeFirstResponder()
@@ -78,8 +87,9 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
         view.layer.insertSublayer(gradientLayer, at: 0)**/
   
        if myGlobalManager.myProductManager.listOfProduct.isEmpty {
-           myTableView.isHidden = true
+        myTableView.isHidden = true
         lblMontantEconomise.isHidden = true
+        btnTrash.isHidden = true
        }
     
        // Gestion de la view
@@ -102,13 +112,20 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
         
         otherDiscountView.layer.borderColor = UIColor.orange.cgColor
         
-        
-        
    }
     
-   /* override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        performSegue(withIdentifier: "toTutoriel", sender: self)
-    }*/
+    // me permet de faire passer l'instance de la view et de son protocole
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "segue" , let optionView = segue.destination as? ReglagesViewController {
+            optionView.delegate = self
+        }
+    }
+    
+    // conformité à "OptionDelegate"
+    func getOptions(limitMax: Double, choix: Bool) {
+        limiteMaxi = limitMax
+        choixLimite = choix
+    }
     
     
                                                                              /////////////////IBAction functions//////////////////
@@ -116,16 +133,11 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
     {
         if txtFldPrixDepart.text == "" {
             lblPrixFinal.text = "0.0 €"
-            
         }
-        
         
         if lblPrixFinal.text! == "0.0 €" && txtFldPrixDepart.text! == "" {
             
-             
             var prixFinal = replaceString(myString: txtFldPrixDepart.text!)  // lblPrixFinal.text!
-            
-            
             
             if let i = prixFinal.firstIndex(of: "€") {
                 prixFinal.remove(at: i)
@@ -159,16 +171,12 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
             } else {
                 showAlertPopup(title: "Message", message: "Votre prix est à \"0\".")
             }
-                    }
+        }
     }
     
     
     @IBAction func applyOtherdiscount(_ sender: UIButton)
-    { /**
-         ici changer l'algo :
-         ne doit pas valider mais seulement prendre en compte la reduc et fermer la fenetre
-         */
-        //
+    {
          if txtFldPrixDepart.text != "" && txtFldOtherDiscount.text! != ""{
 
             let prixInit = replaceString(myString: txtFldPrixDepart.text!)
@@ -197,45 +205,25 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
             showAlertPopup(title: "Information", message: "Vérifiez le prix.")
         }
          
-         //
-       /** if txtFldPrixDepart.text!.isEmpty && txtFldOtherDiscount.text!.isEmpty {
-            closeSidebar()
-        } else {
-            let prixInitial = replaceString(myString: txtFldPrixDepart.text!) 
-            guard let tempPrxInit = Double (prixInitial) else { return showAlertPopup(title: "Erreur", message: "Le prix de départ n'est pas valide.")}
-            
-            if txtFldOtherDiscount.text!.isEmpty {
-                txtFldOtherDiscount.text = "0.0"
-            }
-            
-            let reducPerso = replaceString(myString: txtFldOtherDiscount.text!)
-            guard let tempReducPerso = Double (reducPerso) else { return showAlertPopup(title: "Erreur", message: "La réduction n'est pas valide.") }
-            
-            if tempReducPerso <= 100 {
-                prixDeDepart = tempPrxInit
-                reduction = tempReducPerso
-                
-                calculDuPrix(prixDepart: prixDeDepart, reduction: reduction)
-                
-                if priceProduct != 0 {
-                    ajouterALaListe(prixInitial: prixDeDepart, prixFinal: priceProduct, reduction: reduction)
-                } else {
-                    showAlertPopup(title: "Message", message: "Votre prix est à \"0\".")
-                }
-                
-                
-            } else {
-                showAlertPopup(title: "Erreur", message: "Vérifiez votre réduction")
-            }
-
-            btnAchete.isEnabled = true
-            closeSidebar()
-        }**/
     }
     
     //Remet à zéro la reduction, à chaque modification du prix
     @IBAction func txtFldValuechanged(_ sender: Any) {
         reduction = 0
+    }
+    
+    
+    @IBAction func deleteAllArticle(_ sender: Any) {
+        myGlobalManager.myProductManager.deleteallProduct()
+        myTableView.reloadData()
+        lblTotalProduct.text = String (myGlobalManager.myProductManager.myCart(myListOfProduct: myGlobalManager.myProductManager.listOfProduct))+" €"
+        lblMontantEconomise.text = String(myGlobalManager.myProductManager.myDiscounts(myListOfPrduct: myGlobalManager.myProductManager.listOfProduct))+" €"
+        lblTotalProduct.textColor = UIColor.black
+        lblMontantEconomise.isHidden = true
+        btnTrash.isHidden = true
+        myTableView.isHidden = true
+        limiteMaxi = 0
+        choixLimite = false
     }
     
 
@@ -340,6 +328,10 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
             let totalEconomie = 0 - myGlobalManager.myProductManager.myDiscounts(myListOfPrduct: myGlobalManager.myProductManager.listOfProduct)
             lblTotalProduct.text = String(format: " %.2f", totalProduct) + " €"
             lblMontantEconomise.text = String(format: " %.2f", totalEconomie) + " €"
+            if totalProduct < limiteMaxi {
+                lblTotalProduct.textColor = UIColor.black
+            }
+            
             tableView.reloadData()
             if myGlobalManager.myProductManager.listOfProduct.isEmpty {
                 myTableView.isHidden = true
@@ -391,6 +383,8 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
         //ajouterALaListe(prixFinal: priceProduct, reduction: reduction)
     }
     
+    
+    
     private func ajouterALaListe(prixInitial: Double, prixFinal : Double, reduction : Double)
     {
         let article = MyProduct(price: prixInitial, finalPrice: prixFinal, discount: reduction)
@@ -400,19 +394,24 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
         
         let totalEconomise = 0 - myGlobalManager.myProductManager.myDiscounts(myListOfPrduct: myGlobalManager.myProductManager.listOfProduct)
         lblMontantEconomise.text = String(format: " %.2f", totalEconomise) + " €"
-        
+
+    
+        if choixLimite && totalArticle >= limiteMaxi  {
+            lblTotalProduct.textColor = UIColor.systemRed
+        }
         
         lblPulsate()
         myTableView.reloadData()
         myTableView.isHidden = false
         lblMontantEconomise.isHidden = false
+        btnTrash.isHidden = false
         lblTotalProduct.text = String(format: " %.2f", totalArticle) + " €"
         updateLabel()
         priceProduct = 0.0
         self.reduction = 0.0
-        
     }
     
+
     private func updateLabel()
     {
         txtFldPrixDepart.text = ""
@@ -430,6 +429,7 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
     
     private func lblPulsate ()
     {
+ 
         let pulse = CASpringAnimation(keyPath: "transform.scale")
         pulse.duration = 0.3
         pulse.toValue = 1
@@ -446,6 +446,12 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
     {
         let newString = myString.replacingOccurrences(of: ",", with: ".")
         return newString
+    }
+    
+    func checkBudgetMax(budgetMax: Double, authoBudgetMax: Bool, montantMax : Double) {
+        if authoBudgetMax && budgetMax >=  montantMax{
+            print("Montant atteind !!!")
+        }
     }
     
 

@@ -20,6 +20,10 @@
 		BEA76CBD24812F0B000244BA /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BEA76CBB24812F0B000244BA /* Main.storyboard */; };
 		BEA76CBF24812F13000244BA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BEA76CBE24812F13000244BA /* Assets.xcassets */; };
 		BEA76CC224812F13000244BA /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BEA76CC024812F13000244BA /* LaunchScreen.storyboard */; };
+		BEAD441E24B3720D00125E79 /* ReglagesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEAD441D24B3720D00125E79 /* ReglagesViewController.swift */; };
+		BEB3C40E24B4A69B003D1FB2 /* OptionsDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEB3C40D24B4A69B003D1FB2 /* OptionsDelegate.swift */; };
+		BEB3C41024B4BCAC003D1FB2 /* Categorie.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEB3C40F24B4BCAC003D1FB2 /* Categorie.swift */; };
+		BEB3C41224B5163D003D1FB2 /* CategorieManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEB3C41124B5163D003D1FB2 /* CategorieManager.swift */; };
 		BEBAFD3F2489389C00A9EF15 /* MyProduct.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEBAFD3E2489389C00A9EF15 /* MyProduct.swift */; };
 		BEBAFD4124893A8000A9EF15 /* ProductManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEBAFD4024893A8000A9EF15 /* ProductManager.swift */; };
 		BEBAFD4324893C0200A9EF15 /* GlobalManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEBAFD4224893C0200A9EF15 /* GlobalManager.swift */; };
@@ -47,6 +51,10 @@
 		BEA76CBE24812F13000244BA /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		BEA76CC124812F13000244BA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		BEA76CC324812F13000244BA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		BEAD441D24B3720D00125E79 /* ReglagesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReglagesViewController.swift; sourceTree = "<group>"; };
+		BEB3C40D24B4A69B003D1FB2 /* OptionsDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OptionsDelegate.swift; sourceTree = "<group>"; };
+		BEB3C40F24B4BCAC003D1FB2 /* Categorie.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Categorie.swift; sourceTree = "<group>"; };
+		BEB3C41124B5163D003D1FB2 /* CategorieManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategorieManager.swift; sourceTree = "<group>"; };
 		BEBAFD3E2489389C00A9EF15 /* MyProduct.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyProduct.swift; sourceTree = "<group>"; };
 		BEBAFD4024893A8000A9EF15 /* ProductManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductManager.swift; sourceTree = "<group>"; };
 		BEBAFD4224893C0200A9EF15 /* GlobalManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlobalManager.swift; sourceTree = "<group>"; };
@@ -118,6 +126,7 @@
 			isa = PBXGroup;
 			children = (
 				BEBAFD3E2489389C00A9EF15 /* MyProduct.swift */,
+				BEB3C40F24B4BCAC003D1FB2 /* Categorie.swift */,
 			);
 			path = Modele;
 			sourceTree = "<group>";
@@ -132,6 +141,7 @@
 				BEBAFD44248943F800A9EF15 /* CustomTableViewCell.swift */,
 				BEE88758248AA1EF009BB96A /* CustomUIButton.swift */,
 				BEFD3634249D6AA60053E857 /* CustomUiTextField.swift */,
+				BEAD441D24B3720D00125E79 /* ReglagesViewController.swift */,
 			);
 			path = Vue;
 			sourceTree = "<group>";
@@ -140,7 +150,9 @@
 			isa = PBXGroup;
 			children = (
 				BEBAFD4024893A8000A9EF15 /* ProductManager.swift */,
+				BEB3C41124B5163D003D1FB2 /* CategorieManager.swift */,
 				BEBAFD4224893C0200A9EF15 /* GlobalManager.swift */,
+				BEB3C40D24B4A69B003D1FB2 /* OptionsDelegate.swift */,
 			);
 			path = Controleur;
 			sourceTree = "<group>";
@@ -256,6 +268,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BEAD441E24B3720D00125E79 /* ReglagesViewController.swift in Sources */,
+				BEB3C40E24B4A69B003D1FB2 /* OptionsDelegate.swift in Sources */,
 				BEA674B62486EDEB00EC99B2 /* CustomCollectionViewCell.swift in Sources */,
 				BEBAFD4124893A8000A9EF15 /* ProductManager.swift in Sources */,
 				BEE88759248AA1EF009BB96A /* CustomUIButton.swift in Sources */,
@@ -267,6 +281,8 @@
 				BEA76CB624812F0B000244BA /* AppDelegate.swift in Sources */,
 				BEFD3635249D6AA60053E857 /* CustomUiTextField.swift in Sources */,
 				BEA76CB824812F0B000244BA /* SceneDelegate.swift in Sources */,
+				BEB3C41224B5163D003D1FB2 /* CategorieManager.swift in Sources */,
+				BEB3C41024B4BCAC003D1FB2 /* Categorie.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -412,7 +428,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1.3.1;
+				CURRENT_PROJECT_VERSION = 1.4;
 				DEVELOPMENT_TEAM = JW5QDUDC7K;
 				INFOPLIST_FILE = "Calculette solde/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
@@ -434,7 +450,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1.3.1;
+				CURRENT_PROJECT_VERSION = 1.4;
 				DEVELOPMENT_TEAM = JW5QDUDC7K;
 				INFOPLIST_FILE = "Calculette solde/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
