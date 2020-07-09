@@ -26,6 +26,10 @@ class ProductManager {
         listOfProduct.removeAll()
     }
     
+    func updateProduct(index : Int, cat: Categorie) {
+        listOfProduct[index].categorie = cat
+    }
+    
     func myCart (myListOfProduct: [MyProduct]) -> Double
     {
         var totalCart = 0.0

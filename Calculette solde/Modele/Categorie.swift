@@ -11,10 +11,10 @@ import UIKit
 
 class Categorie {
     var nom : String
-    var image : UIImage
+    var imageName : String
     
-    init(nom : String, image: UIImage) {
+    init(nom : String, imageName : String) {
         self.nom = nom
-        self.image = image
+        self.imageName = imageName
     }
 }

@@ -13,9 +13,12 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
     let myGlobalManager = GlobalManager()
     
     @IBOutlet weak var otherDiscountViewConstraint: NSLayoutConstraint!
+    
+    @IBOutlet weak var cateViewConstraint: NSLayoutConstraint!
     @IBOutlet weak var btnAchete: CustomUIButton!
     @IBOutlet weak var lblTotalProduct: UILabel!
     @IBOutlet weak var myTableView: UITableView!
+    @IBOutlet weak var myTableView2: UITableView!
     @IBOutlet weak var myCollectionView: UICollectionView!
     @IBOutlet weak var btnValider: CustomUIButton!
     @IBOutlet weak var lblTitle: UILabel!
@@ -27,6 +30,7 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
     @IBOutlet weak var lblPrixFinal: UILabel!
     @IBOutlet weak var txtFldMaxBudget: UITextField!
     @IBOutlet weak var otherDiscountView: UIView!
+    @IBOutlet weak var listeCategorieView: UIView!
     @IBOutlet weak var txtFldOtherDiscount: CustomUiTextField!
     @IBOutlet weak var lblMontantEconomise: UILabel!
     @IBOutlet weak var optionView: UIView!
@@ -50,15 +54,18 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
     var discountProduct : Double = 0.0
     var prixDeDepart : Double = 0.0
     var reduction : Double = 0.0
+    var index = 0
     //
     var mesArticles: Double = 0
     var limiteMaxi : Double = 0
     var choixLimite : Bool = false
     
-    
+    var listCategorie : [Categorie] = []
                                                             /////////////////////////////////// viewDidLoad///////////////////////
     override func viewDidLoad() {
        super.viewDidLoad()
+        
+        listCategorie = myGlobalManager.myCategoriesManager.loadCategorieList()
         
         self.hideKeyboard()
         view.backgroundColor = UIColor.white
@@ -95,12 +102,20 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
        // Gestion de la view
         
        otherDiscountViewConstraint.constant = 1004//415
+        
        otherDiscountView.layer.borderWidth = 2
        otherDiscountView.layer.cornerRadius = 10
        otherDiscountView.layer.shadowColor = UIColor.black.cgColor
        otherDiscountView.layer.shadowOffset = CGSize(width: 15, height: -8)
        otherDiscountView.layer.shadowOpacity = 0.7
        otherDiscountView.layer.shadowRadius = 10
+        
+       cateViewConstraint.constant = 1000
+       listeCategorieView.layer.cornerRadius = 10
+       listeCategorieView.layer.shadowColor = UIColor.black.cgColor
+       listeCategorieView.layer.shadowOffset = CGSize(width: 15, height: -8)
+       listeCategorieView.layer.shadowOpacity = 0.7
+       listeCategorieView.layer.shadowRadius = 10
         
        // change la couleur du palceholder
         txtFldPrixDepart.attributedPlaceholder = NSAttributedString(string: "ENTREZ LE PRIX INITIAL", attributes: [NSAttributedString.Key.foregroundColor: UIColor.systemYellow])
@@ -212,10 +227,12 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
         reduction = 0
     }
     
-    
+    var erase : Bool = false
     @IBAction func deleteAllArticle(_ sender: Any) {
+        erase = true
         myGlobalManager.myProductManager.deleteallProduct()
         myTableView.reloadData()
+        erase = true
         lblTotalProduct.text = String (myGlobalManager.myProductManager.myCart(myListOfProduct: myGlobalManager.myProductManager.listOfProduct))+" €"
         lblMontantEconomise.text = String(myGlobalManager.myProductManager.myDiscounts(myListOfPrduct: myGlobalManager.myProductManager.listOfProduct))+" €"
         lblTotalProduct.textColor = UIColor.black
@@ -224,6 +241,7 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
         myTableView.isHidden = true
         limiteMaxi = 0
         choixLimite = false
+        
     }
     
 
@@ -252,33 +270,12 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
         
         switch pourcentageDeduire {
         case "...%":
-            /**labelPourcentage = ["-","1%","2%","3%","4%","5%","6%","7%","8%","9%","10%",
-            "11%","12%","13%","14%","15%","16%","17%","18%","19%","20%",
-            "21%","22%","23%","24%","25%","26%","27%","28%","29%","30%",
-            "31%","32%","33%","34%","35%","36%","37%","38%","39%","40%",
-            "41%","42%","43%","44%","45%","46%","47%","48%","49%","50%",
-            "51%","52%","53%","54%","55%","56%","57%","58%","59%","60%",
-            "61%","62%","63%","64%","65%","66%","67%","68%","69%","70%",
-            "71%","72%","73%","74%","75%","76%","77%","78%","79%","80%",
-            "81%","82%","83%","84%","85%","86%","87%","88%","89%","90%",
-            "91%","92%","93%","94%","95%","96%","97%","98%","99%","-"]
-            collectionView.reloadData()**/
             openSidebar()
-            
-        case "-":
-            labelPourcentage = ["+","5%","10%","15%",
-            "20%","25%","30%","35%",
-            "40%","45%","50%","55%",
-            "60%","65%","70%","75%",
-            "80%","85%","90%","+"]
-            collectionView.reloadData()
             
         default:
             if txtFldPrixDepart.text != "" {
                 if let i = pourcentageDeduire.firstIndex(of: "%") {
                     pourcentageDeduire.remove(at: i)
-                    //calculPrixFinal(reduc: pourcentageDeduire)
-
                     
                     let prixInit = replaceString(myString: txtFldPrixDepart.text!)
                     
@@ -286,14 +283,11 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
                     
                     guard let tempPrixInit = Double (prixInit) else { return showAlertPopup(title: "Erreur", message: "Vérifiez le prix.") }
                     guard let tempReduc = Double (reduc) else { return showAlertPopup(title: "Erreur", message: "Vérifiez votre réduction.") }
-                    //
-                    
-                    //
+
                     prixDeDepart = tempPrixInit
                     reduction = tempReduc
                     
                     calculDuPrix(prixDepart: prixDeDepart, reduction: reduction)
-                    //ajouterALaListe(prixFinal: priceProduct, reduction: reduction)
                 }
             } else {
                 showAlertPopup(title: "Information", message: "Entrez un prix.")
@@ -306,22 +300,48 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
     
                                                                          /////////////////////////////////////Marks : TableView Protocol////////////////////////////////////
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        myGlobalManager.myProductManager.listOfProduct.count
+        var tableViewCount: Int?
+        
+        if tableView == self.myTableView {
+            tableViewCount = myGlobalManager.myProductManager.listOfProduct.count
+        }
+        
+        if tableView == self.myTableView2 {
+            tableViewCount = myGlobalManager.myCategoriesManager.listCategorie.count
+        }
+        
+        return tableViewCount!
     }
     
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         var myCell = UITableViewCell()
-        let product = myGlobalManager.myProductManager.listOfProduct[indexPath.row]
-        if let cell = tableView.dequeueReusableCell(withIdentifier: "tableViewCell", for: indexPath) as? CustomTableViewCell {
-            cell.configure(firstPrice: product.firstPrice, finalPrice: product.finalPrice,theDiscount: product.discount)
-            myCell = cell
+        
+        if tableView == self.myTableView {
+            let product = myGlobalManager.myProductManager.listOfProduct[indexPath.row]
+            if let cell = tableView.dequeueReusableCell(withIdentifier: "tableViewCell", for: indexPath) as? CustomTableViewCell {
+                cell.configure(article: product)//(firstPrice: product.firstPrice, finalPrice: product.finalPrice,theDiscount: product.discount)
+                myCell = cell
+                if erase {
+                    cell.imageCellInitiale(nameImage: "etiquette")
+                }
+            }
+        }
+        
+        if tableView == self.myTableView2 {
+            let categorie = myGlobalManager.myCategoriesManager.listCategorie[indexPath.row]
+            if let cell = tableView.dequeueReusableCell(withIdentifier: "tableViewCell2", for: indexPath) as? CustomTableViewCell2{
+                cell.configure(categorie: categorie)
+                myCell = cell
+                
+            }
         }
         
         return myCell
     }
     
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        erase = false
         if editingStyle == .delete {
             myGlobalManager.myProductManager.deleteProduct(index: indexPath.row)
             let totalProduct = myGlobalManager.myProductManager.myCart(myListOfProduct: myGlobalManager.myProductManager.listOfProduct)
@@ -336,19 +356,55 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
             if myGlobalManager.myProductManager.listOfProduct.isEmpty {
                 myTableView.isHidden = true
                 lblMontantEconomise.isHidden = true
+                btnTrash.isHidden = true
             }
         }
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        //index = 0
+        if tableView == self.myTableView {
+            erase = false
+            /**
+             recuperer l'index
+             ouvre la vue
+             ...
+             */
+            index = indexPath.row
+            openCateView()
+            
+            
+            //let art = Categorie(nom: listCategorie[indexPath.row].nom,imageName: listCategorie[indexPath.row].imageName)
+            
+            var myCell = UITableViewCell()
+            let product = myGlobalManager.myProductManager.listOfProduct[indexPath.row]
+            //product.categorie = art
+            if let cell = tableView.dequeueReusableCell(withIdentifier: "tableViewCell", for: indexPath) as? CustomTableViewCell {
+                cell.configure(article: product)
+                myCell = cell
+            }
+            tableView.reloadData()
+        } else {
+            /**
+             je recupere la categorie
+             je mets à jour l'objet avec la categorie -> je m'aide de l'index recuperer auparavant
+             je mets à jour la premiere tableView
+             je ferme la vue
+             */
+            let cat = Categorie(nom: listCategorie[indexPath.row].nom,imageName: listCategorie[indexPath.row].imageName)
+            let art = myGlobalManager.myProductManager.listOfProduct[index]
+            myGlobalManager.myProductManager.updateProduct(index: index, cat: cat)
+            myTableView.reloadData()
+            print(myGlobalManager.myProductManager.listOfProduct[index].categorie?.nom)
+            closeCateView()
+            
+        }
+
     }
     
     func tableView(_ tableView: UITableView, titleForDeleteConfirmationButtonForRowAt indexPath: IndexPath) -> String? {
         return "Supprimer"
     }
-    /**
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let prixTest = myGlobalManager.myProductManager.listOfProduct[indexPath.row].finalPrice
-        let reductionTest = myGlobalManager.myProductManager.listOfProduct[indexPath.row].discount
-        print("prix : \(prixTest)€ \nréduction : \(reductionTest)")
-    }**/
         
     
                                                                    /////////////////////////////////////////////////////////// Private function//////////////////////////////////
@@ -375,6 +431,28 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
         }
     }
     
+    private func openCateView()
+    {
+        btnAchete.isEnabled = false
+        txtFldPrixDepart.isEnabled = false
+        cateViewConstraint.constant = 138
+        UIView.animate(withDuration: 0.6) {
+            self.view.layoutIfNeeded()
+        }
+        myCollectionView.isUserInteractionEnabled = false
+    }
+    
+    private func closeCateView ()
+    {
+        txtFldPrixDepart.isEnabled = true
+        btnAchete.isEnabled = true
+        cateViewConstraint.constant = 1000
+        UIView.animate(withDuration: 0.6) {
+            self.view.layoutIfNeeded()
+        }
+        myCollectionView.isUserInteractionEnabled = true
+    }
+    
     private func calculDuPrix(prixDepart: Double, reduction: Double)
     {
         priceProduct = prixDepart * (1 - (reduction/100))
@@ -384,10 +462,10 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
     }
     
     
-    
     private func ajouterALaListe(prixInitial: Double, prixFinal : Double, reduction : Double)
     {
-        let article = MyProduct(price: prixInitial, finalPrice: prixFinal, discount: reduction)
+
+        let article = MyProduct(price: prixInitial, finalPrice: prixFinal, discount: reduction, categorie: nil)
         myGlobalManager.myProductManager.addProdcut(product: article)
         
         let totalArticle = myGlobalManager.myProductManager.myCart(myListOfProduct: myGlobalManager.myProductManager.listOfProduct)

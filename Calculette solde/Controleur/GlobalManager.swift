@@ -9,5 +9,5 @@
 import Foundation
 class GlobalManager {
     let myProductManager = ProductManager()
-    //let myCategoriesManager =
+    let myCategoriesManager = CategorieManager()
 }

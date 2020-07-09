@@ -13,13 +13,13 @@ class MyProduct  {
     var firstPrice : Double
     var finalPrice : Double
     var discount : Double
-    //var categorie : Categorie?
+    var categorie : Categorie?
     
-    init(price : Double, finalPrice : Double, discount: Double) {
+    init(price : Double, finalPrice : Double, discount: Double, categorie: Categorie?) {
         self.firstPrice = price
         self.finalPrice = finalPrice
         self.discount = discount
-        //self.categorie = categorie
+        self.categorie = categorie
     }
 
 }
