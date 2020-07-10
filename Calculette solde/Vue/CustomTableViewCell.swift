@@ -15,9 +15,8 @@ class CustomTableViewCell: UITableViewCell {
     @IBOutlet weak var lblDiscountProduct: UILabel!
     @IBOutlet weak var imageCell: UIImageView!
     
-    func configure (article : MyProduct)//(firstPrice : Double, finalPrice: Double, theDiscount : Double,)
+    func configure (article : MyProduct)
     {
-        //
         lblPriceProduct.textColor = UIColor.black
         lblDiscountProduct.textColor = UIColor.black
         
@@ -28,17 +27,6 @@ class CustomTableViewCell: UITableViewCell {
         if article.categorie != nil {
             imageCell.image = UIImage(named: article.categorie!.imageName)
         }
-        //
-        
-        
-        /*lblPriceProduct.textColor = UIColor.black
-        lblDiscountProduct.textColor = UIColor.black
-        
-        let theDiscount = String(format: "%.2f",(firstPrice * theDiscount)/100)
-        lblPriceProduct.text = String(format: " %.2f", firstPrice) + "€  - \(theDiscount)€"//
-        lblDiscountProduct.text = String(format: " %.2f", finalPrice)+"€"
-        layer.cornerRadius = 10
-        //imageCell.image = UIImage(named: "poubelle")*/
     }
     
     func imageCellInitiale(nameImage : String)  {

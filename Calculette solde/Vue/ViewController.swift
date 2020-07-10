@@ -12,6 +12,9 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
 
     let myGlobalManager = GlobalManager()
     
+    var newArticle = MyProduct(price: 00, finalPrice: 00, discount: 00, categorie: nil)
+    var catSelected = Categorie(nom: "", imageName: "")
+    
     @IBOutlet weak var otherDiscountViewConstraint: NSLayoutConstraint!
     
     @IBOutlet weak var cateViewConstraint: NSLayoutConstraint!
@@ -61,6 +64,11 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
     var choixLimite : Bool = false
     
     var listCategorie : [Categorie] = []
+    var showNotShowCategories : Bool = false
+    
+    //
+    var indexCat = 0
+    //
                                                             /////////////////////////////////// viewDidLoad///////////////////////
     override func viewDidLoad() {
        super.viewDidLoad()
@@ -111,11 +119,14 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
        otherDiscountView.layer.shadowRadius = 10
         
        cateViewConstraint.constant = 1000
+       listeCategorieView.layer.borderWidth = 2
        listeCategorieView.layer.cornerRadius = 10
        listeCategorieView.layer.shadowColor = UIColor.black.cgColor
        listeCategorieView.layer.shadowOffset = CGSize(width: 15, height: -8)
        listeCategorieView.layer.shadowOpacity = 0.7
        listeCategorieView.layer.shadowRadius = 10
+       listeCategorieView.layer.frame = self.view.bounds
+        //listeCategorieView.layer.bounds = self.view.bounds
         
        // change la couleur du palceholder
         txtFldPrixDepart.attributedPlaceholder = NSAttributedString(string: "ENTREZ LE PRIX INITIAL", attributes: [NSAttributedString.Key.foregroundColor: UIColor.systemYellow])
@@ -126,6 +137,7 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
         btnValider.imageView?.tintColor = UIColor.darkGray
         
         otherDiscountView.layer.borderColor = UIColor.orange.cgColor
+        listeCategorieView.layer.borderColor = UIColor.orange.cgColor
         
    }
     
@@ -133,13 +145,18 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "segue" , let optionView = segue.destination as? ReglagesViewController {
             optionView.delegate = self
+            optionView.categorieShow = showNotShowCategories
+            if choixLimite {
+                optionView.budgetMax = limiteMaxi
+            }
         }
     }
     
     // conformité à "OptionDelegate"
-    func getOptions(limitMax: Double, choix: Bool) {
+    func getOptions(limitMax: Double, choix: Bool, categories: Bool) {
         limiteMaxi = limitMax
         choixLimite = choix
+        showNotShowCategories = categories
     }
     
     
@@ -167,7 +184,9 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
             if constant == 0.0 {
                 showAlertPopup(title: "Message", message: "Entrez un prix.")
             } else {
-                ajouterALaListe(prixInitial: constant, prixFinal: constant, reduction: reduction)
+                let cat = Categorie(nom: "Divers", imageName: "Divers")
+                newArticle = MyProduct(price: constant, finalPrice: constant, discount: reduction, categorie: cat)
+                ajouterALaListe(article: newArticle)
             }
             
         } else {
@@ -182,7 +201,9 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
                 prix = constant
             }
             if constant != 0 {
-                ajouterALaListe(prixInitial: constant, prixFinal: prix, reduction: reduction)
+                let cat = Categorie(nom: "Divers", imageName: "Divers")
+                newArticle = MyProduct(price: constant, finalPrice: prix, discount: reduction, categorie: cat)
+                ajouterALaListe(article: newArticle)
             } else {
                 showAlertPopup(title: "Message", message: "Votre prix est à \"0\".")
             }
@@ -229,18 +250,20 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
     
     var erase : Bool = false
     @IBAction func deleteAllArticle(_ sender: Any) {
-        erase = true
         myGlobalManager.myProductManager.deleteallProduct()
-        myTableView.reloadData()
-        erase = true
         lblTotalProduct.text = String (myGlobalManager.myProductManager.myCart(myListOfProduct: myGlobalManager.myProductManager.listOfProduct))+" €"
         lblMontantEconomise.text = String(myGlobalManager.myProductManager.myDiscounts(myListOfPrduct: myGlobalManager.myProductManager.listOfProduct))+" €"
         lblTotalProduct.textColor = UIColor.black
+        myTableView.reloadData()
+        /*erase = true
+        
+
         lblMontantEconomise.isHidden = true
         btnTrash.isHidden = true
         myTableView.isHidden = true
         limiteMaxi = 0
         choixLimite = false
+        */
         
     }
     
@@ -258,8 +281,7 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
             cell.configure(discount: labelPourcentage[indexPath.row])
             mycell = cell
         }
-        
-                
+
         collectionView.layer.borderWidth = 0
         
         return mycell
@@ -321,14 +343,15 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
             let product = myGlobalManager.myProductManager.listOfProduct[indexPath.row]
             if let cell = tableView.dequeueReusableCell(withIdentifier: "tableViewCell", for: indexPath) as? CustomTableViewCell {
                 cell.configure(article: product)//(firstPrice: product.firstPrice, finalPrice: product.finalPrice,theDiscount: product.discount)
+                //cell.imageCellInitiale(nameImage: "etiquette")
                 myCell = cell
-                if erase {
+                /*if erase {
                     cell.imageCellInitiale(nameImage: "etiquette")
-                }
+                }*/
             }
         }
         
-        if tableView == self.myTableView2 {
+        if tableView == self.myTableView2 && showNotShowCategories {
             let categorie = myGlobalManager.myCategoriesManager.listCategorie[indexPath.row]
             if let cell = tableView.dequeueReusableCell(withIdentifier: "tableViewCell2", for: indexPath) as? CustomTableViewCell2{
                 cell.configure(categorie: categorie)
@@ -337,11 +360,15 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
             }
         }
         
+        if myGlobalManager.myProductManager.myCart(myListOfProduct: myGlobalManager.myProductManager.listOfProduct) < limiteMaxi {
+            lblTotalProduct.textColor = UIColor.black
+        }
+        
         return myCell
     }
     
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-        erase = false
+        //erase = false
         if editingStyle == .delete {
             myGlobalManager.myProductManager.deleteProduct(index: indexPath.row)
             let totalProduct = myGlobalManager.myProductManager.myCart(myListOfProduct: myGlobalManager.myProductManager.listOfProduct)
@@ -362,42 +389,31 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        //index = 0
+        
         if tableView == self.myTableView {
-            erase = false
-            /**
-             recuperer l'index
-             ouvre la vue
-             ...
-             */
-            index = indexPath.row
-            openCateView()
+            
+            if showNotShowCategories {
+                indexCat = indexPath.row
+                openCateView()
+            }
             
             
-            //let art = Categorie(nom: listCategorie[indexPath.row].nom,imageName: listCategorie[indexPath.row].imageName)
-            
-            var myCell = UITableViewCell()
+            /*var myCell = UITableViewCell()
             let product = myGlobalManager.myProductManager.listOfProduct[indexPath.row]
-            //product.categorie = art
+            
             if let cell = tableView.dequeueReusableCell(withIdentifier: "tableViewCell", for: indexPath) as? CustomTableViewCell {
                 cell.configure(article: product)
                 myCell = cell
-            }
-            tableView.reloadData()
-        } else {
-            /**
-             je recupere la categorie
-             je mets à jour l'objet avec la categorie -> je m'aide de l'index recuperer auparavant
-             je mets à jour la premiere tableView
-             je ferme la vue
-             */
-            let cat = Categorie(nom: listCategorie[indexPath.row].nom,imageName: listCategorie[indexPath.row].imageName)
-            let art = myGlobalManager.myProductManager.listOfProduct[index]
-            myGlobalManager.myProductManager.updateProduct(index: index, cat: cat)
+            }*/
+            //tableView.reloadData()
+        }
+        
+        if tableView == self.myTableView2 && showNotShowCategories {
+            //Recupère la categorie
+            let cat = Categorie(nom: myGlobalManager.myCategoriesManager.listCategorie[indexPath.row].nom, imageName: myGlobalManager.myCategoriesManager.listCategorie[indexPath.row].imageName)
+            myGlobalManager.myProductManager.updateProduct(index: indexCat, cat: cat)
             myTableView.reloadData()
-            print(myGlobalManager.myProductManager.listOfProduct[index].categorie?.nom)
             closeCateView()
-            
         }
 
     }
@@ -435,7 +451,10 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
     {
         btnAchete.isEnabled = false
         txtFldPrixDepart.isEnabled = false
+        //listeCategorieView.bounds = self.view.bounds
+        //listeCategorieView.layer.frame = self.view.bounds
         cateViewConstraint.constant = 138
+
         UIView.animate(withDuration: 0.6) {
             self.view.layoutIfNeeded()
         }
@@ -461,11 +480,20 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
         //ajouterALaListe(prixFinal: priceProduct, reduction: reduction)
     }
     
-    
-    private func ajouterALaListe(prixInitial: Double, prixFinal : Double, reduction : Double)
-    {
 
-        let article = MyProduct(price: prixInitial, finalPrice: prixFinal, discount: reduction, categorie: nil)
+    private func ajouterALaListe(article: MyProduct)
+    {
+        //
+        /*var article = MyProduct(price: 00, finalPrice: 00, discount: 00, categorie: nil)
+        if  showNotShowCategories {
+            openCateView()
+            let cat = Categorie(nom: myGlobalManager.myCategoriesManager.listCategorie[indexCat].nom, imageName: myGlobalManager.myCategoriesManager.listCategorie[indexCat].imageName)
+            article = MyProduct(price: prixInitial, finalPrice: prixFinal, discount: reduction, categorie: cat)
+        } else {
+            article = MyProduct(price: prixInitial, finalPrice: prixFinal, discount: reduction, categorie: nil)
+        }*/
+        //
+        
         myGlobalManager.myProductManager.addProdcut(product: article)
         
         let totalArticle = myGlobalManager.myProductManager.myCart(myListOfProduct: myGlobalManager.myProductManager.listOfProduct)

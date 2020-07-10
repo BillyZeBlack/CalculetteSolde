@@ -31,5 +31,20 @@ class CustomCollectionViewCell: UICollectionViewCell {
         layer.shadowOpacity = 0.5
         layer.shadowRadius = 10**/
     }
+    
+    func lblPulsate ()
+    {
+    
+           let pulse = CASpringAnimation(keyPath: "transform.scale")
+           pulse.duration = 0.3
+           pulse.toValue = 1
+           pulse.fromValue = 0.95
+           pulse.initialVelocity = 0.5
+           pulse.damping = 1.0
+           pulse.autoreverses = true
+           pulse.repeatCount = 2
+           
+           lblPourcentage.layer.add(pulse, forKey: nil)
+       }
  
 }

@@ -137,14 +137,14 @@
 			isa = PBXGroup;
 			children = (
 				BEA76CBB24812F0B000244BA /* Main.storyboard */,
-				BEA76CB924812F0B000244BA /* ViewController.swift */,
 				BEFD3632249D26C70053E857 /* IntroViewController.swift */,
+				BEA76CB924812F0B000244BA /* ViewController.swift */,
+				BEAD441D24B3720D00125E79 /* ReglagesViewController.swift */,
 				BEA674B52486EDEB00EC99B2 /* CustomCollectionViewCell.swift */,
 				BE3F32E924B66AAB00BEC370 /* CustomTableViewCell2.swift */,
 				BEBAFD44248943F800A9EF15 /* CustomTableViewCell.swift */,
 				BEE88758248AA1EF009BB96A /* CustomUIButton.swift */,
 				BEFD3634249D6AA60053E857 /* CustomUiTextField.swift */,
-				BEAD441D24B3720D00125E79 /* ReglagesViewController.swift */,
 			);
 			path = Vue;
 			sourceTree = "<group>";
@@ -432,7 +432,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1.4;
+				CURRENT_PROJECT_VERSION = 2.2;
 				DEVELOPMENT_TEAM = JW5QDUDC7K;
 				INFOPLIST_FILE = "Calculette solde/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
@@ -440,7 +440,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 2.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.slideofdigital.Calculette-solde";
 				PRODUCT_NAME = "Soldes faciles";
 				SWIFT_VERSION = 5.0;
@@ -454,7 +454,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1.4;
+				CURRENT_PROJECT_VERSION = 2.2;
 				DEVELOPMENT_TEAM = JW5QDUDC7K;
 				INFOPLIST_FILE = "Calculette solde/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
@@ -462,7 +462,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 2.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.slideofdigital.Calculette-solde";
 				PRODUCT_NAME = "Soldes faciles";
 				SWIFT_VERSION = 5.0;

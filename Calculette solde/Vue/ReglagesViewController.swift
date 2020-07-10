@@ -13,29 +13,61 @@ class ReglagesViewController: UIViewController{
     @IBOutlet weak var txtFldBudgetMax: UITextField!
     @IBOutlet weak var categorieSwitch: UISwitch!
     @IBOutlet weak var stepperBudgetMax: UIStepper!
+    @IBOutlet weak var lblTitle: UILabel!
     
+    @IBOutlet weak var btnEnregistrer: CustomUIButton!
     var authoriseBudgetMax: Bool = false
     var budgetMax : Double = 0
+    var categorieShow : Bool = false
     
     var delegate : OptionsDelegate?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        btnEnregistrer.titleLabel?.textColor = UIColor.systemYellow
+        lblTitle.textColor = UIColor.black
+        
+        if budgetMax != 0 {
+            txtFldBudgetMax.text = "\(budgetMax)"
+        }
+        
+        if categorieShow {
+            categorieSwitch.isOn = true
+        } else {
+            categorieSwitch.isOn = false
+        }
     }
     
-    @IBAction func setBudgetMax(_ sender: Any) {
-        txtFldBudgetMax.text = String(stepperBudgetMax.value)
+    @IBAction func setBudgetMax(_ sender: UIStepper) {
+        txtFldBudgetMax.text = "\(stepperBudgetMax.value)"
     }
     
     @IBAction func sauvegardeReglages(_ sender: Any) {
-        guard let tempBudgetMax = Double (txtFldBudgetMax.text!) else { return showAlertPopup(title: "Erreur", message: "Vérifier votre montant") }
-        
-        budgetMax = tempBudgetMax
-        if budgetMax > 0 {
-            delegate?.getOptions(limitMax: budgetMax, choix: true)
-            
+        if txtFldBudgetMax.text != "" {
+            guard let tempBudgetMax = Double (txtFldBudgetMax.text!) else { return showAlertPopup(title: "Erreur", message: "Vérifiez votre montant") }
+            budgetMax = tempBudgetMax
+            if budgetMax > 0 {
+                authoriseBudgetMax = true
+                 delegate?.getOptions(limitMax: budgetMax, choix: authoriseBudgetMax, categories: categorieShow)
+                 
+            }
+        } else {
+            delegate?.getOptions(limitMax: budgetMax, choix: authoriseBudgetMax, categories: categorieShow)
         }
+    }
+    
+    
+    @IBAction func showNoShowCategories(_ sender: Any) {
+        if categorieSwitch.isOn {
+            categorieShow = true
+        } else {
+            categorieShow = false
+        }
+    }
+    
+    @IBAction func sliderValueChanged(_ sender: UISlider){
+        txtFldBudgetMax.text = "\(sender.value)"
     }
     
     private func showAlertPopup(title : String, message: String)

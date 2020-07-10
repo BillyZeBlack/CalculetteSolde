@@ -9,5 +9,5 @@
 import Foundation
 
 protocol OptionsDelegate {
-    func getOptions(limitMax : Double, choix : Bool)
+    func getOptions(limitMax : Double, choix : Bool, categories : Bool)
 }

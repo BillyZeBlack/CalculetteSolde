@@ -16,6 +16,7 @@ class CustomTableViewCell2: UITableViewCell {
     
     func configure (categorie : Categorie)
     {
+        lblNomCategorie.textColor = UIColor.black
         lblNomCategorie.text = categorie.nom
         imageView?.image = UIImage(named: categorie.imageName)
     }

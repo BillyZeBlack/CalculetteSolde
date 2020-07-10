@@ -26,7 +26,7 @@ class ProductManager {
         listOfProduct.removeAll()
     }
     
-    func updateProduct(index : Int, cat: Categorie) {
+    func updateProduct(index: Int, cat: Categorie) {
         listOfProduct[index].categorie = cat
     }
     
