@@ -29,6 +29,8 @@
 		BEBAFD4124893A8000A9EF15 /* ProductManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEBAFD4024893A8000A9EF15 /* ProductManager.swift */; };
 		BEBAFD4324893C0200A9EF15 /* GlobalManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEBAFD4224893C0200A9EF15 /* GlobalManager.swift */; };
 		BEBAFD45248943F900A9EF15 /* CustomTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEBAFD44248943F800A9EF15 /* CustomTableViewCell.swift */; };
+		BEC5664924BD1639003B85F6 /* BilanTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEC5664824BD1639003B85F6 /* BilanTableView.swift */; };
+		BEC5664B24BDC436003B85F6 /* CustomTableViewCell3.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEC5664A24BDC436003B85F6 /* CustomTableViewCell3.swift */; };
 		BEE88759248AA1EF009BB96A /* CustomUIButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEE88758248AA1EF009BB96A /* CustomUIButton.swift */; };
 		BEFD3633249D26C70053E857 /* IntroViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEFD3632249D26C70053E857 /* IntroViewController.swift */; };
 		BEFD3635249D6AA60053E857 /* CustomUiTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEFD3634249D6AA60053E857 /* CustomUiTextField.swift */; };
@@ -61,6 +63,8 @@
 		BEBAFD4024893A8000A9EF15 /* ProductManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductManager.swift; sourceTree = "<group>"; };
 		BEBAFD4224893C0200A9EF15 /* GlobalManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlobalManager.swift; sourceTree = "<group>"; };
 		BEBAFD44248943F800A9EF15 /* CustomTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTableViewCell.swift; sourceTree = "<group>"; };
+		BEC5664824BD1639003B85F6 /* BilanTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BilanTableView.swift; sourceTree = "<group>"; };
+		BEC5664A24BDC436003B85F6 /* CustomTableViewCell3.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTableViewCell3.swift; sourceTree = "<group>"; };
 		BEE88758248AA1EF009BB96A /* CustomUIButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomUIButton.swift; sourceTree = "<group>"; };
 		BEFD3632249D26C70053E857 /* IntroViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntroViewController.swift; sourceTree = "<group>"; };
 		BEFD3634249D6AA60053E857 /* CustomUiTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomUiTextField.swift; sourceTree = "<group>"; };
@@ -140,9 +144,11 @@
 				BEFD3632249D26C70053E857 /* IntroViewController.swift */,
 				BEA76CB924812F0B000244BA /* ViewController.swift */,
 				BEAD441D24B3720D00125E79 /* ReglagesViewController.swift */,
+				BEC5664824BD1639003B85F6 /* BilanTableView.swift */,
 				BEA674B52486EDEB00EC99B2 /* CustomCollectionViewCell.swift */,
 				BE3F32E924B66AAB00BEC370 /* CustomTableViewCell2.swift */,
 				BEBAFD44248943F800A9EF15 /* CustomTableViewCell.swift */,
+				BEC5664A24BDC436003B85F6 /* CustomTableViewCell3.swift */,
 				BEE88758248AA1EF009BB96A /* CustomUIButton.swift */,
 				BEFD3634249D6AA60053E857 /* CustomUiTextField.swift */,
 			);
@@ -275,6 +281,7 @@
 				BEB3C40E24B4A69B003D1FB2 /* OptionsDelegate.swift in Sources */,
 				BEA674B62486EDEB00EC99B2 /* CustomCollectionViewCell.swift in Sources */,
 				BEBAFD4124893A8000A9EF15 /* ProductManager.swift in Sources */,
+				BEC5664B24BDC436003B85F6 /* CustomTableViewCell3.swift in Sources */,
 				BEE88759248AA1EF009BB96A /* CustomUIButton.swift in Sources */,
 				BE3F32EA24B66AAB00BEC370 /* CustomTableViewCell2.swift in Sources */,
 				BEBAFD45248943F900A9EF15 /* CustomTableViewCell.swift in Sources */,
@@ -287,6 +294,7 @@
 				BEA76CB824812F0B000244BA /* SceneDelegate.swift in Sources */,
 				BEB3C41224B5163D003D1FB2 /* CategorieManager.swift in Sources */,
 				BEB3C41024B4BCAC003D1FB2 /* Categorie.swift in Sources */,
+				BEC5664924BD1639003B85F6 /* BilanTableView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

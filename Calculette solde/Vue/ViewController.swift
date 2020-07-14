@@ -146,6 +146,7 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
         if segue.identifier == "segue" , let optionView = segue.destination as? ReglagesViewController {
             optionView.delegate = self
             optionView.categorieShow = showNotShowCategories
+            optionView.myGlobalManager = myGlobalManager
             if choixLimite {
                 optionView.budgetMax = limiteMaxi
             }
@@ -249,21 +250,23 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
     }
     
     var erase : Bool = false
-    @IBAction func deleteAllArticle(_ sender: Any) {
-        myGlobalManager.myProductManager.deleteallProduct()
-        lblTotalProduct.text = String (myGlobalManager.myProductManager.myCart(myListOfProduct: myGlobalManager.myProductManager.listOfProduct))+" €"
-        lblMontantEconomise.text = String(myGlobalManager.myProductManager.myDiscounts(myListOfPrduct: myGlobalManager.myProductManager.listOfProduct))+" €"
-        lblTotalProduct.textColor = UIColor.black
-        myTableView.reloadData()
-        /*erase = true
+    @IBAction func deleteAllArticles(_ sender: Any) {
         
+        let deleteAlert = UIAlertController(title: "Confirmation", message: "Souhaitez-vous supprimer tous vos achats ?", preferredStyle: UIAlertController.Style.alert)
 
-        lblMontantEconomise.isHidden = true
-        btnTrash.isHidden = true
-        myTableView.isHidden = true
-        limiteMaxi = 0
-        choixLimite = false
-        */
+        deleteAlert.addAction(UIAlertAction(title: "Ok", style: .default, handler: { (action: UIAlertAction!) in
+            self.myGlobalManager.myProductManager.deleteallProduct()
+            self.lblTotalProduct.text = String (self.myGlobalManager.myProductManager.myCart(myListOfProduct: self.myGlobalManager.myProductManager.listOfProduct))+" €"
+            self.lblMontantEconomise.text = String(self.myGlobalManager.myProductManager.myDiscounts(myListOfPrduct: self.myGlobalManager.myProductManager.listOfProduct))+" €"
+            self.lblTotalProduct.textColor = UIColor.black
+            self.myTableView.reloadData()
+          }))
+
+        deleteAlert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: { (action: UIAlertAction!) in
+          //print("Handle Cancel Logic here")
+          }))
+
+        present(deleteAlert, animated: true, completion: nil)
         
     }
     

@@ -10,6 +10,8 @@ import UIKit
 
 class ReglagesViewController: UIViewController{
     
+    var myGlobalManager: GlobalManager!
+    
     @IBOutlet weak var txtFldBudgetMax: UITextField!
     @IBOutlet weak var categorieSwitch: UISwitch!
     @IBOutlet weak var stepperBudgetMax: UIStepper!
@@ -55,6 +57,12 @@ class ReglagesViewController: UIViewController{
         } else {
             delegate?.getOptions(limitMax: budgetMax, choix: authoriseBudgetMax, categories: categorieShow)
         }
+        
+        
+        self.dismiss(animated: true, completion: {
+            self.presentingViewController?.dismiss(animated: true, completion: nil)
+        })
+        
     }
     
     
@@ -77,6 +85,11 @@ class ReglagesViewController: UIViewController{
         self.present(alert, animated: true)
     }
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+         if segue.identifier == "bilan" , let bilanView = segue.destination as? BilanTableView {
+            bilanView.myGlobalManager = myGlobalManager
+         }
+     }
     
     
     
