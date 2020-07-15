@@ -63,6 +63,10 @@ class ReglagesViewController: UIViewController{
             self.presentingViewController?.dismiss(animated: true, completion: nil)
         })
         
+        /*let main = UIStoryboard(name: "Main", bundle: nil)
+        let homeView = main.instantiateViewController(withIdentifier: "homeView") as! ViewController
+        //self.present(homeView, animated: true, completion: nil)
+        self.presentingViewController?.dismiss(animated: true, completion: nil)*/
     }
     
     
@@ -85,11 +89,24 @@ class ReglagesViewController: UIViewController{
         self.present(alert, animated: true)
     }
     
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-         if segue.identifier == "bilan" , let bilanView = segue.destination as? BilanTableView {
+    
+    @IBAction func showAllArticle(_ sender: Any) {
+        
+        let main = UIStoryboard(name: "Main", bundle: nil)
+        let bilanView = main.instantiateViewController(identifier: "bilanView") as? RecapAchatViewController
+        bilanView?.myGlobalManager = myGlobalManager
+        self.present(bilanView!, animated: true, completion: nil)
+        
+ 
+    }
+    
+    /*override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+         if segue.identifier == "bilan" , let bilanView = segue.destination as? RecapAchatViewController {
             bilanView.myGlobalManager = myGlobalManager
          }
-     }
+     }*/
+    
+    
     
     
     

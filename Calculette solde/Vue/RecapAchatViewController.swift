@@ -1,27 +1,19 @@
 //
-//  BilanTableView.swift
+//  RecapAchatViewController.swift
 //  Calculette solde
 //
-//  Created by williams saadi on 14/07/2020.
+//  Created by williams saadi on 15/07/2020.
 //  Copyright © 2020 williams saadi. All rights reserved.
 //
 
 import UIKit
 
-class BilanTableView: UITableViewController {
-
-    /*
-    // Only override draw() if you perform custom drawing.
-    // An empty implementation adversely affects performance during animation.
-    override func draw(_ rect: CGRect) {
-        // Drawing code
-    }
-    */
+class RecapAchatViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+    
     var myGlobalManager : GlobalManager!
     var myArticles : [MyProduct] = []
     var myCategories : [Categorie] = []
     var myItems  = [[MyProduct](),[MyProduct](),[MyProduct](),[MyProduct](),[MyProduct](),[MyProduct]()]
-    //var totalcategorie = [[MyProduct](),[MyProduct](),[MyProduct](),[MyProduct](),[MyProduct](),[MyProduct]()]
     
     var stotal = "0"
     var totalD : Double = 0
@@ -31,29 +23,37 @@ class BilanTableView: UITableViewController {
     var totalB : Double = 0
     var totalM : Double = 0
     
+    
+    
     override func viewDidLoad() {
-        super.viewDidLoad()
+         super.viewDidLoad()
         myArticles = myGlobalManager.myProductManager.listOfProduct
         myCategories = myGlobalManager.myCategoriesManager.listCategorie
         classement()
-    }
+     }
     
-    override func numberOfSections(in tableView: UITableView) -> Int {
-        return myCategories.count
-    }
-    
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        //return (myArticles[section].categorie?.nom.count)!
-        return myItems[section].count
+    @IBAction func backToHome(_ sender: Any) {
+        
+        let main = UIStoryboard(name: "Main", bundle: nil)
+        let optionView = main.instantiateViewController(withIdentifier: "optionView") as! ReglagesViewController
+        self.present(optionView, animated: true, completion: nil)
         
     }
     
-    override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+    
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return myCategories.count
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return myItems[section].count
+    }
+    
+    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         return myGlobalManager.myCategoriesManager.listCategorie[section].nom
     }
     
-    
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         var myCell = UITableViewCell()
         if let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as? CustomTableViewCell3 {
             cell.lblInfoDepart.text = "\(myItems[indexPath.section][indexPath.row].firstPrice)€ - \(myItems[indexPath.section][indexPath.row].discount)%"
@@ -69,8 +69,10 @@ class BilanTableView: UITableViewController {
             switch item.categorie?.nom {
             case "Divers":
                 myItems[0].append(item)
+                totalD += item.finalPrice
             case "Vêtement":
                 myItems[1].append(item)
+                totalV += item.finalPrice
             case "Nourriture":
                 myItems[2].append(item)
             case "Electromenager":
@@ -85,6 +87,20 @@ class BilanTableView: UITableViewController {
         }
     }
     
-
     
+    
+
+ 
+    
+
+    /*
+    // MARK: - Navigation
+
+    // In a storyboard-based application, you will often want to do a little preparation before navigation
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        // Get the new view controller using segue.destination.
+        // Pass the selected object to the new view controller.
+    }
+    */
+
 }

@@ -64,6 +64,8 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
     var choixLimite : Bool = false
     
     var listCategorie : [Categorie] = []
+    var listOfProduct : [MyProduct] = []
+    var checkListOfProduct = false
     var showNotShowCategories : Bool = false
     
     //
@@ -74,6 +76,11 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
        super.viewDidLoad()
         
         listCategorie = myGlobalManager.myCategoriesManager.loadCategorieList()
+        
+        if !listOfProduct.isEmpty {
+            //listOfProduct = myGlobalManager.myProductManager.listOfProduct
+            checkListOfProduct = true
+        }
         
         self.hideKeyboard()
         view.backgroundColor = UIColor.white
@@ -142,7 +149,7 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
    }
     
     // me permet de faire passer l'instance de la view et de son protocole
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+    /*override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "segue" , let optionView = segue.destination as? ReglagesViewController {
             optionView.delegate = self
             optionView.categorieShow = showNotShowCategories
@@ -151,7 +158,7 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
                 optionView.budgetMax = limiteMaxi
             }
         }
-    }
+    }*/
     
     // conformité à "OptionDelegate"
     func getOptions(limitMax: Double, choix: Bool, categories: Bool) {
@@ -270,7 +277,32 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
         
     }
     
-
+    @IBAction func optionBtn(_ sender: Any) {
+        
+        let main = UIStoryboard(name: "Main", bundle: nil)
+        let myOptionView = main.instantiateViewController(identifier: "optionView") as? ReglagesViewController
+        myOptionView?.delegate = self
+        myOptionView?.categorieShow = showNotShowCategories
+        myOptionView?.myGlobalManager = myGlobalManager
+        if choixLimite {
+            myOptionView?.budgetMax = limiteMaxi
+        }
+        self.present(myOptionView!, animated: true, completion: nil)
+        
+    }
+    
+    @IBAction func openCartView(_ sender: Any) {
+        let main = UIStoryboard(name: "Main", bundle: nil)
+        let bilan = main.instantiateViewController(withIdentifier: "bilanView") as! RecapAchatViewController
+        bilan.myGlobalManager = myGlobalManager
+        
+        
+        self.present(bilan, animated: true, completion: nil)
+        //self.presentingViewController?.dismiss(animated: true, completion: nil)
+        
+    }
+    
+    
                                                                        ///////////////////////////// Marks : CollectionView protocol//////////////////////////////////////
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -328,7 +360,11 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
         var tableViewCount: Int?
         
         if tableView == self.myTableView {
-            tableViewCount = myGlobalManager.myProductManager.listOfProduct.count
+            if checkListOfProduct {
+                tableViewCount = listOfProduct.count
+            } else {
+                tableViewCount = myGlobalManager.myProductManager.listOfProduct.count
+            }
         }
         
         if tableView == self.myTableView2 {
@@ -342,15 +378,18 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         var myCell = UITableViewCell()
         
+        var product = MyProduct(price: 0.0, finalPrice: 0.0, discount: 0.0, categorie: nil)
+        
         if tableView == self.myTableView {
-            let product = myGlobalManager.myProductManager.listOfProduct[indexPath.row]
+            if checkListOfProduct {
+                product = listOfProduct[indexPath.row]
+            } else {
+                product = myGlobalManager.myProductManager.listOfProduct[indexPath.row]
+            }
+            
             if let cell = tableView.dequeueReusableCell(withIdentifier: "tableViewCell", for: indexPath) as? CustomTableViewCell {
-                cell.configure(article: product)//(firstPrice: product.firstPrice, finalPrice: product.finalPrice,theDiscount: product.discount)
-                //cell.imageCellInitiale(nameImage: "etiquette")
+                cell.configure(article: product)
                 myCell = cell
-                /*if erase {
-                    cell.imageCellInitiale(nameImage: "etiquette")
-                }*/
             }
         }
         
@@ -399,16 +438,6 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
                 indexCat = indexPath.row
                 openCateView()
             }
-            
-            
-            /*var myCell = UITableViewCell()
-            let product = myGlobalManager.myProductManager.listOfProduct[indexPath.row]
-            
-            if let cell = tableView.dequeueReusableCell(withIdentifier: "tableViewCell", for: indexPath) as? CustomTableViewCell {
-                cell.configure(article: product)
-                myCell = cell
-            }*/
-            //tableView.reloadData()
         }
         
         if tableView == self.myTableView2 && showNotShowCategories {
