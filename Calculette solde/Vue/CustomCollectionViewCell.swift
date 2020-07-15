@@ -23,28 +23,20 @@ class CustomCollectionViewCell: UICollectionViewCell {
     func configure (discount : String)
     {
         lblPourcentage.text = discount
-        /**clipsToBounds = false
-        layer.cornerRadius = 20
-        layer.borderWidth = 0
-        layer.shadowColor = UIColor.black.cgColor
-        layer.shadowOffset = CGSize(width: 0, height: 0)
-        layer.shadowOpacity = 0.5
-        layer.shadowRadius = 10**/
     }
     
     func lblPulsate ()
     {
-    
-           let pulse = CASpringAnimation(keyPath: "transform.scale")
-           pulse.duration = 0.3
-           pulse.toValue = 1
-           pulse.fromValue = 0.95
-           pulse.initialVelocity = 0.5
-           pulse.damping = 1.0
-           pulse.autoreverses = true
-           pulse.repeatCount = 2
-           
-           lblPourcentage.layer.add(pulse, forKey: nil)
+        let pulse = CASpringAnimation(keyPath: "transform.scale")
+        pulse.duration = 0.3
+        pulse.toValue = 1
+        pulse.fromValue = 0.95
+        pulse.initialVelocity = 0.5
+        pulse.damping = 1.0
+        pulse.autoreverses = true
+        pulse.repeatCount = 2
+        
+        lblPourcentage.layer.add(pulse, forKey: nil)
        }
  
 }

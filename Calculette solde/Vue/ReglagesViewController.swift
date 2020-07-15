@@ -16,6 +16,8 @@ class ReglagesViewController: UIViewController{
     @IBOutlet weak var categorieSwitch: UISwitch!
     @IBOutlet weak var stepperBudgetMax: UIStepper!
     @IBOutlet weak var lblTitle: UILabel!
+    @IBOutlet weak var lblBudget: UILabel!
+    @IBOutlet weak var lblCategorie: UILabel!
     
     @IBOutlet weak var btnEnregistrer: CustomUIButton!
     var authoriseBudgetMax: Bool = false
@@ -26,6 +28,10 @@ class ReglagesViewController: UIViewController{
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        view.backgroundColor = UIColor.white
+        lblBudget.textColor = UIColor.black
+        lblCategorie.textColor = UIColor.black
         
         btnEnregistrer.titleLabel?.textColor = UIColor.systemYellow
         lblTitle.textColor = UIColor.black
@@ -62,13 +68,7 @@ class ReglagesViewController: UIViewController{
         self.dismiss(animated: true, completion: {
             self.presentingViewController?.dismiss(animated: true, completion: nil)
         })
-        
-        /*let main = UIStoryboard(name: "Main", bundle: nil)
-        let homeView = main.instantiateViewController(withIdentifier: "homeView") as! ViewController
-        //self.present(homeView, animated: true, completion: nil)
-        self.presentingViewController?.dismiss(animated: true, completion: nil)*/
     }
-    
     
     @IBAction func showNoShowCategories(_ sender: Any) {
         if categorieSwitch.isOn {
@@ -89,7 +89,6 @@ class ReglagesViewController: UIViewController{
         self.present(alert, animated: true)
     }
     
-    
     @IBAction func showAllArticle(_ sender: Any) {
         
         let main = UIStoryboard(name: "Main", bundle: nil)
@@ -99,17 +98,5 @@ class ReglagesViewController: UIViewController{
         
  
     }
-    
-    /*override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-         if segue.identifier == "bilan" , let bilanView = segue.destination as? RecapAchatViewController {
-            bilanView.myGlobalManager = myGlobalManager
-         }
-     }*/
-    
-    
-    
-    
-    
-
 // fin de la classe
 }

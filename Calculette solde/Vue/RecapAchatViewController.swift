@@ -13,7 +13,7 @@ class RecapAchatViewController: UIViewController, UITableViewDelegate, UITableVi
     var myGlobalManager : GlobalManager!
     var myArticles : [MyProduct] = []
     var myCategories : [Categorie] = []
-    var myItems  = [[MyProduct](),[MyProduct](),[MyProduct](),[MyProduct](),[MyProduct](),[MyProduct]()]
+    var myItems  = [[MyProduct](),[MyProduct](),[MyProduct](),[MyProduct](),[MyProduct](),[MyProduct](),[MyProduct](),[MyProduct](),[MyProduct](),[MyProduct](),[MyProduct](),[MyProduct]()]
     
     var stotal = "0"
     var totalD : Double = 0
@@ -23,10 +23,15 @@ class RecapAchatViewController: UIViewController, UITableViewDelegate, UITableVi
     var totalB : Double = 0
     var totalM : Double = 0
     
+    @IBOutlet weak var lblTitle: UILabel!
     
     
     override func viewDidLoad() {
          super.viewDidLoad()
+        
+        view.backgroundColor = UIColor.white
+        lblTitle.textColor = UIColor.black
+        
         myArticles = myGlobalManager.myProductManager.listOfProduct
         myCategories = myGlobalManager.myCategoriesManager.listCategorie
         classement()
@@ -56,8 +61,10 @@ class RecapAchatViewController: UIViewController, UITableViewDelegate, UITableVi
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         var myCell = UITableViewCell()
         if let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as? CustomTableViewCell3 {
+            cell.configure()
             cell.lblInfoDepart.text = "\(myItems[indexPath.section][indexPath.row].firstPrice)€ - \(myItems[indexPath.section][indexPath.row].discount)%"
             cell.lblPrixFinal.text = String(format: " %.2f", myItems[indexPath.section][indexPath.row].finalPrice) + " €"
+            
             myCell = cell
         }
         return myCell
@@ -69,10 +76,8 @@ class RecapAchatViewController: UIViewController, UITableViewDelegate, UITableVi
             switch item.categorie?.nom {
             case "Divers":
                 myItems[0].append(item)
-                totalD += item.finalPrice
-            case "Vêtement":
+            case "Mode":
                 myItems[1].append(item)
-                totalV += item.finalPrice
             case "Nourriture":
                 myItems[2].append(item)
             case "Electromenager":
@@ -81,26 +86,21 @@ class RecapAchatViewController: UIViewController, UITableViewDelegate, UITableVi
                 myItems[4].append(item)
             case "Multimédia":
                 myItems[5].append(item)
+            case "Meuble et déco":
+                myItems[6].append(item)
+            case "Jardin et maison":
+                myItems[7].append(item)
+            case "Informatique":
+                myItems[8].append(item)
+            case "Téléphonie":
+                myItems[9].append(item)
+            case "Jeux vidéo":
+                myItems[10].append(item)
+            case "Sport":
+                myItems[11].append(item)
             default :
                 myItems[0].append(item)
             }
         }
     }
-    
-    
-    
-
- 
-    
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }

@@ -15,10 +15,11 @@ class CustomTableViewCell3: UITableViewCell {
     @IBOutlet weak var lblPrixFinal: UILabel!
     
     
-    func configure(product: MyProduct)
+    
+    func configure()
     {
-        lblInfoDepart.text = "\(product.firstPrice)€ - \(product.discount)%)"
-        lblPrixFinal.text = "\(product.finalPrice)€"
+        lblInfoDepart.textColor = UIColor.black
+        lblPrixFinal.textColor = UIColor.black
     }
     
     

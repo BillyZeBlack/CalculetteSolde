@@ -26,7 +26,7 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
     @IBOutlet weak var btnValider: CustomUIButton!
     @IBOutlet weak var lblTitle: UILabel!
     @IBOutlet weak var btnTrash: UIButton!
-    
+    @IBOutlet weak var btnCartDetail: UIButton!
     
     //Marks : TextField
     @IBOutlet weak var txtFldPrixDepart: CustomUiTextField!
@@ -64,8 +64,7 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
     var choixLimite : Bool = false
     
     var listCategorie : [Categorie] = []
-    var listOfProduct : [MyProduct] = []
-    var checkListOfProduct = false
+    //var listOfProduct : [MyProduct] = []
     var showNotShowCategories : Bool = false
     
     //
@@ -76,11 +75,6 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
        super.viewDidLoad()
         
         listCategorie = myGlobalManager.myCategoriesManager.loadCategorieList()
-        
-        if !listOfProduct.isEmpty {
-            //listOfProduct = myGlobalManager.myProductManager.listOfProduct
-            checkListOfProduct = true
-        }
         
         self.hideKeyboard()
         view.backgroundColor = UIColor.white
@@ -100,17 +94,12 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
         
         myCollectionView.backgroundView = nil
         myCollectionView.backgroundColor = .clear
-        /**
-        let gradientLayer = CAGradientLayer()
-        gradientLayer.frame = self.view.bounds
-        gradientLayer.colors = [UIColor.green.cgColor, UIColor.blue.cgColor]
-        /**gradientLayer.startPoint = CGPoint(x: 0,y: 0)
-        gradientLayer.startPoint = CGPoint(x: 1,y: 1)**/
-        view.layer.insertSublayer(gradientLayer, at: 0)**/
+
   
        if myGlobalManager.myProductManager.listOfProduct.isEmpty {
         myTableView.isHidden = true
         lblMontantEconomise.isHidden = true
+        btnCartDetail.isHidden = true
         btnTrash.isHidden = true
        }
     
@@ -142,23 +131,13 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
         //Image boutons
         btnAchete.imageView?.tintColor = UIColor.darkGray
         btnValider.imageView?.tintColor = UIColor.darkGray
+        btnCartDetail.imageView?.tintColor = UIColor.systemYellow
         
         otherDiscountView.layer.borderColor = UIColor.orange.cgColor
         listeCategorieView.layer.borderColor = UIColor.orange.cgColor
         
    }
-    
-    // me permet de faire passer l'instance de la view et de son protocole
-    /*override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "segue" , let optionView = segue.destination as? ReglagesViewController {
-            optionView.delegate = self
-            optionView.categorieShow = showNotShowCategories
-            optionView.myGlobalManager = myGlobalManager
-            if choixLimite {
-                optionView.budgetMax = limiteMaxi
-            }
-        }
-    }*/
+
     
     // conformité à "OptionDelegate"
     func getOptions(limitMax: Double, choix: Bool, categories: Bool) {
@@ -166,7 +145,6 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
         choixLimite = choix
         showNotShowCategories = categories
     }
-    
     
                                                                              /////////////////IBAction functions//////////////////
     @IBAction func addProductIntoListProduct(_ sender: UIButton)
@@ -248,7 +226,6 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
          } else {
             showAlertPopup(title: "Information", message: "Vérifiez le prix.")
         }
-         
     }
     
     //Remet à zéro la reduction, à chaque modification du prix
@@ -266,10 +243,13 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
             self.lblTotalProduct.text = String (self.myGlobalManager.myProductManager.myCart(myListOfProduct: self.myGlobalManager.myProductManager.listOfProduct))+" €"
             self.lblMontantEconomise.text = String(self.myGlobalManager.myProductManager.myDiscounts(myListOfPrduct: self.myGlobalManager.myProductManager.listOfProduct))+" €"
             self.lblTotalProduct.textColor = UIColor.black
+            self.lblMontantEconomise.isHidden = true
+            self.btnCartDetail.isHidden = true
+            self.btnTrash.isHidden = true
             self.myTableView.reloadData()
           }))
 
-        deleteAlert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: { (action: UIAlertAction!) in
+        deleteAlert.addAction(UIAlertAction(title: "Annuler", style: .cancel, handler: { (action: UIAlertAction!) in
           //print("Handle Cancel Logic here")
           }))
 
@@ -353,18 +333,12 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
         }
     }
     
-
-    
                                                                          /////////////////////////////////////Marks : TableView Protocol////////////////////////////////////
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         var tableViewCount: Int?
         
         if tableView == self.myTableView {
-            if checkListOfProduct {
-                tableViewCount = listOfProduct.count
-            } else {
-                tableViewCount = myGlobalManager.myProductManager.listOfProduct.count
-            }
+            tableViewCount = myGlobalManager.myProductManager.listOfProduct.count
         }
         
         if tableView == self.myTableView2 {
@@ -381,11 +355,7 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
         var product = MyProduct(price: 0.0, finalPrice: 0.0, discount: 0.0, categorie: nil)
         
         if tableView == self.myTableView {
-            if checkListOfProduct {
-                product = listOfProduct[indexPath.row]
-            } else {
-                product = myGlobalManager.myProductManager.listOfProduct[indexPath.row]
-            }
+            product = myGlobalManager.myProductManager.listOfProduct[indexPath.row]
             
             if let cell = tableView.dequeueReusableCell(withIdentifier: "tableViewCell", for: indexPath) as? CustomTableViewCell {
                 cell.configure(article: product)
@@ -515,17 +485,6 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
 
     private func ajouterALaListe(article: MyProduct)
     {
-        //
-        /*var article = MyProduct(price: 00, finalPrice: 00, discount: 00, categorie: nil)
-        if  showNotShowCategories {
-            openCateView()
-            let cat = Categorie(nom: myGlobalManager.myCategoriesManager.listCategorie[indexCat].nom, imageName: myGlobalManager.myCategoriesManager.listCategorie[indexCat].imageName)
-            article = MyProduct(price: prixInitial, finalPrice: prixFinal, discount: reduction, categorie: cat)
-        } else {
-            article = MyProduct(price: prixInitial, finalPrice: prixFinal, discount: reduction, categorie: nil)
-        }*/
-        //
-        
         myGlobalManager.myProductManager.addProdcut(product: article)
         
         let totalArticle = myGlobalManager.myProductManager.myCart(myListOfProduct: myGlobalManager.myProductManager.listOfProduct)
@@ -533,7 +492,6 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
         let totalEconomise = 0 - myGlobalManager.myProductManager.myDiscounts(myListOfPrduct: myGlobalManager.myProductManager.listOfProduct)
         lblMontantEconomise.text = String(format: " %.2f", totalEconomise) + " €"
 
-    
         if choixLimite && totalArticle >= limiteMaxi  {
             lblTotalProduct.textColor = UIColor.systemRed
         }
@@ -543,6 +501,7 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
         myTableView.isHidden = false
         lblMontantEconomise.isHidden = false
         btnTrash.isHidden = false
+        btnCartDetail.isHidden = false
         lblTotalProduct.text = String(format: " %.2f", totalArticle) + " €"
         updateLabel()
         priceProduct = 0.0
@@ -554,7 +513,6 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
     {
         txtFldPrixDepart.text = ""
         lblPrixFinal.text = "0.0 €"
-        
     }
     
     private func showAlertPopup(title : String, message: String)
@@ -567,8 +525,8 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
     
     private func lblPulsate ()
     {
- 
         let pulse = CASpringAnimation(keyPath: "transform.scale")
+        
         pulse.duration = 0.3
         pulse.toValue = 1
         pulse.fromValue = 0.95
@@ -592,8 +550,6 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
         }
     }
     
-
-    
 // fin de classe
 }
 
@@ -612,6 +568,3 @@ extension UIViewController {
     }
 
 }
-
-
-

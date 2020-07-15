@@ -10,7 +10,7 @@ import Foundation
 
 class CategorieManager {
     var listCategorie : [Categorie] = []
-    let listeNom : [String] = ["Divers","Vêtement","Nourriture","Electromenager","Bricolage","Multimédia"]
+    let listeNom : [String] = ["Divers","Mode","Nourriture","Electromenager","Bricolage","Multimédia","Meuble et déco","Jardin et maison","Informatique","Téléphonie","Jeux vidéo","Sport"]
     
     func loadCategorieList () -> [Categorie]
     {
