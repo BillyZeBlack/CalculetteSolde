@@ -1,7 +1,7 @@
 import SwiftUI
 
 struct ContentView: View {
-    private let discountRates = DiscountRate.standardRates
+    @StateObject private var viewModel = MainCalculatorViewModel()
 
     var body: some View {
         VStack(spacing: 16) {
@@ -11,7 +11,7 @@ struct ContentView: View {
 
             ScrollView(.horizontal, showsIndicators: false) {
                 HStack(spacing: 8) {
-                    ForEach(discountRates) { rate in
+                    ForEach(viewModel.availableDiscountRates) { rate in
                         Text(rate.label)
                             .font(.subheadline.weight(.medium))
                             .padding(.horizontal, 12)
