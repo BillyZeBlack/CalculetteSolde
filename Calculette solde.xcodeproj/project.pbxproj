@@ -83,18 +83,18 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		BEA76CAF24812F0B000244BA /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		5A02A0212C00000900000001 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				5A02A0022C00000900000001 /* XCTest.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		BEA76CAF24812F0B000244BA /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -223,23 +223,6 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		BEA76CB124812F0B000244BA /* Calculette solde */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = BEA76CC624812F13000244BA /* Build configuration list for PBXNativeTarget "Calculette solde" */;
-			buildPhases = (
-				BEA76CAE24812F0B000244BA /* Sources */,
-				BEA76CAF24812F0B000244BA /* Frameworks */,
-				BEA76CB024812F0B000244BA /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-			);
-			name = "Calculette solde";
-			productName = "Calculette solde";
-			productReference = BEA76CB224812F0B000244BA /* Calculette solde.app */;
-			productType = "com.apple.product-type.application";
-		};
 		5A02A0232C00000900000001 /* Calculette soldeTests */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 5A02A0282C00000900000001 /* Build configuration list for PBXNativeTarget "Calculette soldeTests" */;
@@ -257,6 +240,23 @@
 			productName = "Calculette soldeTests";
 			productReference = 5A02A0102C00000900000001 /* Calculette soldeTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		BEA76CB124812F0B000244BA /* Calculette solde */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = BEA76CC624812F13000244BA /* Build configuration list for PBXNativeTarget "Calculette solde" */;
+			buildPhases = (
+				BEA76CAE24812F0B000244BA /* Sources */,
+				BEA76CAF24812F0B000244BA /* Frameworks */,
+				BEA76CB024812F0B000244BA /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Calculette solde";
+			productName = "Calculette solde";
+			productReference = BEA76CB224812F0B000244BA /* Calculette solde.app */;
+			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
 
@@ -297,19 +297,19 @@
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		5A02A0222C00000900000001 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		BEA76CB024812F0B000244BA /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				BEA76CC224812F13000244BA /* LaunchScreen.storyboard in Resources */,
 				BEA76CBF24812F13000244BA /* Assets.xcassets in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		5A02A0222C00000900000001 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -384,6 +384,48 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		5A02A0262C00000900000001 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = JW5QDUDC7K;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "com.slideofdigital.Calculette-soldeTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Calculette solde.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Calculette solde";
+			};
+			name = Debug;
+		};
+		5A02A0272C00000900000001 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = JW5QDUDC7K;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "com.slideofdigital.Calculette-soldeTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Calculette solde.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Calculette solde";
+			};
+			name = Release;
+		};
 		BEA76CC424812F13000244BA /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -505,6 +547,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = JW5QDUDC7K;
 				INFOPLIST_FILE = "Calculette solde/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 17.6;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -523,6 +566,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = JW5QDUDC7K;
 				INFOPLIST_FILE = "Calculette solde/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 17.6;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -534,51 +578,18 @@
 			};
 			name = Release;
 		};
-		5A02A0262C00000900000001 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = JW5QDUDC7K;
-				GENERATE_INFOPLIST_FILE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.slideofdigital.Calculette-soldeTests";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Calculette solde.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Calculette solde";
-			};
-			name = Debug;
-		};
-		5A02A0272C00000900000001 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = JW5QDUDC7K;
-				GENERATE_INFOPLIST_FILE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.slideofdigital.Calculette-soldeTests";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Calculette solde.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Calculette solde";
-			};
-			name = Release;
-		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		5A02A0282C00000900000001 /* Build configuration list for PBXNativeTarget "Calculette soldeTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				5A02A0262C00000900000001 /* Debug */,
+				5A02A0272C00000900000001 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		BEA76CAD24812F0B000244BA /* Build configuration list for PBXProject "Calculette solde" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
@@ -593,15 +604,6 @@
 			buildConfigurations = (
 				BEA76CC724812F13000244BA /* Debug */,
 				BEA76CC824812F13000244BA /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		5A02A0282C00000900000001 /* Build configuration list for PBXNativeTarget "Calculette soldeTests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				5A02A0262C00000900000001 /* Debug */,
-				5A02A0272C00000900000001 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
