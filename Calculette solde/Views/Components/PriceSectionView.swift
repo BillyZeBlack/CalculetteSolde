@@ -71,6 +71,7 @@ struct PriceSectionView: View {
             TextField("Optionnel", text: $viewModel.productName)
                 .multilineTextAlignment(.trailing)
                 .foregroundStyle(.secondary)
+                .focused($focusedField, equals: .productName)
                 .frame(maxWidth: .infinity)
         }
         .padding(.horizontal)

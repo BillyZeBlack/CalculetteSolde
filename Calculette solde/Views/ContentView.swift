@@ -6,6 +6,7 @@ struct ContentView: View {
 
     enum Field: Hashable {
         case price
+        case productName
         case customDiscount
     }
 
