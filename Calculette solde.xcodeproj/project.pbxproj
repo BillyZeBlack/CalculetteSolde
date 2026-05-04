@@ -22,12 +22,29 @@
 		5A01A01B2C00000700000001 /* SettingsStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A01A01A2C00000700000001 /* SettingsStore.swift */; };
 		5A01A01D2C00000800000001 /* ProductRecapViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A01A01C2C00000800000001 /* ProductRecapViewModel.swift */; };
 		5A01A01F2C00000800000001 /* SettingsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A01A01E2C00000800000001 /* SettingsViewModel.swift */; };
+		5A02A0022C00000900000001 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5A02A0012C00000900000001 /* XCTest.framework */; };
+		5A02A0122C00000900000001 /* MoneyFormatterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A02A0112C00000900000001 /* MoneyFormatterTests.swift */; };
+		5A02A0142C00000900000001 /* DiscountCalculatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A02A0132C00000900000001 /* DiscountCalculatorTests.swift */; };
+		5A02A0162C00000900000001 /* MainCalculatorViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A02A0152C00000900000001 /* MainCalculatorViewModelTests.swift */; };
+		5A02A0182C00000900000001 /* ProductRecapViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A02A0172C00000900000001 /* ProductRecapViewModelTests.swift */; };
+		5A02A01A2C00000900000001 /* SettingsViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A02A0192C00000900000001 /* SettingsViewModelTests.swift */; };
+		5A02A02C2C00000A00000001 /* ValidationSummaryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A02A02B2C00000A00000001 /* ValidationSummaryTests.swift */; };
 		9FEAFC6B2FA8E61E00E5ADF9 /* Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FEAFC6A2FA8E61E00E5ADF9 /* Category.swift */; };
 		BEA674B62486EDEB00EC99B2 /* CustomCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEA674B52486EDEB00EC99B2 /* CustomCollectionViewCell.swift */; };
 		BEA76CBA24812F0B000244BA /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEA76CB924812F0B000244BA /* ViewController.swift */; };
 		BEA76CBF24812F13000244BA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BEA76CBE24812F13000244BA /* Assets.xcassets */; };
 		BEA76CC224812F13000244BA /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BEA76CC024812F13000244BA /* LaunchScreen.storyboard */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		5A02A0292C00000900000001 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = BEA76CAA24812F0B000244BA /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = BEA76CB124812F0B000244BA;
+			remoteInfo = "Calculette solde";
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		5A01A0002C00000100000001 /* CalculetteSoldeApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalculetteSoldeApp.swift; sourceTree = "<group>"; };
@@ -45,6 +62,14 @@
 		5A01A01A2C00000700000001 /* SettingsStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsStore.swift; sourceTree = "<group>"; };
 		5A01A01C2C00000800000001 /* ProductRecapViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductRecapViewModel.swift; sourceTree = "<group>"; };
 		5A01A01E2C00000800000001 /* SettingsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewModel.swift; sourceTree = "<group>"; };
+		5A02A0012C00000900000001 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = System/Library/Frameworks/XCTest.framework; sourceTree = SDKROOT; };
+		5A02A0102C00000900000001 /* Calculette soldeTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Calculette soldeTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		5A02A0112C00000900000001 /* MoneyFormatterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoneyFormatterTests.swift; sourceTree = "<group>"; };
+		5A02A0132C00000900000001 /* DiscountCalculatorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscountCalculatorTests.swift; sourceTree = "<group>"; };
+		5A02A0152C00000900000001 /* MainCalculatorViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainCalculatorViewModelTests.swift; sourceTree = "<group>"; };
+		5A02A0172C00000900000001 /* ProductRecapViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductRecapViewModelTests.swift; sourceTree = "<group>"; };
+		5A02A0192C00000900000001 /* SettingsViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewModelTests.swift; sourceTree = "<group>"; };
+		5A02A02B2C00000A00000001 /* ValidationSummaryTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ValidationSummaryTests.swift; sourceTree = "<group>"; };
 		9FEAFC6A2FA8E61E00E5ADF9 /* Category.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Category.swift; sourceTree = "<group>"; };
 		BEA674B52486EDEB00EC99B2 /* CustomCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomCollectionViewCell.swift; sourceTree = "<group>"; };
 		BEA76CB224812F0B000244BA /* Calculette solde.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Calculette solde.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -62,6 +87,14 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		5A02A0212C00000900000001 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				5A02A0022C00000900000001 /* XCTest.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -97,10 +130,33 @@
 			path = Services;
 			sourceTree = "<group>";
 		};
+		5A02A01B2C00000900000001 /* Calculette soldeTests */ = {
+			isa = PBXGroup;
+			children = (
+				5A02A0112C00000900000001 /* MoneyFormatterTests.swift */,
+				5A02A0132C00000900000001 /* DiscountCalculatorTests.swift */,
+				5A02A0152C00000900000001 /* MainCalculatorViewModelTests.swift */,
+				5A02A0172C00000900000001 /* ProductRecapViewModelTests.swift */,
+				5A02A0192C00000900000001 /* SettingsViewModelTests.swift */,
+				5A02A02B2C00000A00000001 /* ValidationSummaryTests.swift */,
+			);
+			path = "Calculette soldeTests";
+			sourceTree = "<group>";
+		};
+		5A02A01C2C00000900000001 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				5A02A0012C00000900000001 /* XCTest.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		BEA76CA924812F0B000244BA = {
 			isa = PBXGroup;
 			children = (
 				BEA76CB424812F0B000244BA /* Calculette solde */,
+				5A02A01B2C00000900000001 /* Calculette soldeTests */,
+				5A02A01C2C00000900000001 /* Frameworks */,
 				BEA76CB324812F0B000244BA /* Products */,
 			);
 			sourceTree = "<group>";
@@ -109,6 +165,7 @@
 			isa = PBXGroup;
 			children = (
 				BEA76CB224812F0B000244BA /* Calculette solde.app */,
+				5A02A0102C00000900000001 /* Calculette soldeTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -183,6 +240,24 @@
 			productReference = BEA76CB224812F0B000244BA /* Calculette solde.app */;
 			productType = "com.apple.product-type.application";
 		};
+		5A02A0232C00000900000001 /* Calculette soldeTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 5A02A0282C00000900000001 /* Build configuration list for PBXNativeTarget "Calculette soldeTests" */;
+			buildPhases = (
+				5A02A0202C00000900000001 /* Sources */,
+				5A02A0212C00000900000001 /* Frameworks */,
+				5A02A0222C00000900000001 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				5A02A02A2C00000900000001 /* PBXTargetDependency */,
+			);
+			name = "Calculette soldeTests";
+			productName = "Calculette soldeTests";
+			productReference = 5A02A0102C00000900000001 /* Calculette soldeTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -193,6 +268,10 @@
 				LastUpgradeCheck = 1130;
 				ORGANIZATIONNAME = "williams saadi";
 				TargetAttributes = {
+					5A02A0232C00000900000001 = {
+						CreatedOnToolsVersion = 17.0;
+						TestTargetID = BEA76CB124812F0B000244BA;
+					};
 					BEA76CB124812F0B000244BA = {
 						CreatedOnToolsVersion = 11.3.1;
 					};
@@ -212,6 +291,7 @@
 			projectRoot = "";
 			targets = (
 				BEA76CB124812F0B000244BA /* Calculette solde */,
+				5A02A0232C00000900000001 /* Calculette soldeTests */,
 			);
 		};
 /* End PBXProject section */
@@ -226,9 +306,29 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		5A02A0222C00000900000001 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		5A02A0202C00000900000001 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				5A02A0122C00000900000001 /* MoneyFormatterTests.swift in Sources */,
+				5A02A0142C00000900000001 /* DiscountCalculatorTests.swift in Sources */,
+				5A02A0162C00000900000001 /* MainCalculatorViewModelTests.swift in Sources */,
+				5A02A0182C00000900000001 /* ProductRecapViewModelTests.swift in Sources */,
+				5A02A01A2C00000900000001 /* SettingsViewModelTests.swift in Sources */,
+				5A02A02C2C00000A00000001 /* ValidationSummaryTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		BEA76CAE24812F0B000244BA /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -255,6 +355,14 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		5A02A02A2C00000900000001 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = BEA76CB124812F0B000244BA /* Calculette solde */;
+			targetProxy = 5A02A0292C00000900000001 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		BEA76CBB24812F0B000244BA /* Main.storyboard */ = {
@@ -426,6 +534,48 @@
 			};
 			name = Release;
 		};
+		5A02A0262C00000900000001 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = JW5QDUDC7K;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "com.slideofdigital.Calculette-soldeTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Calculette solde.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Calculette solde";
+			};
+			name = Debug;
+		};
+		5A02A0272C00000900000001 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = JW5QDUDC7K;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "com.slideofdigital.Calculette-soldeTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Calculette solde.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Calculette solde";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -443,6 +593,15 @@
 			buildConfigurations = (
 				BEA76CC724812F13000244BA /* Debug */,
 				BEA76CC824812F13000244BA /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		5A02A0282C00000900000001 /* Build configuration list for PBXNativeTarget "Calculette soldeTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				5A02A0262C00000900000001 /* Debug */,
+				5A02A0272C00000900000001 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
