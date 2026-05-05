@@ -44,14 +44,14 @@ struct PriceSectionView: View {
                     .focused($focusedField, equals: .price)
                     .frame(maxWidth: 120)
                     .font(.body.weight(.semibold))
-                    .onChange(of: viewModel.originalPriceText) { newValue in
+                    .onChange(of: viewModel.originalPriceText) { _, newValue in
                         let filtered = newValue.filter { "0123456789,.".contains($0) }
                         if filtered != newValue {
                             viewModel.originalPriceText = filtered
                         }
                         viewModel.calculate()
                     }
-                Text("€")
+                Text(viewModel.currencySymbol)
                     .font(.body.weight(.semibold))
                     .foregroundStyle(.secondary)
             }

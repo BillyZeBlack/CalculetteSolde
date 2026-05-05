@@ -37,6 +37,17 @@ final class MainCalculatorViewModelTests: XCTestCase {
         XCTAssertEqual(viewModel.selectedDiscountRate, DiscountRate(percentage: 15))
     }
 
+    func testClearingSelectedDiscountRateKeepsCustomDiscountText() {
+        let viewModel = makeViewModel()
+
+        viewModel.selectDiscountRate(DiscountRate(percentage: 30))
+        viewModel.customDiscountText = "15"
+        viewModel.clearSelectedDiscountRate()
+
+        XCTAssertNil(viewModel.selectedDiscountRate)
+        XCTAssertEqual(viewModel.customDiscountText, "15")
+    }
+
     func testRejectsInvalidOriginalPrice() {
         let viewModel = makeViewModel()
 
@@ -46,6 +57,31 @@ final class MainCalculatorViewModelTests: XCTestCase {
 
         XCTAssertNil(viewModel.finalPrice)
         XCTAssertEqual(viewModel.errorMessage, "Le prix initial est invalide.")
+    }
+
+    func testRejectsSeparatorOnlyOriginalPrice() {
+        let viewModel = makeViewModel()
+
+        viewModel.originalPriceText = ","
+        viewModel.selectDiscountRate(DiscountRate(percentage: 10))
+        viewModel.calculate()
+
+        XCTAssertNil(viewModel.finalPrice)
+        XCTAssertEqual(viewModel.errorMessage, "Le prix initial est invalide.")
+    }
+
+    func testClearsErrorWhenOriginalPriceBecomesEmpty() {
+        let viewModel = makeViewModel()
+
+        viewModel.originalPriceText = ","
+        viewModel.selectDiscountRate(DiscountRate(percentage: 10))
+        viewModel.calculate()
+        viewModel.originalPriceText = ""
+        viewModel.calculate()
+
+        XCTAssertNil(viewModel.originalPrice)
+        XCTAssertNil(viewModel.finalPrice)
+        XCTAssertNil(viewModel.errorMessage)
     }
 
     func testRejectsDecimalCustomDiscountRate() {

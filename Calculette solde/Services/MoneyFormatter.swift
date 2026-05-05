@@ -20,9 +20,14 @@ struct MoneyFormatter {
         self.currencyFormatter = Self.makeCurrencyFormatter(locale: locale)
     }
 
+    var currencySymbol: String {
+        currencyFormatter.currencySymbol ?? locale.currencySymbol ?? ""
+    }
+
     func parseDecimal(_ text: String) -> Decimal? {
         let trimmedText = text.trimmingCharacters(in: .whitespacesAndNewlines)
         guard !trimmedText.isEmpty else { return nil }
+        guard trimmedText.contains(where: { $0.isNumber }) else { return nil }
 
         if let number = decimalFormatter.number(from: trimmedText) {
             return number.decimalValue

@@ -95,9 +95,9 @@ struct DiscountSectionView: View {
                     .focused($focusedField, equals: .customDiscount)
                     .frame(maxWidth: 80)
                     .font(.body.weight(.semibold))
-                    .onChange(of: viewModel.customDiscountText) { _ in
-                        if !viewModel.customDiscountText.isEmpty {
-                            viewModel.clearDiscountSelection()
+                    .onChange(of: viewModel.customDiscountText) { _, newValue in
+                        if !newValue.isEmpty {
+                            viewModel.clearSelectedDiscountRate()
                         }
                         viewModel.calculate()
                     }

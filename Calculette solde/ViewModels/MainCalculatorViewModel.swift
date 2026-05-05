@@ -63,6 +63,10 @@ final class MainCalculatorViewModel: ObservableObject {
         moneyFormatter.formatCurrency(finalPrice)
     }
 
+    var currencySymbol: String {
+        moneyFormatter.currencySymbol
+    }
+
     init(
         productName: String = "",
         originalPriceText: String = "",
@@ -111,9 +115,19 @@ final class MainCalculatorViewModel: ObservableObject {
         customDiscountText = ""
     }
 
+    func clearSelectedDiscountRate() {
+        selectedDiscountRate = nil
+    }
+
     func calculate() {
         errorMessage = nil
         enforceSettings()
+
+        let trimmedOriginalPriceText = originalPriceText.trimmingCharacters(in: .whitespacesAndNewlines)
+        guard !trimmedOriginalPriceText.isEmpty else {
+            clearCalculation()
+            return
+        }
 
         guard let originalPrice = moneyFormatter.parseDecimal(originalPriceText), originalPrice >= 0 else {
             clearCalculation()

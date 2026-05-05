@@ -36,6 +36,8 @@ final class MoneyFormatterTests: XCTestCase {
 
         XCTAssertNil(formatter.parseDecimal(""))
         XCTAssertNil(formatter.parseDecimal("abc"))
+        XCTAssertNil(formatter.parseDecimal("."))
+        XCTAssertNil(formatter.parseDecimal(","))
     }
 
     func testDetectsWholeNumbers() {

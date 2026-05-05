@@ -19,6 +19,10 @@ struct ContentView: View {
                         .padding(.top, 20)
                     DiscountSectionView(viewModel: viewModel, focusedField: $focusedField)
                         .padding(.top, 24)
+                    if let errorMessage = viewModel.errorMessage, !viewModel.isOverBudget {
+                        ErrorMessageView(message: errorMessage)
+                            .padding(.top, 16)
+                    }
                     ResultSectionView(viewModel: viewModel)
                         .padding(.top, 24)
                     ActionButtonsView(viewModel: viewModel, focusedField: $focusedField)
@@ -57,6 +61,7 @@ struct ContentView: View {
             }
             .animation(.spring(response: 0.4, dampingFraction: 0.85), value: viewModel.finalPrice)
             .animation(.spring(response: 0.4, dampingFraction: 0.85), value: viewModel.isOverBudget)
+            .animation(.spring(response: 0.4, dampingFraction: 0.85), value: viewModel.errorMessage)
         }
         .onTapGesture { focusedField = nil }
     }
