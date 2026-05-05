@@ -26,6 +26,7 @@ final class MainCalculatorViewModel: ObservableObject {
     @Published private(set) var finalPrice: Decimal?
     @Published private(set) var isOverBudget: Bool
     @Published private(set) var errorMessage: String?
+    @Published private(set) var savedProducts: [Product]
 
     let availableDiscountRates: [DiscountRate]
     let availableCategories: [Category]
@@ -67,6 +68,15 @@ final class MainCalculatorViewModel: ObservableObject {
         moneyFormatter.currencySymbol
     }
 
+    var formattedSavedProductsTotal: String {
+        let total = savedProducts.reduce(Decimal(0)) { $0 + $1.finalPrice }
+        return moneyFormatter.formatCurrency(total)
+    }
+
+    func formattedFinalPrice(for product: Product) -> String {
+        moneyFormatter.formatCurrency(product.finalPrice)
+    }
+
     init(
         productName: String = "",
         originalPriceText: String = "",
@@ -100,9 +110,11 @@ final class MainCalculatorViewModel: ObservableObject {
         self.settingsStore = settingsStore
         self.settings = settingsStore.settings
         self.isOverBudget = false
+        self.savedProducts = productStore.products
 
         enforceSettings()
         observeSettings()
+        observeProducts()
     }
 
     func selectDiscountRate(_ rate: DiscountRate) {
@@ -159,6 +171,11 @@ final class MainCalculatorViewModel: ObservableObject {
         }
 
         productStore.add(currentProduct)
+        errorMessage = nil
+    }
+
+    func removeSavedProduct(_ product: Product) {
+        productStore.remove(product)
     }
 
     func applyLookupResult(_ result: ProductLookupResult) {
@@ -209,6 +226,14 @@ private extension MainCalculatorViewModel {
                 self.settings = settings
                 self.enforceSettings()
                 self.updateBudgetState()
+            }
+            .store(in: &cancellables)
+    }
+
+    func observeProducts() {
+        productStore.$products
+            .sink { [weak self] products in
+                self?.savedProducts = products
             }
             .store(in: &cancellables)
     }

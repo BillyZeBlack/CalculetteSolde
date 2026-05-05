@@ -15,7 +15,7 @@ struct SaveBarView: View {
                 viewModel.saveCurrentProduct()
             }
         } label: {
-            Label("Enregistrer le produit", systemImage: "square.and.arrow.down")
+            Label("Ajouter le produit", systemImage: "plus.circle.fill")
                 .font(.headline.weight(.semibold))
                 .frame(maxWidth: .infinity)
                 .padding(.vertical, 16)

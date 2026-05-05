@@ -9,6 +9,10 @@
 "Scanner" = "Scan";
 "Réinitialiser" = "Reset";
 "Enregistrer le produit" = "Save product";
+"Ajouter le produit" = "Add product";
+"Produits ajoutés" = "Added products";
+"Produit sans nom" = "Unnamed product";
+"Supprimer" = "Delete";
 "Budget maximum dépassé" = "Maximum budget exceeded";
 "Remise" = "Discount";
 "Prix final" = "Final price";

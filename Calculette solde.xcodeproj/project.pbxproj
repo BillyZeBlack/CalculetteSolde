@@ -16,6 +16,7 @@
 		F101A0092C00000100000001 /* ActionButtonsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F101A00A2C00000100000001 /* ActionButtonsView.swift */; };
 		F101A00B2C00000100000001 /* SaveBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F101A00C2C00000100000001 /* SaveBarView.swift */; };
 		F103A0012C00000100000001 /* ErrorMessageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F103A0022C00000100000001 /* ErrorMessageView.swift */; };
+		F104A0012C00000100000001 /* AddedProductsListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F104A0022C00000100000001 /* AddedProductsListView.swift */; };
 		5A01A0062C00000200000001 /* DiscountRate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A01A0052C00000200000001 /* DiscountRate.swift */; };
 		5A01A0082C00000300000001 /* Product.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A01A0072C00000300000001 /* Product.swift */; };
 		5A01A00A2C00000400000001 /* AppSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A01A0092C00000400000001 /* AppSettings.swift */; };
@@ -64,6 +65,7 @@
 		F101A00A2C00000100000001 /* ActionButtonsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionButtonsView.swift; sourceTree = "<group>"; };
 		F101A00C2C00000100000001 /* SaveBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SaveBarView.swift; sourceTree = "<group>"; };
 		F103A0022C00000100000001 /* ErrorMessageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorMessageView.swift; sourceTree = "<group>"; };
+		F104A0022C00000100000001 /* AddedProductsListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddedProductsListView.swift; sourceTree = "<group>"; };
 		5A01A0052C00000200000001 /* DiscountRate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscountRate.swift; sourceTree = "<group>"; };
 		5A01A0072C00000300000001 /* Product.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Product.swift; sourceTree = "<group>"; };
 		5A01A0092C00000400000001 /* AppSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppSettings.swift; sourceTree = "<group>"; };
@@ -137,6 +139,7 @@
 				F101A00A2C00000100000001 /* ActionButtonsView.swift */,
 				F101A00C2C00000100000001 /* SaveBarView.swift */,
 				F103A0022C00000100000001 /* ErrorMessageView.swift */,
+				F104A0022C00000100000001 /* AddedProductsListView.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -377,6 +380,7 @@
 				F101A0092C00000100000001 /* ActionButtonsView.swift in Sources */,
 				F101A00B2C00000100000001 /* SaveBarView.swift in Sources */,
 				F103A0012C00000100000001 /* ErrorMessageView.swift in Sources */,
+				F104A0012C00000100000001 /* AddedProductsListView.swift in Sources */,
 				5A01A0062C00000200000001 /* DiscountRate.swift in Sources */,
 				BEA674B62486EDEB00EC99B2 /* CustomCollectionViewCell.swift in Sources */,
 				BEA76CBA24812F0B000244BA /* ViewController.swift in Sources */,

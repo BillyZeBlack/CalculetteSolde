@@ -164,6 +164,48 @@ final class MainCalculatorViewModelTests: XCTestCase {
         XCTAssertEqual(productStore.products.count, 1)
         XCTAssertEqual(productStore.products.first?.name, "Pull")
         XCTAssertEqual(productStore.products.first?.finalPrice, Decimal(60))
+        XCTAssertEqual(viewModel.savedProducts.count, 1)
+        XCTAssertEqual(viewModel.savedProducts.first?.name, "Pull")
+        XCTAssertEqual(viewModel.formattedSavedProductsTotal, "60,00 €")
+    }
+
+    func testSavesDistinctProductsIntoSharedStore() {
+        let productStore = ProductStore()
+        let viewModel = makeViewModel(productStore: productStore)
+
+        viewModel.productName = "Pull"
+        viewModel.originalPriceText = "100"
+        viewModel.selectDiscountRate(DiscountRate(percentage: 40))
+        viewModel.calculate()
+        viewModel.saveCurrentProduct()
+
+        viewModel.productName = "Pantalon"
+        viewModel.originalPriceText = "50"
+        viewModel.selectDiscountRate(DiscountRate(percentage: 20))
+        viewModel.calculate()
+        viewModel.saveCurrentProduct()
+
+        XCTAssertEqual(productStore.products.count, 2)
+        XCTAssertEqual(productStore.products.map(\.name), ["Pull", "Pantalon"])
+        XCTAssertNotEqual(productStore.products[0].id, productStore.products[1].id)
+        XCTAssertEqual(viewModel.savedProducts.count, 2)
+        XCTAssertEqual(viewModel.formattedSavedProductsTotal, "100,00 €")
+    }
+
+    func testRemovesSavedProductFromSharedStore() {
+        let product = Product(
+            name: "Pull",
+            originalPrice: Decimal(100),
+            discountRate: DiscountRate(percentage: 40)
+        )
+        let productStore = ProductStore(products: [product])
+        let viewModel = makeViewModel(productStore: productStore)
+
+        viewModel.removeSavedProduct(product)
+
+        XCTAssertTrue(productStore.products.isEmpty)
+        XCTAssertTrue(viewModel.savedProducts.isEmpty)
+        XCTAssertEqual(viewModel.formattedSavedProductsTotal, "0,00 €")
     }
 
     private func makeViewModel(
