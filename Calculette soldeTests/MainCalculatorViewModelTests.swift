@@ -208,6 +208,23 @@ final class MainCalculatorViewModelTests: XCTestCase {
         XCTAssertEqual(viewModel.formattedSavedProductsTotal, "0,00 €")
     }
 
+    func testAssignsCategoryToSavedProduct() {
+        let product = Product(
+            name: "Pull",
+            originalPrice: Decimal(100),
+            discountRate: DiscountRate(percentage: 40)
+        )
+        let productStore = ProductStore(products: [product])
+        let viewModel = makeViewModel(productStore: productStore)
+        let category = Calculette_solde.Category.defaults[0]
+
+        viewModel.assignCategory(category, to: product)
+
+        XCTAssertEqual(productStore.products.first?.category, category)
+        XCTAssertEqual(viewModel.savedProducts.first?.category, category)
+        XCTAssertEqual(productStore.products.first?.id, product.id)
+    }
+
     private func makeViewModel(
         productStore: ProductStore? = nil,
         settingsStore: SettingsStore? = nil

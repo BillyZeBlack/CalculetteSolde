@@ -25,6 +25,11 @@ final class ProductStore: ObservableObject {
         products.removeAll { $0.id == product.id }
     }
 
+    func updateCategory(_ category: Category?, for product: Product) {
+        guard let index = products.firstIndex(where: { $0.id == product.id }) else { return }
+        products[index].category = category
+    }
+
     func clear() {
         products.removeAll()
     }

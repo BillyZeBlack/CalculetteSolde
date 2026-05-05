@@ -2,6 +2,7 @@ import SwiftUI
 
 struct AddedProductsListView: View {
     @ObservedObject var viewModel: MainCalculatorViewModel
+    @State private var productBeingCategorized: Product?
 
     private let rowHeight: CGFloat = 64
     private let maximumVisibleRows = 4
@@ -15,7 +16,10 @@ struct AddedProductsListView: View {
                     ForEach(viewModel.savedProducts) { product in
                         ProductRowView(
                             product: product,
-                            finalPrice: viewModel.formattedFinalPrice(for: product)
+                            finalPrice: viewModel.formattedFinalPrice(for: product),
+                            onCategoryTap: {
+                                productBeingCategorized = product
+                            }
                         )
                         .listRowInsets(EdgeInsets())
                         .listRowSeparator(.visible)
@@ -47,6 +51,17 @@ struct AddedProductsListView: View {
             .clipShape(RoundedRectangle(cornerRadius: 16, style: .continuous))
             .padding(.horizontal)
             .transition(.move(edge: .bottom).combined(with: .opacity))
+            .sheet(item: $productBeingCategorized) { product in
+                CategorySelectionView(
+                    product: product,
+                    categories: viewModel.availableCategories,
+                    onSelect: { category in
+                        viewModel.assignCategory(category, to: product)
+                    }
+                )
+                .presentationDetents([.medium])
+                .presentationDragIndicator(.visible)
+            }
         }
     }
 
@@ -77,14 +92,19 @@ struct AddedProductsListView: View {
 private struct ProductRowView: View {
     let product: Product
     let finalPrice: String
+    let onCategoryTap: () -> Void
 
     var body: some View {
         HStack(spacing: 12) {
-            Image(systemName: product.category?.systemImageName ?? "cart.fill")
-                .font(.body.weight(.semibold))
-                .foregroundStyle(.blue)
-                .frame(width: 28, height: 28)
-                .background(Color.blue.opacity(0.1), in: Circle())
+            Button(action: onCategoryTap) {
+                Image(systemName: product.category?.systemImageName ?? "cart.fill")
+                    .font(.body.weight(.semibold))
+                    .foregroundStyle(.blue)
+                    .frame(width: 32, height: 32)
+                    .background(Color.blue.opacity(0.1), in: Circle())
+            }
+            .buttonStyle(.plain)
+            .accessibilityLabel("Choisir une catégorie")
 
             VStack(alignment: .leading, spacing: 3) {
                 Text(product.name.isEmpty ? "Produit sans nom" : product.name)
