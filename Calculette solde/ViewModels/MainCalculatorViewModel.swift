@@ -179,14 +179,16 @@ final class MainCalculatorViewModel: ObservableObject {
         updateBudgetState()
     }
 
-    func saveCurrentProduct() {
+    @discardableResult
+    func saveCurrentProduct() -> Bool {
         guard let currentProduct else {
             errorMessage = "Aucun produit valide a enregistrer."
-            return
+            return false
         }
 
         productStore.add(currentProduct)
         errorMessage = nil
+        return true
     }
 
     func removeSavedProduct(_ product: Product) {

@@ -44,6 +44,9 @@
 		F105A0012C00000100000001 /* CategorySelectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F105A0022C00000100000001 /* CategorySelectionView.swift */; };
 		F106A0012C00000100000001 /* BarcodeScannerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F106A0022C00000100000001 /* BarcodeScannerView.swift */; };
 		F107A0012C00000100000001 /* ScannedBarcodeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F107A0022C00000100000001 /* ScannedBarcodeView.swift */; };
+		F108A0012C00000100000001 /* AdMobBannerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F108A0022C00000100000001 /* AdMobBannerView.swift */; };
+		F108A0032C00000100000001 /* GoogleMobileAds in Frameworks */ = {isa = PBXBuildFile; productRef = F108A0052C00000100000001 /* GoogleMobileAds */; };
+		F109A0012C00000100000001 /* InterstitialAdManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F109A0022C00000100000001 /* InterstitialAdManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -98,6 +101,8 @@
 		F105A0022C00000100000001 /* CategorySelectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategorySelectionView.swift; sourceTree = "<group>"; };
 		F106A0022C00000100000001 /* BarcodeScannerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BarcodeScannerView.swift; sourceTree = "<group>"; };
 		F107A0022C00000100000001 /* ScannedBarcodeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScannedBarcodeView.swift; sourceTree = "<group>"; };
+		F108A0022C00000100000001 /* AdMobBannerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdMobBannerView.swift; sourceTree = "<group>"; };
+		F109A0022C00000100000001 /* InterstitialAdManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InterstitialAdManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -113,6 +118,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F108A0032C00000100000001 /* GoogleMobileAds in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -148,6 +154,7 @@
 				5A01A0182C00000700000001 /* ProductStore.swift */,
 				5A01A01A2C00000700000001 /* SettingsStore.swift */,
 				5A01A0222C00000700000001 /* ProductLookupService.swift */,
+				F109A0022C00000100000001 /* InterstitialAdManager.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -233,6 +240,7 @@
 				F103A0022C00000100000001 /* ErrorMessageView.swift */,
 				F104A0022C00000100000001 /* AddedProductsListView.swift */,
 				F107A0022C00000100000001 /* ScannedBarcodeView.swift */,
+				F108A0022C00000100000001 /* AdMobBannerView.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -271,6 +279,9 @@
 			dependencies = (
 			);
 			name = "Calculette solde";
+			packageProductDependencies = (
+				F108A0052C00000100000001 /* GoogleMobileAds */,
+			);
 			productName = "Calculette solde";
 			productReference = BEA76CB224812F0B000244BA /* Calculette solde.app */;
 			productType = "com.apple.product-type.application";
@@ -304,6 +315,9 @@
 				Base,
 			);
 			mainGroup = BEA76CA924812F0B000244BA;
+			packageReferences = (
+				F108A0042C00000100000001 /* XCRemoteSwiftPackageReference "swift-package-manager-google-mobile-ads" */,
+			);
 			productRefGroup = BEA76CB324812F0B000244BA /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -364,6 +378,7 @@
 				F105A0012C00000100000001 /* CategorySelectionView.swift in Sources */,
 				F106A0012C00000100000001 /* BarcodeScannerView.swift in Sources */,
 				F107A0012C00000100000001 /* ScannedBarcodeView.swift in Sources */,
+				F108A0012C00000100000001 /* AdMobBannerView.swift in Sources */,
 				5A01A0062C00000200000001 /* DiscountRate.swift in Sources */,
 				5A01A0082C00000300000001 /* Product.swift in Sources */,
 				5A01A00A2C00000400000001 /* AppSettings.swift in Sources */,
@@ -376,6 +391,7 @@
 				5A01A0192C00000700000001 /* ProductStore.swift in Sources */,
 				5A01A01B2C00000700000001 /* SettingsStore.swift in Sources */,
 				5A01A0212C00000700000001 /* ProductLookupService.swift in Sources */,
+				F109A0012C00000100000001 /* InterstitialAdManager.swift in Sources */,
 				5A01A01D2C00000800000001 /* ProductRecapViewModel.swift in Sources */,
 				5A01A01F2C00000800000001 /* SettingsViewModel.swift in Sources */,
 				9FEAFC6B2FA8E61E00E5ADF9 /* Category.swift in Sources */,
@@ -411,6 +427,25 @@
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		F108A0042C00000100000001 /* XCRemoteSwiftPackageReference "swift-package-manager-google-mobile-ads" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/googleads/swift-package-manager-google-mobile-ads.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 12.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		F108A0052C00000100000001 /* GoogleMobileAds */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = F108A0042C00000100000001 /* XCRemoteSwiftPackageReference "swift-package-manager-google-mobile-ads" */;
+			productName = GoogleMobileAds;
+		};
+/* End XCSwiftPackageProductDependency section */
 
 /* Begin XCBuildConfiguration section */
 		5A02A0262C00000900000001 /* Debug */ = {

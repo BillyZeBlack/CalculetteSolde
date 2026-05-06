@@ -2,6 +2,7 @@ import SwiftUI
 
 struct ContentView: View {
     @StateObject private var viewModel = MainCalculatorViewModel()
+    @StateObject private var interstitialAdManager = InterstitialAdManager()
     @FocusState var focusedField: Field?
 
     enum Field: Hashable {
@@ -31,6 +32,11 @@ struct ContentView: View {
                         .padding(.top, 16)
                     AddedProductsListView(viewModel: viewModel)
                         .padding(.top, 24)
+                    if !viewModel.savedProducts.isEmpty {
+                        AdMobBannerView()
+                            .padding(.top, 12)
+                            .padding(.horizontal)
+                    }
                     Spacer(minLength: 40)
                 }
             }
@@ -58,9 +64,19 @@ struct ContentView: View {
                 }
             }
             .safeAreaInset(edge: .bottom) {
-                if viewModel.finalPrice != nil {
-                    SaveBarView(viewModel: viewModel)
-                        .transition(.move(edge: .bottom).combined(with: .opacity))
+                VStack(spacing: 8) {
+                    if viewModel.savedProducts.isEmpty {
+                        AdMobBannerView()
+                            .padding(.horizontal)
+                    }
+
+                    if viewModel.finalPrice != nil {
+                        SaveBarView(
+                            viewModel: viewModel,
+                            onProductAdded: interstitialAdManager.recordAddedProduct
+                        )
+                            .transition(.move(edge: .bottom).combined(with: .opacity))
+                    }
                 }
             }
             .animation(.spring(response: 0.4, dampingFraction: 0.85), value: viewModel.finalPrice)
@@ -70,6 +86,9 @@ struct ContentView: View {
             .animation(.spring(response: 0.4, dampingFraction: 0.85), value: viewModel.scannedBarcode)
         }
         .onTapGesture { focusedField = nil }
+        .task {
+            interstitialAdManager.loadAdIfNeeded()
+        }
     }
 }
 

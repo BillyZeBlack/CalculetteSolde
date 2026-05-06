@@ -8,11 +8,14 @@ private let accentGradient = LinearGradient(
 
 struct SaveBarView: View {
     @ObservedObject var viewModel: MainCalculatorViewModel
+    var onProductAdded: () -> Void = {}
 
     var body: some View {
         Button {
             withAnimation {
-                viewModel.saveCurrentProduct()
+                if viewModel.saveCurrentProduct() {
+                    onProductAdded()
+                }
             }
         } label: {
             Label("Ajouter le produit", systemImage: "plus.circle.fill")
