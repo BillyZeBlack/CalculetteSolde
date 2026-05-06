@@ -3,6 +3,7 @@ import SwiftUI
 struct ActionButtonsView: View {
     @ObservedObject var viewModel: MainCalculatorViewModel
     @FocusState.Binding var focusedField: ContentView.Field?
+    @State private var isScannerPresented = false
 
     var body: some View {
         HStack(spacing: 12) {
@@ -10,11 +11,17 @@ struct ActionButtonsView: View {
             resetButton
         }
         .padding(.horizontal)
+        .fullScreenCover(isPresented: $isScannerPresented) {
+            BarcodeScannerView { barcode in
+                viewModel.handleScannedBarcode(barcode)
+            }
+        }
     }
 
     private var scanButton: some View {
         Button {
-            // Future: intégration scan code-barres
+            focusedField = nil
+            isScannerPresented = true
         } label: {
             Label("Scanner", systemImage: "barcode.viewfinder")
                 .font(.subheadline.weight(.semibold))

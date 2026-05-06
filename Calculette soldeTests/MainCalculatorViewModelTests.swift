@@ -225,14 +225,87 @@ final class MainCalculatorViewModelTests: XCTestCase {
         XCTAssertEqual(productStore.products.first?.id, product.id)
     }
 
+    func testLookupScannedProductFillsProductName() async {
+        let barcode = Barcode(value: "3017620422003", symbology: .ean13)
+        let result = ProductLookupResult(
+            barcode: barcode,
+            source: .openFoodFacts,
+            name: "Pate a tartiner",
+            categoryName: "Courses"
+        )
+        let viewModel = makeViewModel(
+            productLookupService: ProductLookupServiceMock(result: result)
+        )
+
+        await viewModel.lookupScannedProduct(for: barcode)
+
+        XCTAssertEqual(viewModel.scannedBarcode, barcode)
+        XCTAssertEqual(viewModel.productLookupResult, result)
+        XCTAssertEqual(viewModel.productName, "Pate a tartiner")
+        XCTAssertEqual(viewModel.selectedCategory, Calculette_solde.Category.defaults.first { $0.id == "groceries" })
+        XCTAssertFalse(viewModel.isLookingUpScannedProduct)
+        XCTAssertNil(viewModel.productLookupErrorMessage)
+    }
+
+    func testLookupScannedProductHandlesMissingProduct() async {
+        let barcode = Barcode(value: "3017620422003", symbology: .ean13)
+        let viewModel = makeViewModel(
+            productLookupService: ProductLookupServiceMock(result: nil)
+        )
+
+        await viewModel.lookupScannedProduct(for: barcode)
+
+        XCTAssertNil(viewModel.productLookupResult)
+        XCTAssertEqual(viewModel.productLookupErrorMessage, "Produit introuvable pour ce code-barres.")
+        XCTAssertFalse(viewModel.isLookingUpScannedProduct)
+    }
+
+    func testLookupScannedProductHandlesError() async {
+        let barcode = Barcode(value: "3017620422003", symbology: .ean13)
+        let viewModel = makeViewModel(
+            productLookupService: ProductLookupServiceMock(error: ProductLookupError.invalidResponse)
+        )
+
+        await viewModel.lookupScannedProduct(for: barcode)
+
+        XCTAssertNil(viewModel.productLookupResult)
+        XCTAssertEqual(viewModel.productLookupErrorMessage, "Impossible de récupérer les informations du produit.")
+        XCTAssertFalse(viewModel.isLookingUpScannedProduct)
+    }
+
     private func makeViewModel(
         productStore: ProductStore? = nil,
-        settingsStore: SettingsStore? = nil
+        settingsStore: SettingsStore? = nil,
+        productLookupService: ProductLookupServicing = ProductLookupServiceMock(result: nil)
     ) -> MainCalculatorViewModel {
         MainCalculatorViewModel(
             moneyFormatter: MoneyFormatter(locale: Locale(identifier: "fr_FR")),
             productStore: productStore,
-            settingsStore: settingsStore
+            settingsStore: settingsStore,
+            productLookupService: productLookupService
         )
+    }
+}
+
+private struct ProductLookupServiceMock: ProductLookupServicing {
+    let result: ProductLookupResult?
+    let error: Error?
+
+    init(result: ProductLookupResult?) {
+        self.result = result
+        self.error = nil
+    }
+
+    init(error: Error) {
+        self.result = nil
+        self.error = error
+    }
+
+    func lookupProduct(barcode: Barcode) async throws -> ProductLookupResult? {
+        if let error {
+            throw error
+        }
+
+        return result
     }
 }

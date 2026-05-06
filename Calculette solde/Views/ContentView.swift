@@ -27,6 +27,8 @@ struct ContentView: View {
                         .padding(.top, 24)
                     ActionButtonsView(viewModel: viewModel, focusedField: $focusedField)
                         .padding(.top, 24)
+                    ScannedBarcodeView(viewModel: viewModel)
+                        .padding(.top, 16)
                     AddedProductsListView(viewModel: viewModel)
                         .padding(.top, 24)
                     Spacer(minLength: 40)
@@ -65,6 +67,7 @@ struct ContentView: View {
             .animation(.spring(response: 0.4, dampingFraction: 0.85), value: viewModel.isOverBudget)
             .animation(.spring(response: 0.4, dampingFraction: 0.85), value: viewModel.errorMessage)
             .animation(.spring(response: 0.4, dampingFraction: 0.85), value: viewModel.savedProducts)
+            .animation(.spring(response: 0.4, dampingFraction: 0.85), value: viewModel.scannedBarcode)
         }
         .onTapGesture { focusedField = nil }
     }

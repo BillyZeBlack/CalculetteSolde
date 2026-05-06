@@ -15,6 +15,17 @@
 "Supprimer" = "Supprimer";
 "Choisir une catégorie" = "Choisir une catégorie";
 "Aucune catégorie" = "Aucune catégorie";
+"Fermer" = "Fermer";
+"Placez le code-barres dans le cadre" = "Placez le code-barres dans le cadre";
+"Accès caméra indisponible" = "Accès caméra indisponible";
+"Autorisez l'accès caméra dans Réglages pour scanner un code-barres." = "Autorisez l'accès caméra dans Réglages pour scanner un code-barres.";
+"Scanner indisponible" = "Scanner indisponible";
+"Code-barres scanné" = "Code-barres scanné";
+"Effacer le code-barres" = "Effacer le code-barres";
+"Recherche du produit" = "Recherche du produit";
+"Produit introuvable pour ce code-barres." = "Produit introuvable pour ce code-barres.";
+"Code-barres invalide." = "Code-barres invalide.";
+"Impossible de récupérer les informations du produit." = "Impossible de récupérer les informations du produit.";
 "Budget maximum dépassé" = "Budget maximum dépassé";
 "Remise" = "Remise";
 "Prix final" = "Prix final";

@@ -20,6 +20,8 @@ final class MainCalculatorViewModel: ObservableObject {
 
     @Published var scannedBarcode: Barcode?
     @Published var productLookupResult: ProductLookupResult?
+    @Published private(set) var isLookingUpScannedProduct: Bool
+    @Published private(set) var productLookupErrorMessage: String?
 
     @Published private(set) var originalPrice: Decimal?
     @Published private(set) var discountAmount: Decimal?
@@ -35,6 +37,7 @@ final class MainCalculatorViewModel: ObservableObject {
     private let moneyFormatter: MoneyFormatter
     private let productStore: ProductStore
     private let settingsStore: SettingsStore
+    private let productLookupService: ProductLookupServicing
     private var cancellables = Set<AnyCancellable>()
 
     var canSelectCategory: Bool {
@@ -73,6 +76,14 @@ final class MainCalculatorViewModel: ObservableObject {
         return moneyFormatter.formatCurrency(total)
     }
 
+    var scannedBarcodeValue: String? {
+        scannedBarcode?.value
+    }
+
+    var scannedBarcodeSymbologyLabel: String? {
+        scannedBarcode?.symbology.displayName
+    }
+
     func formattedFinalPrice(for product: Product) -> String {
         moneyFormatter.formatCurrency(product.finalPrice)
     }
@@ -90,7 +101,8 @@ final class MainCalculatorViewModel: ObservableObject {
         calculator: DiscountCalculator = DiscountCalculator(),
         moneyFormatter: MoneyFormatter = MoneyFormatter(),
         productStore: ProductStore? = nil,
-        settingsStore: SettingsStore? = nil
+        settingsStore: SettingsStore? = nil,
+        productLookupService: ProductLookupServicing = ProductLookupService()
     ) {
         let productStore = productStore ?? ProductStore()
         let settingsStore = settingsStore ?? SettingsStore()
@@ -108,8 +120,11 @@ final class MainCalculatorViewModel: ObservableObject {
         self.moneyFormatter = moneyFormatter
         self.productStore = productStore
         self.settingsStore = settingsStore
+        self.productLookupService = productLookupService
         self.settings = settingsStore.settings
         self.isOverBudget = false
+        self.isLookingUpScannedProduct = false
+        self.productLookupErrorMessage = nil
         self.savedProducts = productStore.products
 
         enforceSettings()
@@ -194,11 +209,22 @@ final class MainCalculatorViewModel: ObservableObject {
     func updateScannedBarcode(_ barcode: Barcode) {
         scannedBarcode = barcode
         productLookupResult = nil
+        productLookupErrorMessage = nil
+    }
+
+    func handleScannedBarcode(_ barcode: Barcode) {
+        updateScannedBarcode(barcode)
+
+        Task {
+            await lookupScannedProduct(for: barcode)
+        }
     }
 
     func clearScanState() {
         scannedBarcode = nil
         productLookupResult = nil
+        productLookupErrorMessage = nil
+        isLookingUpScannedProduct = false
     }
 
     func reset() {
@@ -210,6 +236,51 @@ final class MainCalculatorViewModel: ObservableObject {
         scannedBarcode = nil
         productLookupResult = nil
         clearCalculation()
+    }
+
+    func lookupScannedProduct(for barcode: Barcode) async {
+        scannedBarcode = barcode
+        isLookingUpScannedProduct = true
+        productLookupErrorMessage = nil
+
+        do {
+            guard let result = try await productLookupService.lookupProduct(barcode: barcode) else {
+                productLookupResult = nil
+                productLookupErrorMessage = "Produit introuvable pour ce code-barres."
+                isLookingUpScannedProduct = false
+                return
+            }
+
+            applyLookupResult(result)
+            isLookingUpScannedProduct = false
+        } catch ProductLookupError.invalidBarcode {
+            productLookupErrorMessage = "Code-barres invalide."
+            isLookingUpScannedProduct = false
+        } catch {
+            productLookupErrorMessage = "Impossible de récupérer les informations du produit."
+            isLookingUpScannedProduct = false
+        }
+    }
+}
+
+private extension Barcode.Symbology {
+    var displayName: String {
+        switch self {
+        case .ean8:
+            return "EAN-8"
+        case .ean13:
+            return "EAN-13"
+        case .upcA:
+            return "UPC-A"
+        case .upcE:
+            return "UPC-E"
+        case .isbn:
+            return "ISBN"
+        case .gtin:
+            return "GTIN"
+        case .unknown:
+            return "Code-barres"
+        }
     }
 }
 

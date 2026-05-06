@@ -15,6 +15,17 @@
 "Supprimer" = "Delete";
 "Choisir une catégorie" = "Choose a category";
 "Aucune catégorie" = "No category";
+"Fermer" = "Close";
+"Placez le code-barres dans le cadre" = "Place the barcode inside the frame";
+"Accès caméra indisponible" = "Camera access unavailable";
+"Autorisez l'accès caméra dans Réglages pour scanner un code-barres." = "Allow camera access in Settings to scan a barcode.";
+"Scanner indisponible" = "Scanner unavailable";
+"Code-barres scanné" = "Scanned barcode";
+"Effacer le code-barres" = "Clear barcode";
+"Recherche du produit" = "Looking up product";
+"Produit introuvable pour ce code-barres." = "No product found for this barcode.";
+"Code-barres invalide." = "Invalid barcode.";
+"Impossible de récupérer les informations du produit." = "Unable to retrieve product information.";
 "Budget maximum dépassé" = "Maximum budget exceeded";
 "Remise" = "Discount";
 "Prix final" = "Final price";

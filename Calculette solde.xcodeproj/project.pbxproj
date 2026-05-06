@@ -18,6 +18,8 @@
 		F103A0012C00000100000001 /* ErrorMessageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F103A0022C00000100000001 /* ErrorMessageView.swift */; };
 		F104A0012C00000100000001 /* AddedProductsListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F104A0022C00000100000001 /* AddedProductsListView.swift */; };
 		F105A0012C00000100000001 /* CategorySelectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F105A0022C00000100000001 /* CategorySelectionView.swift */; };
+		F106A0012C00000100000001 /* BarcodeScannerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F106A0022C00000100000001 /* BarcodeScannerView.swift */; };
+		F107A0012C00000100000001 /* ScannedBarcodeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F107A0022C00000100000001 /* ScannedBarcodeView.swift */; };
 		5A01A0062C00000200000001 /* DiscountRate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A01A0052C00000200000001 /* DiscountRate.swift */; };
 		5A01A0082C00000300000001 /* Product.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A01A0072C00000300000001 /* Product.swift */; };
 		5A01A00A2C00000400000001 /* AppSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A01A0092C00000400000001 /* AppSettings.swift */; };
@@ -29,6 +31,7 @@
 		5A01A0172C00000700000001 /* MoneyFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A01A0162C00000700000001 /* MoneyFormatter.swift */; };
 		5A01A0192C00000700000001 /* ProductStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A01A0182C00000700000001 /* ProductStore.swift */; };
 		5A01A01B2C00000700000001 /* SettingsStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A01A01A2C00000700000001 /* SettingsStore.swift */; };
+		5A01A0212C00000700000001 /* ProductLookupService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A01A0222C00000700000001 /* ProductLookupService.swift */; };
 		5A01A01D2C00000800000001 /* ProductRecapViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A01A01C2C00000800000001 /* ProductRecapViewModel.swift */; };
 		5A01A01F2C00000800000001 /* SettingsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A01A01E2C00000800000001 /* SettingsViewModel.swift */; };
 		5A02A0022C00000900000001 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5A02A0012C00000900000001 /* XCTest.framework */; };
@@ -68,6 +71,8 @@
 		F103A0022C00000100000001 /* ErrorMessageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorMessageView.swift; sourceTree = "<group>"; };
 		F104A0022C00000100000001 /* AddedProductsListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddedProductsListView.swift; sourceTree = "<group>"; };
 		F105A0022C00000100000001 /* CategorySelectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategorySelectionView.swift; sourceTree = "<group>"; };
+		F106A0022C00000100000001 /* BarcodeScannerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BarcodeScannerView.swift; sourceTree = "<group>"; };
+		F107A0022C00000100000001 /* ScannedBarcodeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScannedBarcodeView.swift; sourceTree = "<group>"; };
 		5A01A0052C00000200000001 /* DiscountRate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscountRate.swift; sourceTree = "<group>"; };
 		5A01A0072C00000300000001 /* Product.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Product.swift; sourceTree = "<group>"; };
 		5A01A0092C00000400000001 /* AppSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppSettings.swift; sourceTree = "<group>"; };
@@ -79,6 +84,7 @@
 		5A01A0162C00000700000001 /* MoneyFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoneyFormatter.swift; sourceTree = "<group>"; };
 		5A01A0182C00000700000001 /* ProductStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductStore.swift; sourceTree = "<group>"; };
 		5A01A01A2C00000700000001 /* SettingsStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsStore.swift; sourceTree = "<group>"; };
+		5A01A0222C00000700000001 /* ProductLookupService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductLookupService.swift; sourceTree = "<group>"; };
 		5A01A01C2C00000800000001 /* ProductRecapViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductRecapViewModel.swift; sourceTree = "<group>"; };
 		5A01A01E2C00000800000001 /* SettingsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewModel.swift; sourceTree = "<group>"; };
 		5A02A0012C00000900000001 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = System/Library/Frameworks/XCTest.framework; sourceTree = SDKROOT; };
@@ -128,6 +134,7 @@
 				F101A00D2C00000100000001 /* Components */,
 				5A01A0022C00000100000001 /* ContentView.swift */,
 				F105A0022C00000100000001 /* CategorySelectionView.swift */,
+				F106A0022C00000100000001 /* BarcodeScannerView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -143,6 +150,7 @@
 				F101A00C2C00000100000001 /* SaveBarView.swift */,
 				F103A0022C00000100000001 /* ErrorMessageView.swift */,
 				F104A0022C00000100000001 /* AddedProductsListView.swift */,
+				F107A0022C00000100000001 /* ScannedBarcodeView.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -164,6 +172,7 @@
 				5A01A0162C00000700000001 /* MoneyFormatter.swift */,
 				5A01A0182C00000700000001 /* ProductStore.swift */,
 				5A01A01A2C00000700000001 /* SettingsStore.swift */,
+				5A01A0222C00000700000001 /* ProductLookupService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -385,6 +394,8 @@
 				F103A0012C00000100000001 /* ErrorMessageView.swift in Sources */,
 				F104A0012C00000100000001 /* AddedProductsListView.swift in Sources */,
 				F105A0012C00000100000001 /* CategorySelectionView.swift in Sources */,
+				F106A0012C00000100000001 /* BarcodeScannerView.swift in Sources */,
+				F107A0012C00000100000001 /* ScannedBarcodeView.swift in Sources */,
 				5A01A0062C00000200000001 /* DiscountRate.swift in Sources */,
 				BEA674B62486EDEB00EC99B2 /* CustomCollectionViewCell.swift in Sources */,
 				BEA76CBA24812F0B000244BA /* ViewController.swift in Sources */,
@@ -398,6 +409,7 @@
 				5A01A0172C00000700000001 /* MoneyFormatter.swift in Sources */,
 				5A01A0192C00000700000001 /* ProductStore.swift in Sources */,
 				5A01A01B2C00000700000001 /* SettingsStore.swift in Sources */,
+				5A01A0212C00000700000001 /* ProductLookupService.swift in Sources */,
 				5A01A01D2C00000800000001 /* ProductRecapViewModel.swift in Sources */,
 				5A01A01F2C00000800000001 /* SettingsViewModel.swift in Sources */,
 				9FEAFC6B2FA8E61E00E5ADF9 /* Category.swift in Sources */,
