@@ -169,6 +169,20 @@ final class MainCalculatorViewModelTests: XCTestCase {
         XCTAssertEqual(viewModel.formattedSavedProductsTotal, "60,00 €")
     }
 
+    func testRejectsSavingProductWithZeroPrice() {
+        let productStore = ProductStore()
+        let viewModel = makeViewModel(productStore: productStore)
+
+        viewModel.productName = "Produit gratuit"
+        viewModel.originalPriceText = "0"
+        viewModel.selectDiscountRate(DiscountRate(percentage: 0))
+
+        XCTAssertFalse(viewModel.saveCurrentProduct())
+        XCTAssertTrue(productStore.products.isEmpty)
+        XCTAssertTrue(viewModel.savedProducts.isEmpty)
+        XCTAssertEqual(viewModel.errorMessage, "Renseignez un prix supérieur à 0 € pour ajouter ce produit.")
+    }
+
     func testSavesDistinctProductsIntoSharedStore() {
         let productStore = ProductStore()
         let viewModel = makeViewModel(productStore: productStore)

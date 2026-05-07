@@ -38,6 +38,7 @@
 "Remise" = "Remise";
 "Prix final" = "Prix final";
 "Le prix initial est invalide." = "Le prix initial est invalide.";
+"Renseignez un prix supérieur à 0 € pour ajouter ce produit." = "Renseignez un prix supérieur à 0 € pour ajouter ce produit.";
 "Aucun produit valide a enregistrer." = "Aucun produit valide à enregistrer.";
 "La remise personnalisee doit etre comprise entre 0 et 100." = "La remise personnalisée doit être comprise entre 0 et 100.";
 "La remise personnalisee doit etre un nombre entier." = "La remise personnalisée doit être un nombre entier.";

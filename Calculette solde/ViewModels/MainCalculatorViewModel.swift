@@ -181,8 +181,15 @@ final class MainCalculatorViewModel: ObservableObject {
 
     @discardableResult
     func saveCurrentProduct() -> Bool {
+        calculate()
+
         guard let currentProduct else {
             errorMessage = "Aucun produit valide a enregistrer."
+            return false
+        }
+
+        guard currentProduct.originalPrice > 0 else {
+            errorMessage = "Renseignez un prix supérieur à 0 € pour ajouter ce produit."
             return false
         }
 
