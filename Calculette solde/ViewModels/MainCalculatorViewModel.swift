@@ -187,7 +187,7 @@ final class MainCalculatorViewModel: ObservableObject {
         }
 
         productStore.add(currentProduct)
-        errorMessage = nil
+        reset()
         return true
     }
 
