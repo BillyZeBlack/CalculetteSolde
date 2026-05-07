@@ -76,6 +76,18 @@ final class ProductRecapViewModel: ObservableObject {
         moneyFormatter.formatCurrency(totalDiscountAmount)
     }
 
+    func formattedTotalFinalPrice(for section: ProductCategorySection) -> String {
+        moneyFormatter.formatCurrency(section.totalFinalPrice)
+    }
+
+    func formattedDiscountAmount(for section: ProductCategorySection) -> String {
+        moneyFormatter.formatCurrency(section.totalDiscountAmount)
+    }
+
+    func formattedFinalPrice(for product: Product) -> String {
+        moneyFormatter.formatCurrency(product.finalPrice)
+    }
+
     init(
         productStore: ProductStore? = nil,
         moneyFormatter: MoneyFormatter = MoneyFormatter()

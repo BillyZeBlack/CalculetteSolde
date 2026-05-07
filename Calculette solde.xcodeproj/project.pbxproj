@@ -47,6 +47,7 @@
 		F108A0012C00000100000001 /* AdMobBannerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F108A0022C00000100000001 /* AdMobBannerView.swift */; };
 		F108A0032C00000100000001 /* GoogleMobileAds in Frameworks */ = {isa = PBXBuildFile; productRef = F108A0052C00000100000001 /* GoogleMobileAds */; };
 		F109A0012C00000100000001 /* InterstitialAdManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F109A0022C00000100000001 /* InterstitialAdManager.swift */; };
+		F110A0012C00000100000001 /* ProductRecapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F110A0022C00000100000001 /* ProductRecapView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -103,6 +104,7 @@
 		F107A0022C00000100000001 /* ScannedBarcodeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScannedBarcodeView.swift; sourceTree = "<group>"; };
 		F108A0022C00000100000001 /* AdMobBannerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdMobBannerView.swift; sourceTree = "<group>"; };
 		F109A0022C00000100000001 /* InterstitialAdManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InterstitialAdManager.swift; sourceTree = "<group>"; };
+		F110A0022C00000100000001 /* ProductRecapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductRecapView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -130,6 +132,7 @@
 			children = (
 				F101A00D2C00000100000001 /* Components */,
 				5A01A0022C00000100000001 /* ContentView.swift */,
+				F110A0022C00000100000001 /* ProductRecapView.swift */,
 				F105A0022C00000100000001 /* CategorySelectionView.swift */,
 				F106A0022C00000100000001 /* BarcodeScannerView.swift */,
 			);
@@ -379,6 +382,7 @@
 				F106A0012C00000100000001 /* BarcodeScannerView.swift in Sources */,
 				F107A0012C00000100000001 /* ScannedBarcodeView.swift in Sources */,
 				F108A0012C00000100000001 /* AdMobBannerView.swift in Sources */,
+				F110A0012C00000100000001 /* ProductRecapView.swift in Sources */,
 				5A01A0062C00000200000001 /* DiscountRate.swift in Sources */,
 				5A01A0082C00000300000001 /* Product.swift in Sources */,
 				5A01A00A2C00000400000001 /* AppSettings.swift in Sources */,

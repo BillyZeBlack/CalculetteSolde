@@ -11,6 +11,9 @@
 "Enregistrer le produit" = "Save product";
 "Ajouter le produit" = "Add product";
 "Produits ajoutés" = "Added products";
+"Récapitulatif" = "Summary";
+"1 produit" = "1 product";
+"%lld produits" = "%lld products";
 "Produit sans nom" = "Unnamed product";
 "Supprimer" = "Delete";
 "Vider la liste" = "Clear list";

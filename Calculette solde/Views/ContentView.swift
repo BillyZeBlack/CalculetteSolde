@@ -1,9 +1,16 @@
 import SwiftUI
 
 struct ContentView: View {
-    @StateObject private var viewModel = MainCalculatorViewModel()
+    @StateObject private var productStore: ProductStore
+    @StateObject private var viewModel: MainCalculatorViewModel
     @StateObject private var interstitialAdManager = InterstitialAdManager()
     @FocusState var focusedField: Field?
+
+    init() {
+        let productStore = ProductStore()
+        _productStore = StateObject(wrappedValue: productStore)
+        _viewModel = StateObject(wrappedValue: MainCalculatorViewModel(productStore: productStore))
+    }
 
     enum Field: Hashable {
         case price
@@ -30,7 +37,10 @@ struct ContentView: View {
                         .padding(.top, 24)
                     ScannedBarcodeView(viewModel: viewModel)
                         .padding(.top, 16)
-                    AddedProductsListView(viewModel: viewModel)
+                    AddedProductsListView(
+                        viewModel: viewModel,
+                        productStore: productStore
+                    )
                         .padding(.top, 24)
                     if !viewModel.savedProducts.isEmpty {
                         AdMobBannerView()

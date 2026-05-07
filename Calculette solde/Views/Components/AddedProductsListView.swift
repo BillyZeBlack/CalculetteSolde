@@ -2,8 +2,14 @@ import SwiftUI
 
 struct AddedProductsListView: View {
     @ObservedObject var viewModel: MainCalculatorViewModel
+    let productStore: ProductStore?
     @State private var productBeingCategorized: Product?
     @State private var isClearConfirmationPresented = false
+
+    init(viewModel: MainCalculatorViewModel, productStore: ProductStore? = nil) {
+        self.viewModel = viewModel
+        self.productStore = productStore
+    }
 
     private let rowHeight: CGFloat = 64
     private let maximumVisibleRows = 4
@@ -88,6 +94,22 @@ struct AddedProductsListView: View {
                 .font(.subheadline.weight(.bold))
                 .foregroundStyle(.primary)
                 .contentTransition(.numericText())
+
+            if let productStore {
+                NavigationLink {
+                    ProductRecapView(
+                        viewModel: ProductRecapViewModel(productStore: productStore)
+                    )
+                } label: {
+                    Image(systemName: "chart.pie.fill")
+                        .font(.subheadline.weight(.semibold))
+                        .foregroundStyle(.blue)
+                        .frame(width: 32, height: 32)
+                        .contentShape(Rectangle())
+                }
+                .buttonStyle(.plain)
+                .accessibilityLabel("Récapitulatif")
+            }
 
             Button {
                 isClearConfirmationPresented = true
