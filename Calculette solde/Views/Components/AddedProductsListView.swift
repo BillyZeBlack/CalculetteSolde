@@ -3,6 +3,7 @@ import SwiftUI
 struct AddedProductsListView: View {
     @ObservedObject var viewModel: MainCalculatorViewModel
     @State private var productBeingCategorized: Product?
+    @State private var isClearConfirmationPresented = false
 
     private let rowHeight: CGFloat = 64
     private let maximumVisibleRows = 4
@@ -62,6 +63,16 @@ struct AddedProductsListView: View {
                 .presentationDetents([.medium])
                 .presentationDragIndicator(.visible)
             }
+            .alert("Vider la liste ?", isPresented: $isClearConfirmationPresented) {
+                Button("Annuler", role: .cancel) {}
+                Button("Vider", role: .destructive) {
+                    withAnimation {
+                        viewModel.clearSavedProducts()
+                    }
+                }
+            } message: {
+                Text("Tous les produits ajoutés seront supprimés.")
+            }
         }
     }
 
@@ -77,6 +88,18 @@ struct AddedProductsListView: View {
                 .font(.subheadline.weight(.bold))
                 .foregroundStyle(.primary)
                 .contentTransition(.numericText())
+
+            Button {
+                isClearConfirmationPresented = true
+            } label: {
+                Image(systemName: "trash")
+                    .font(.subheadline.weight(.semibold))
+                    .foregroundStyle(.red)
+                    .frame(width: 32, height: 32)
+                    .contentShape(Rectangle())
+            }
+            .buttonStyle(.plain)
+            .accessibilityLabel("Vider la liste")
         }
         .padding(.horizontal)
         .padding(.top, 14)

@@ -208,6 +208,29 @@ final class MainCalculatorViewModelTests: XCTestCase {
         XCTAssertEqual(viewModel.formattedSavedProductsTotal, "0,00 €")
     }
 
+    func testClearsSavedProductsFromSharedStore() {
+        let products = [
+            Product(
+                name: "Pull",
+                originalPrice: Decimal(100),
+                discountRate: DiscountRate(percentage: 40)
+            ),
+            Product(
+                name: "Pantalon",
+                originalPrice: Decimal(50),
+                discountRate: DiscountRate(percentage: 20)
+            )
+        ]
+        let productStore = ProductStore(products: products)
+        let viewModel = makeViewModel(productStore: productStore)
+
+        viewModel.clearSavedProducts()
+
+        XCTAssertTrue(productStore.products.isEmpty)
+        XCTAssertTrue(viewModel.savedProducts.isEmpty)
+        XCTAssertEqual(viewModel.formattedSavedProductsTotal, "0,00 €")
+    }
+
     func testAssignsCategoryToSavedProduct() {
         let product = Product(
             name: "Pull",

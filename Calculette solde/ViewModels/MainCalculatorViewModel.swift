@@ -195,6 +195,10 @@ final class MainCalculatorViewModel: ObservableObject {
         productStore.remove(product)
     }
 
+    func clearSavedProducts() {
+        productStore.clear()
+    }
+
     func assignCategory(_ category: Category?, to product: Product) {
         productStore.updateCategory(category, for: product)
     }
