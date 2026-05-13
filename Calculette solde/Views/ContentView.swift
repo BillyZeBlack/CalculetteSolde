@@ -1,9 +1,11 @@
 import SwiftUI
 
 struct ContentView: View {
+    @EnvironmentObject private var premiumManager: PremiumManager
     @StateObject private var productStore: ProductStore
     @StateObject private var viewModel: MainCalculatorViewModel
     @StateObject private var interstitialAdManager = InterstitialAdManager()
+    @State private var isPremiumSheetPresented = false
     @FocusState var focusedField: Field?
 
     init() {
@@ -42,7 +44,7 @@ struct ContentView: View {
                         productStore: productStore
                     )
                         .padding(.top, 24)
-                    if !viewModel.savedProducts.isEmpty {
+                    if !premiumManager.isPremiumActive, !viewModel.savedProducts.isEmpty {
                         AdMobBannerView()
                             .padding(.top, 12)
                             .padding(.horizontal)
@@ -68,6 +70,14 @@ struct ContentView: View {
             .navigationTitle("Calculette Solde")
             .navigationBarTitleDisplayMode(.large)
             .toolbar {
+                ToolbarItem(placement: .topBarTrailing) {
+                    Button {
+                        isPremiumSheetPresented = true
+                    } label: {
+                        Label("Premium", systemImage: premiumManager.isPremiumActive ? "crown.fill" : "crown")
+                    }
+                }
+
                 ToolbarItemGroup(placement: .keyboard) {
                     Spacer()
                     Button("OK") { focusedField = nil }
@@ -75,7 +85,7 @@ struct ContentView: View {
             }
             .safeAreaInset(edge: .bottom) {
                 VStack(spacing: 8) {
-                    if viewModel.savedProducts.isEmpty {
+                    if !premiumManager.isPremiumActive, viewModel.savedProducts.isEmpty {
                         AdMobBannerView()
                             .padding(.horizontal)
                     }
@@ -83,7 +93,7 @@ struct ContentView: View {
                     if viewModel.finalPrice != nil {
                         SaveBarView(
                             viewModel: viewModel,
-                            onProductAdded: interstitialAdManager.recordAddedProduct
+                            onProductAdded: recordAddedProductIfNeeded
                         )
                             .transition(.move(edge: .bottom).combined(with: .opacity))
                     }
@@ -96,12 +106,28 @@ struct ContentView: View {
             .animation(.spring(response: 0.4, dampingFraction: 0.85), value: viewModel.scannedBarcode)
         }
         .onTapGesture { focusedField = nil }
-        .task {
-            interstitialAdManager.loadAdIfNeeded()
+        .sheet(isPresented: $isPremiumSheetPresented) {
+            PremiumUpgradeView(premiumManager: premiumManager)
         }
+        .task {
+            if !premiumManager.isPremiumActive {
+                interstitialAdManager.loadAdIfNeeded()
+            }
+        }
+        .onChange(of: premiumManager.isPremiumActive) { _, isPremiumActive in
+            if !isPremiumActive {
+                interstitialAdManager.loadAdIfNeeded()
+            }
+        }
+    }
+
+    private func recordAddedProductIfNeeded() {
+        guard !premiumManager.isPremiumActive else { return }
+        interstitialAdManager.recordAddedProduct()
     }
 }
 
 #Preview {
     ContentView()
+        .environmentObject(PremiumManager())
 }

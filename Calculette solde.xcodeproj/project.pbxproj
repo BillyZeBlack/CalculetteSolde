@@ -48,6 +48,9 @@
 		F108A0032C00000100000001 /* GoogleMobileAds in Frameworks */ = {isa = PBXBuildFile; productRef = F108A0052C00000100000001 /* GoogleMobileAds */; };
 		F109A0012C00000100000001 /* InterstitialAdManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F109A0022C00000100000001 /* InterstitialAdManager.swift */; };
 		F110A0012C00000100000001 /* ProductRecapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F110A0022C00000100000001 /* ProductRecapView.swift */; };
+		F111A0012C00000100000001 /* PremiumManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F111A0022C00000100000001 /* PremiumManager.swift */; };
+		F112A0012C00000100000001 /* PremiumUpgradeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F112A0022C00000100000001 /* PremiumUpgradeView.swift */; };
+		F113A0012C00000100000001 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F113A0022C00000100000001 /* StoreKit.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -105,6 +108,10 @@
 		F108A0022C00000100000001 /* AdMobBannerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdMobBannerView.swift; sourceTree = "<group>"; };
 		F109A0022C00000100000001 /* InterstitialAdManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InterstitialAdManager.swift; sourceTree = "<group>"; };
 		F110A0022C00000100000001 /* ProductRecapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductRecapView.swift; sourceTree = "<group>"; };
+		F111A0022C00000100000001 /* PremiumManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PremiumManager.swift; sourceTree = "<group>"; };
+		F112A0022C00000100000001 /* PremiumUpgradeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PremiumUpgradeView.swift; sourceTree = "<group>"; };
+		F113A0022C00000100000001 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
+		F114A0022C00000100000001 /* SoldeFacile.storekit */ = {isa = PBXFileReference; lastKnownFileType = text; path = SoldeFacile.storekit; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -120,6 +127,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F113A0012C00000100000001 /* StoreKit.framework in Frameworks */,
 				F108A0032C00000100000001 /* GoogleMobileAds in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -158,6 +166,7 @@
 				5A01A01A2C00000700000001 /* SettingsStore.swift */,
 				5A01A0222C00000700000001 /* ProductLookupService.swift */,
 				F109A0022C00000100000001 /* InterstitialAdManager.swift */,
+				F111A0022C00000100000001 /* PremiumManager.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -177,6 +186,7 @@
 		5A02A01C2C00000900000001 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				F113A0022C00000100000001 /* StoreKit.framework */,
 				5A02A0012C00000900000001 /* XCTest.framework */,
 			);
 			name = Frameworks;
@@ -213,6 +223,7 @@
 				F102A0042C00000100000001 /* Localizable.strings */,
 				BEA76CC024812F13000244BA /* LaunchScreen.storyboard */,
 				BEA76CC324812F13000244BA /* Info.plist */,
+				F114A0022C00000100000001 /* SoldeFacile.storekit */,
 			);
 			path = "Calculette solde";
 			sourceTree = "<group>";
@@ -244,6 +255,7 @@
 				F104A0022C00000100000001 /* AddedProductsListView.swift */,
 				F107A0022C00000100000001 /* ScannedBarcodeView.swift */,
 				F108A0022C00000100000001 /* AdMobBannerView.swift */,
+				F112A0022C00000100000001 /* PremiumUpgradeView.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -396,6 +408,8 @@
 				5A01A01B2C00000700000001 /* SettingsStore.swift in Sources */,
 				5A01A0212C00000700000001 /* ProductLookupService.swift in Sources */,
 				F109A0012C00000100000001 /* InterstitialAdManager.swift in Sources */,
+				F111A0012C00000100000001 /* PremiumManager.swift in Sources */,
+				F112A0012C00000100000001 /* PremiumUpgradeView.swift in Sources */,
 				5A01A01D2C00000800000001 /* ProductRecapViewModel.swift in Sources */,
 				5A01A01F2C00000800000001 /* SettingsViewModel.swift in Sources */,
 				9FEAFC6B2FA8E61E00E5ADF9 /* Category.swift in Sources */,

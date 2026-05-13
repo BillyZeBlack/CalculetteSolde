@@ -1,0 +1,59 @@
+{
+  "appPolicies" : {
+    "eula" : "",
+    "policies" : [
+      {
+        "locale" : "fr_FR",
+        "policyText" : "",
+        "policyURL" : ""
+      }
+    ]
+  },
+  "identifier" : "SOLDEFACILE-STOREKIT",
+  "nonRenewingSubscriptions" : [
+
+  ],
+  "products" : [
+    {
+      "displayPrice" : "1,99",
+      "familyShareable" : false,
+      "internalID" : "SF-PREMIUM-PACK-199",
+      "localizations" : [
+        {
+          "description" : "Supprime les bannières et publicités interstitielles de Solde facile.",
+          "displayName" : "Supprimer les pubs",
+          "locale" : "fr_FR"
+        },
+        {
+          "description" : "Removes banner and interstitial ads from Solde facile.",
+          "displayName" : "Remove ads",
+          "locale" : "en_US"
+        }
+      ],
+      "productID" : "sf_premium_pack_1.99",
+      "referenceName" : "com.slideofdigital.Calculette-solde",
+      "type" : "NonConsumable"
+    }
+  ],
+  "settings" : {
+    "_askToBuyEnabled" : false,
+    "_billingGracePeriodEnabled" : false,
+    "_billingIssuesEnabled" : false,
+    "_disableDialogs" : false,
+    "_failTransactionsEnabled" : false,
+    "_locale" : "fr_FR",
+    "_renewalBillingIssuesEnabled" : false,
+    "_storefront" : "FRA",
+    "_storeKitErrors" : [
+
+    ],
+    "_timeRate" : 0
+  },
+  "subscriptionGroups" : [
+
+  ],
+  "version" : {
+    "major" : 4,
+    "minor" : 0
+  }
+}
