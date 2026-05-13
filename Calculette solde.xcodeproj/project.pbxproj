@@ -51,6 +51,9 @@
 		F111A0012C00000100000001 /* PremiumManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F111A0022C00000100000001 /* PremiumManager.swift */; };
 		F112A0012C00000100000001 /* PremiumUpgradeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F112A0022C00000100000001 /* PremiumUpgradeView.swift */; };
 		F113A0012C00000100000001 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F113A0022C00000100000001 /* StoreKit.framework */; };
+		F115A0012C00000100000001 /* ScanAccessManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F115A0022C00000100000001 /* ScanAccessManager.swift */; };
+		F116A0012C00000100000001 /* RewardedAdManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F116A0022C00000100000001 /* RewardedAdManager.swift */; };
+		F117A0012C00000100000001 /* ScanLimitSheetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F117A0022C00000100000001 /* ScanLimitSheetView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -112,6 +115,9 @@
 		F112A0022C00000100000001 /* PremiumUpgradeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PremiumUpgradeView.swift; sourceTree = "<group>"; };
 		F113A0022C00000100000001 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		F114A0022C00000100000001 /* SoldeFacile.storekit */ = {isa = PBXFileReference; lastKnownFileType = text; path = SoldeFacile.storekit; sourceTree = "<group>"; };
+		F115A0022C00000100000001 /* ScanAccessManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScanAccessManager.swift; sourceTree = "<group>"; };
+		F116A0022C00000100000001 /* RewardedAdManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RewardedAdManager.swift; sourceTree = "<group>"; };
+		F117A0022C00000100000001 /* ScanLimitSheetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScanLimitSheetView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -166,6 +172,8 @@
 				5A01A01A2C00000700000001 /* SettingsStore.swift */,
 				5A01A0222C00000700000001 /* ProductLookupService.swift */,
 				F109A0022C00000100000001 /* InterstitialAdManager.swift */,
+				F116A0022C00000100000001 /* RewardedAdManager.swift */,
+				F115A0022C00000100000001 /* ScanAccessManager.swift */,
 				F111A0022C00000100000001 /* PremiumManager.swift */,
 			);
 			path = Services;
@@ -256,6 +264,7 @@
 				F107A0022C00000100000001 /* ScannedBarcodeView.swift */,
 				F108A0022C00000100000001 /* AdMobBannerView.swift */,
 				F112A0022C00000100000001 /* PremiumUpgradeView.swift */,
+				F117A0022C00000100000001 /* ScanLimitSheetView.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -408,8 +417,11 @@
 				5A01A01B2C00000700000001 /* SettingsStore.swift in Sources */,
 				5A01A0212C00000700000001 /* ProductLookupService.swift in Sources */,
 				F109A0012C00000100000001 /* InterstitialAdManager.swift in Sources */,
+				F116A0012C00000100000001 /* RewardedAdManager.swift in Sources */,
+				F115A0012C00000100000001 /* ScanAccessManager.swift in Sources */,
 				F111A0012C00000100000001 /* PremiumManager.swift in Sources */,
 				F112A0012C00000100000001 /* PremiumUpgradeView.swift in Sources */,
+				F117A0012C00000100000001 /* ScanLimitSheetView.swift in Sources */,
 				5A01A01D2C00000800000001 /* ProductRecapViewModel.swift in Sources */,
 				5A01A01F2C00000800000001 /* SettingsViewModel.swift in Sources */,
 				9FEAFC6B2FA8E61E00E5ADF9 /* Category.swift in Sources */,

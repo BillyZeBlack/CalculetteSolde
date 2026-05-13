@@ -1,40 +1,43 @@
 import SwiftUI
 
-struct PremiumUpgradeView: View {
+struct ScanLimitSheetView: View {
     @ObservedObject var premiumManager: PremiumManager
+    @ObservedObject var rewardedAdManager: RewardedAdManager
+    let onWatchAd: () -> Void
+
     @Environment(\.dismiss) private var dismiss
 
     var body: some View {
         NavigationStack {
             VStack(alignment: .leading, spacing: 18) {
                 HStack(alignment: .top, spacing: 14) {
-                    Image(systemName: premiumManager.isPremiumActive ? "checkmark.seal.fill" : "sparkles")
+                    Image(systemName: "barcode.viewfinder")
                         .font(.title2)
-                        .foregroundStyle(premiumManager.isPremiumActive ? .green : .blue)
+                        .foregroundStyle(.blue)
 
                     VStack(alignment: .leading, spacing: 6) {
-                        Text(premiumManager.isPremiumActive ? "Premium activé" : premiumManager.displayName)
+                        Text("Scanner illimité avec Premium")
                             .font(.title3.weight(.semibold))
 
-                        Text(premiumManager.description)
+                        Text("Débloquez le scan sans limite et retirez les publicités de Solde facile.")
                             .font(.subheadline)
                             .foregroundStyle(.secondary)
 
-                        Text(premiumManager.isPremiumActive ? "Achat déjà actif" : "Achat unique \(premiumManager.displayPrice)")
+                        Text("Achat unique \(premiumManager.displayPrice)")
                             .font(.subheadline.weight(.semibold))
                     }
                 }
 
                 VStack(alignment: .leading, spacing: 10) {
                     benefitRow("Scan illimité")
-                    benefitRow("Supprime les publicités")
+                    benefitRow("Publicités supprimées")
                     benefitRow("Activation restaurable sur vos appareils")
                 }
 
-                if premiumManager.isLoading {
+                if premiumManager.isLoading || rewardedAdManager.isLoading {
                     HStack(spacing: 10) {
                         ProgressView()
-                        Text(premiumManager.statusMessage ?? "Chargement de l’offre...")
+                        Text(premiumManager.statusMessage ?? "Chargement...")
                             .font(.subheadline)
                             .foregroundStyle(.secondary)
                     }
@@ -44,7 +47,7 @@ struct PremiumUpgradeView: View {
                         .foregroundStyle(premiumManager.isPremiumActive ? .green : .secondary)
                 }
 
-                if let errorMessage = premiumManager.errorMessage {
+                if let errorMessage = premiumManager.errorMessage ?? rewardedAdManager.errorMessage {
                     Text(errorMessage)
                         .font(.caption)
                         .foregroundStyle(.red)
@@ -54,7 +57,7 @@ struct PremiumUpgradeView: View {
                 Button {
                     premiumManager.purchaseRemoveAds()
                 } label: {
-                    Text(premiumManager.isPremiumActive ? "Déjà acheté" : "Acheter")
+                    Text("Passer Premium")
                         .font(.headline.weight(.semibold))
                         .frame(maxWidth: .infinity)
                         .padding(.vertical, 14)
@@ -63,27 +66,20 @@ struct PremiumUpgradeView: View {
                 .disabled(premiumManager.isLoading || premiumManager.removeAdsProduct == nil || premiumManager.isPremiumActive)
 
                 Button {
-                    premiumManager.restorePurchases()
+                    onWatchAd()
                 } label: {
-                    Text("Restaurer les achats")
+                    Text("Regarder une pub pour 1 scan")
                         .font(.headline.weight(.semibold))
                         .frame(maxWidth: .infinity)
                         .padding(.vertical, 12)
                 }
                 .buttonStyle(.bordered)
-                .disabled(premiumManager.isLoading)
-
-                if premiumManager.removeAdsProduct == nil && !premiumManager.isLoading {
-                    Button("Recharger l’offre") {
-                        premiumManager.reloadProducts()
-                    }
-                    .font(.subheadline.weight(.semibold))
-                }
+                .disabled(rewardedAdManager.isLoading)
 
                 Spacer()
             }
             .padding(20)
-            .navigationTitle("Premium")
+            .navigationTitle("Scan Premium")
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 ToolbarItem(placement: .topBarTrailing) {
@@ -101,5 +97,9 @@ struct PremiumUpgradeView: View {
 }
 
 #Preview {
-    PremiumUpgradeView(premiumManager: PremiumManager())
+    ScanLimitSheetView(
+        premiumManager: PremiumManager(),
+        rewardedAdManager: RewardedAdManager(),
+        onWatchAd: {}
+    )
 }

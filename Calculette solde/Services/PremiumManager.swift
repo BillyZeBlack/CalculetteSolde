@@ -3,7 +3,7 @@ import StoreKit
 
 @MainActor
 final class PremiumManager: ObservableObject {
-    static let removeAdsProductID = "sf_premium_pack_1.99"
+    nonisolated static let removeAdsProductID = "sf_premium_pack_1.99"
 
     @Published private(set) var isPremiumActive: Bool
     @Published private(set) var isLoading = false
@@ -43,7 +43,7 @@ final class PremiumManager: ObservableObject {
     }
 
     var description: String {
-        removeAdsProduct?.description ?? "Retirez les bannières et publicités interstitielles de Solde facile."
+        removeAdsProduct?.description ?? "Débloquez le scan illimité et retirez les publicités de Solde facile."
     }
 
     var displayPrice: String {

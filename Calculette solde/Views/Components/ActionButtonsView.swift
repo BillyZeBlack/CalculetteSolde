@@ -1,9 +1,13 @@
 import SwiftUI
 
 struct ActionButtonsView: View {
+    @EnvironmentObject private var premiumManager: PremiumManager
     @ObservedObject var viewModel: MainCalculatorViewModel
     @FocusState.Binding var focusedField: ContentView.Field?
+    @StateObject private var scanAccessManager = ScanAccessManager()
+    @StateObject private var rewardedAdManager = RewardedAdManager()
     @State private var isScannerPresented = false
+    @State private var isScanLimitSheetPresented = false
 
     var body: some View {
         HStack(spacing: 12) {
@@ -16,12 +20,26 @@ struct ActionButtonsView: View {
                 viewModel.handleScannedBarcode(barcode)
             }
         }
+        .sheet(isPresented: $isScanLimitSheetPresented) {
+            ScanLimitSheetView(
+                premiumManager: premiumManager,
+                rewardedAdManager: rewardedAdManager,
+                onWatchAd: unlockScanWithRewardedAd
+            )
+            .onAppear {
+                rewardedAdManager.loadAdIfNeeded()
+            }
+        }
+        .onChange(of: premiumManager.isPremiumActive) { _, isPremiumActive in
+            guard isPremiumActive, isScanLimitSheetPresented else { return }
+            isScanLimitSheetPresented = false
+            startScan()
+        }
     }
 
     private var scanButton: some View {
         Button {
-            focusedField = nil
-            isScannerPresented = true
+            requestScan()
         } label: {
             Label("Scanner", systemImage: "barcode.viewfinder")
                 .font(.subheadline.weight(.semibold))
@@ -38,6 +56,31 @@ struct ActionButtonsView: View {
                 }
         }
         .buttonStyle(.plain)
+    }
+
+    private func requestScan() {
+        focusedField = nil
+
+        guard scanAccessManager.canStartScan(isPremiumActive: premiumManager.isPremiumActive) else {
+            isScanLimitSheetPresented = true
+            rewardedAdManager.loadAdIfNeeded()
+            return
+        }
+
+        startScan()
+    }
+
+    private func startScan() {
+        scanAccessManager.recordScanStart(isPremiumActive: premiumManager.isPremiumActive)
+        isScannerPresented = true
+    }
+
+    private func unlockScanWithRewardedAd() {
+        rewardedAdManager.presentAd {
+            scanAccessManager.grantRewardedScan()
+            isScanLimitSheetPresented = false
+            startScan()
+        }
     }
 
     private var resetButton: some View {
@@ -72,4 +115,5 @@ struct ActionButtonsView: View {
         viewModel: MainCalculatorViewModel(),
         focusedField: $focusedField
     )
+    .environmentObject(PremiumManager())
 }
