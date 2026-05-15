@@ -1,10 +1,12 @@
 import SwiftUI
 
 struct AddedProductsListView: View {
+    @EnvironmentObject private var premiumManager: PremiumManager
     @ObservedObject var viewModel: MainCalculatorViewModel
     let productStore: ProductStore?
     @State private var productBeingCategorized: Product?
     @State private var isClearConfirmationPresented = false
+    @State private var isPremiumSheetPresented = false
 
     init(viewModel: MainCalculatorViewModel, productStore: ProductStore? = nil) {
         self.viewModel = viewModel
@@ -62,12 +64,23 @@ struct AddedProductsListView: View {
                 CategorySelectionView(
                     product: product,
                     categories: viewModel.availableCategories,
+                    isPremiumActive: premiumManager.isPremiumActive,
                     onSelect: { category in
                         viewModel.assignCategory(category, to: product)
+                    },
+                    onRequestPremium: {
+                        productBeingCategorized = nil
+                        isPremiumSheetPresented = true
+                    },
+                    onAddCustomCategory: { name in
+                        viewModel.addCustomCategory(named: name)
                     }
                 )
                 .presentationDetents([.medium])
                 .presentationDragIndicator(.visible)
+            }
+            .sheet(isPresented: $isPremiumSheetPresented) {
+                PremiumUpgradeView(premiumManager: premiumManager)
             }
             .alert("Vider la liste ?", isPresented: $isClearConfirmationPresented) {
                 Button("Annuler", role: .cancel) {}
@@ -177,4 +190,5 @@ private struct ProductRowView: View {
 
 #Preview {
     AddedProductsListView(viewModel: MainCalculatorViewModel())
+        .environmentObject(PremiumManager())
 }

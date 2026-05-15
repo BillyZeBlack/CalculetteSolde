@@ -31,13 +31,14 @@ final class MainCalculatorViewModel: ObservableObject {
     @Published private(set) var savedProducts: [Product]
 
     let availableDiscountRates: [DiscountRate]
-    let availableCategories: [Category]
+    @Published private(set) var availableCategories: [Category]
 
     private let calculator: DiscountCalculator
     private let moneyFormatter: MoneyFormatter
     private let productStore: ProductStore
     private let settingsStore: SettingsStore
     private let productLookupService: ProductLookupServicing
+    private let categoryStore: CategoryStore
     private var cancellables = Set<AnyCancellable>()
 
     var canSelectCategory: Bool {
@@ -97,7 +98,7 @@ final class MainCalculatorViewModel: ObservableObject {
         scannedBarcode: Barcode? = nil,
         productLookupResult: ProductLookupResult? = nil,
         availableDiscountRates: [DiscountRate] = DiscountRate.standardRates,
-        availableCategories: [Category] = Category.defaults,
+        categoryStore: CategoryStore? = nil,
         calculator: DiscountCalculator = DiscountCalculator(),
         moneyFormatter: MoneyFormatter = MoneyFormatter(),
         productStore: ProductStore? = nil,
@@ -106,6 +107,7 @@ final class MainCalculatorViewModel: ObservableObject {
     ) {
         let productStore = productStore ?? ProductStore()
         let settingsStore = settingsStore ?? SettingsStore()
+        let categoryStore = categoryStore ?? CategoryStore()
 
         self.productName = productName
         self.originalPriceText = originalPriceText
@@ -115,7 +117,8 @@ final class MainCalculatorViewModel: ObservableObject {
         self.scannedBarcode = scannedBarcode
         self.productLookupResult = productLookupResult
         self.availableDiscountRates = availableDiscountRates
-        self.availableCategories = availableCategories
+        self.availableCategories = categoryStore.allCategories
+        self.categoryStore = categoryStore
         self.calculator = calculator
         self.moneyFormatter = moneyFormatter
         self.productStore = productStore
@@ -130,6 +133,7 @@ final class MainCalculatorViewModel: ObservableObject {
         enforceSettings()
         observeSettings()
         observeProducts()
+        observeCategories()
     }
 
     func selectDiscountRate(_ rate: DiscountRate) {
@@ -208,6 +212,10 @@ final class MainCalculatorViewModel: ObservableObject {
 
     func assignCategory(_ category: Category?, to product: Product) {
         productStore.updateCategory(category, for: product)
+    }
+
+    func addCustomCategory(named name: String) -> Category? {
+        categoryStore.addCustomCategory(named: name)
     }
 
     func applyLookupResult(_ result: ProductLookupResult) {
@@ -326,6 +334,15 @@ private extension MainCalculatorViewModel {
             .store(in: &cancellables)
     }
 
+    func observeCategories() {
+        categoryStore.$customCategories
+            .sink { [weak self] _ in
+                guard let self else { return }
+                self.availableCategories = self.categoryStore.allCategories
+            }
+            .store(in: &cancellables)
+    }
+
     func parseDiscountRate() -> DiscountRate? {
         let trimmedCustomDiscount = customDiscountText.trimmingCharacters(in: .whitespacesAndNewlines)
         guard !trimmedCustomDiscount.isEmpty else {
@@ -389,9 +406,21 @@ private extension MainCalculatorViewModel {
             return nil
         }
 
+        let aliases = [
+            "courses": "groceries",
+            "course": "groceries",
+            "alimentation": "groceries",
+            "food": "groceries",
+            "vetements": "clothing",
+            "vêtements": "clothing",
+            "vetement": "clothing",
+            "vêtement": "clothing"
+        ]
+        let resolvedCategoryName = aliases[normalizedCategoryName] ?? normalizedCategoryName
+
         return availableCategories.first { category in
-            category.id.lowercased() == normalizedCategoryName ||
-                category.name.lowercased() == normalizedCategoryName
+            category.id.lowercased() == resolvedCategoryName ||
+                category.name.lowercased() == resolvedCategoryName
         }
     }
 }

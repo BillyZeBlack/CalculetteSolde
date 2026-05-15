@@ -3,6 +3,7 @@ import SwiftUI
 struct ContentView: View {
     @EnvironmentObject private var premiumManager: PremiumManager
     @StateObject private var productStore: ProductStore
+    @StateObject private var categoryStore: CategoryStore
     @StateObject private var viewModel: MainCalculatorViewModel
     @StateObject private var interstitialAdManager = InterstitialAdManager()
     @State private var isPremiumSheetPresented = false
@@ -10,8 +11,13 @@ struct ContentView: View {
 
     init() {
         let productStore = ProductStore()
+        let categoryStore = CategoryStore()
         _productStore = StateObject(wrappedValue: productStore)
-        _viewModel = StateObject(wrappedValue: MainCalculatorViewModel(productStore: productStore))
+        _categoryStore = StateObject(wrappedValue: categoryStore)
+        _viewModel = StateObject(wrappedValue: MainCalculatorViewModel(
+            categoryStore: categoryStore,
+            productStore: productStore
+        ))
     }
 
     enum Field: Hashable {

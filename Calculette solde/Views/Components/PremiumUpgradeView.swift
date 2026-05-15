@@ -27,8 +27,8 @@ struct PremiumUpgradeView: View {
 
                 VStack(alignment: .leading, spacing: 10) {
                     benefitRow("Scan illimité")
+                    benefitRow("Catégories Premium et personnalisées")
                     benefitRow("Supprime les publicités")
-                    benefitRow("Activation restaurable sur vos appareils")
                 }
 
                 if premiumManager.isLoading {

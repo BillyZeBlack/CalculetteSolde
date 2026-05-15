@@ -28,7 +28,7 @@ final class ProductRecapViewModelTests: XCTestCase {
 
     func testBuildsCategorySections() {
         let store = ProductStore()
-        let clothing = Calculette_solde.Category.defaults[0]
+        let clothing = Calculette_solde.Category.defaults.first { $0.id == "clothing" }!
         let groceries = Calculette_solde.Category.defaults.first { $0.id == "groceries" }!
         let viewModel = ProductRecapViewModel(productStore: store)
 
@@ -37,8 +37,8 @@ final class ProductRecapViewModelTests: XCTestCase {
         store.add(makeProduct(name: "Divers", price: 5, discount: 0, category: nil))
 
         XCTAssertEqual(viewModel.categorySections.count, 3)
-        XCTAssertEqual(viewModel.categorySections.map(\.title), ["Courses", "Sans categorie", "Vetements"])
-        XCTAssertEqual(viewModel.categorySections.first { $0.title == "Vetements" }?.totalFinalPrice, Decimal(80))
+        XCTAssertEqual(viewModel.categorySections.map(\.title), ["Nourriture", "Sans categorie", "Vêtement"])
+        XCTAssertEqual(viewModel.categorySections.first { $0.title == "Vêtement" }?.totalFinalPrice, Decimal(80))
     }
 
     func testRemoveAndClearUseSharedStore() {

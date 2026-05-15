@@ -54,6 +54,7 @@
 		F115A0012C00000100000001 /* ScanAccessManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F115A0022C00000100000001 /* ScanAccessManager.swift */; };
 		F116A0012C00000100000001 /* RewardedAdManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F116A0022C00000100000001 /* RewardedAdManager.swift */; };
 		F117A0012C00000100000001 /* ScanLimitSheetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F117A0022C00000100000001 /* ScanLimitSheetView.swift */; };
+		F118A0012C00000100000001 /* CategoryStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = F118A0022C00000100000001 /* CategoryStore.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -118,6 +119,7 @@
 		F115A0022C00000100000001 /* ScanAccessManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScanAccessManager.swift; sourceTree = "<group>"; };
 		F116A0022C00000100000001 /* RewardedAdManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RewardedAdManager.swift; sourceTree = "<group>"; };
 		F117A0022C00000100000001 /* ScanLimitSheetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScanLimitSheetView.swift; sourceTree = "<group>"; };
+		F118A0022C00000100000001 /* CategoryStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryStore.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -170,6 +172,7 @@
 				5A01A0162C00000700000001 /* MoneyFormatter.swift */,
 				5A01A0182C00000700000001 /* ProductStore.swift */,
 				5A01A01A2C00000700000001 /* SettingsStore.swift */,
+				F118A0022C00000100000001 /* CategoryStore.swift */,
 				5A01A0222C00000700000001 /* ProductLookupService.swift */,
 				F109A0022C00000100000001 /* InterstitialAdManager.swift */,
 				F116A0022C00000100000001 /* RewardedAdManager.swift */,
@@ -415,6 +418,7 @@
 				5A01A0172C00000700000001 /* MoneyFormatter.swift in Sources */,
 				5A01A0192C00000700000001 /* ProductStore.swift in Sources */,
 				5A01A01B2C00000700000001 /* SettingsStore.swift in Sources */,
+				F118A0012C00000100000001 /* CategoryStore.swift in Sources */,
 				5A01A0212C00000700000001 /* ProductLookupService.swift in Sources */,
 				F109A0012C00000100000001 /* InterstitialAdManager.swift in Sources */,
 				F116A0012C00000100000001 /* RewardedAdManager.swift in Sources */,

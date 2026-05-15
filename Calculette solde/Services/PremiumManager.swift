@@ -43,7 +43,7 @@ final class PremiumManager: ObservableObject {
     }
 
     var description: String {
-        removeAdsProduct?.description ?? "Débloquez le scan illimité et retirez les publicités de Solde facile."
+        removeAdsProduct?.description ?? "Débloquez le scan illimité, les catégories Premium et retirez les publicités de Solde facile."
     }
 
     var displayPrice: String {
