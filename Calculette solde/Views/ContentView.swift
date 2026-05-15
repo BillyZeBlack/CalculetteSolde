@@ -79,7 +79,7 @@ struct ContentView: View {
                     }
                     .ignoresSafeArea()
             }
-            .navigationTitle("Calculette Solde")
+            .navigationTitle("Solde Facile")
             .navigationBarTitleDisplayMode(.large)
             .toolbar {
                 ToolbarItemGroup(placement: .topBarTrailing) {
