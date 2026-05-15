@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct AppSettings: Equatable, Hashable {
+struct AppSettings: Codable, Equatable, Hashable {
     var maximumBudget: Decimal?
     var allowsCategorySelection: Bool
 

@@ -34,7 +34,6 @@
 "Produit introuvable pour ce code-barres." = "Produit introuvable pour ce code-barres.";
 "Code-barres invalide." = "Code-barres invalide.";
 "Impossible de récupérer les informations du produit." = "Impossible de récupérer les informations du produit.";
-"Budget maximum dépassé" = "Budget maximum dépassé";
 "Remise" = "Remise";
 "Prix final" = "Prix final";
 "Le prix initial est invalide." = "Le prix initial est invalide.";
@@ -42,5 +41,4 @@
 "Aucun produit valide a enregistrer." = "Aucun produit valide à enregistrer.";
 "La remise personnalisee doit etre comprise entre 0 et 100." = "La remise personnalisée doit être comprise entre 0 et 100.";
 "La remise personnalisee doit etre un nombre entier." = "La remise personnalisée doit être un nombre entier.";
-"Le prix final depasse le budget maximum." = "Le prix final dépasse le budget maximum.";
 "OK" = "OK";

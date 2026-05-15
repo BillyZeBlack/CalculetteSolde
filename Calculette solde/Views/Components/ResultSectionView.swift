@@ -10,11 +10,6 @@ struct ResultSectionView: View {
                 Divider()
                     .padding(.leading)
                 finalPriceRow
-                if viewModel.isOverBudget {
-                    Divider()
-                        .padding(.leading)
-                    budgetWarningRow
-                }
             }
             .background {
                 RoundedRectangle(cornerRadius: 16, style: .continuous)
@@ -64,22 +59,6 @@ struct ResultSectionView: View {
         .padding(.vertical, 14)
     }
 
-    private var budgetWarningRow: some View {
-        HStack(spacing: 10) {
-            Image(systemName: "exclamationmark.triangle.fill")
-                .font(.subheadline)
-                .foregroundStyle(.red)
-
-            Text("Budget maximum dépassé")
-                .font(.subheadline.weight(.semibold))
-                .foregroundStyle(.red)
-
-            Spacer()
-        }
-        .padding(.horizontal)
-        .padding(.vertical, 14)
-        .background(.red.opacity(0.06))
-    }
 }
 
 #Preview {

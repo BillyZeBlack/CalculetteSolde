@@ -4,19 +4,24 @@ struct ContentView: View {
     @EnvironmentObject private var premiumManager: PremiumManager
     @StateObject private var productStore: ProductStore
     @StateObject private var categoryStore: CategoryStore
+    @StateObject private var settingsStore: SettingsStore
     @StateObject private var viewModel: MainCalculatorViewModel
     @StateObject private var interstitialAdManager = InterstitialAdManager()
     @State private var isPremiumSheetPresented = false
+    @State private var isSettingsSheetPresented = false
     @FocusState var focusedField: Field?
 
     init() {
         let productStore = ProductStore()
         let categoryStore = CategoryStore()
+        let settingsStore = SettingsStore(persistsSettings: true)
         _productStore = StateObject(wrappedValue: productStore)
         _categoryStore = StateObject(wrappedValue: categoryStore)
+        _settingsStore = StateObject(wrappedValue: settingsStore)
         _viewModel = StateObject(wrappedValue: MainCalculatorViewModel(
             categoryStore: categoryStore,
-            productStore: productStore
+            productStore: productStore,
+            settingsStore: settingsStore
         ))
     }
 
@@ -35,7 +40,7 @@ struct ContentView: View {
                         .padding(.top, 20)
                     DiscountSectionView(viewModel: viewModel, focusedField: $focusedField)
                         .padding(.top, 24)
-                    if let errorMessage = viewModel.errorMessage, !viewModel.isOverBudget {
+                    if let errorMessage = viewModel.errorMessage {
                         ErrorMessageView(message: errorMessage)
                             .padding(.top, 16)
                     }
@@ -47,7 +52,8 @@ struct ContentView: View {
                         .padding(.top, 16)
                     AddedProductsListView(
                         viewModel: viewModel,
-                        productStore: productStore
+                        productStore: productStore,
+                        onBudgetSettingsTap: { isSettingsSheetPresented = true }
                     )
                         .padding(.top, 24)
                     if !premiumManager.isPremiumActive, !viewModel.savedProducts.isEmpty {
@@ -76,7 +82,13 @@ struct ContentView: View {
             .navigationTitle("Calculette Solde")
             .navigationBarTitleDisplayMode(.large)
             .toolbar {
-                ToolbarItem(placement: .topBarTrailing) {
+                ToolbarItemGroup(placement: .topBarTrailing) {
+                    Button {
+                        isSettingsSheetPresented = true
+                    } label: {
+                        Label("Réglages", systemImage: "gearshape")
+                    }
+
                     Button {
                         isPremiumSheetPresented = true
                     } label: {
@@ -106,7 +118,6 @@ struct ContentView: View {
                 }
             }
             .animation(.spring(response: 0.4, dampingFraction: 0.85), value: viewModel.finalPrice)
-            .animation(.spring(response: 0.4, dampingFraction: 0.85), value: viewModel.isOverBudget)
             .animation(.spring(response: 0.4, dampingFraction: 0.85), value: viewModel.errorMessage)
             .animation(.spring(response: 0.4, dampingFraction: 0.85), value: viewModel.savedProducts)
             .animation(.spring(response: 0.4, dampingFraction: 0.85), value: viewModel.scannedBarcode)
@@ -114,6 +125,12 @@ struct ContentView: View {
         .onTapGesture { focusedField = nil }
         .sheet(isPresented: $isPremiumSheetPresented) {
             PremiumUpgradeView(premiumManager: premiumManager)
+        }
+        .sheet(isPresented: $isSettingsSheetPresented) {
+            BudgetSettingsView(
+                settingsStore: settingsStore,
+                premiumManager: premiumManager
+            )
         }
         .task {
             if !premiumManager.isPremiumActive {

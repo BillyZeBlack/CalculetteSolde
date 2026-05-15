@@ -72,9 +72,45 @@ final class MainCalculatorViewModel: ObservableObject {
         moneyFormatter.currencySymbol
     }
 
+    var savedProductsTotal: Decimal {
+        savedProducts.reduce(Decimal(0)) { $0 + $1.finalPrice }
+    }
+
     var formattedSavedProductsTotal: String {
-        let total = savedProducts.reduce(Decimal(0)) { $0 + $1.finalPrice }
-        return moneyFormatter.formatCurrency(total)
+        moneyFormatter.formatCurrency(savedProductsTotal)
+    }
+
+    var hasMaximumBudget: Bool {
+        settings.hasMaximumBudget
+    }
+
+    var maximumBudget: Decimal? {
+        settings.maximumBudget
+    }
+
+    var formattedMaximumBudget: String {
+        moneyFormatter.formatCurrency(maximumBudget)
+    }
+
+    var budgetProgress: Double {
+        guard let maximumBudget, maximumBudget > 0 else { return 0 }
+        let total = NSDecimalNumber(decimal: savedProductsTotal).doubleValue
+        let budget = NSDecimalNumber(decimal: maximumBudget).doubleValue
+        return min(max(total / budget, 0), 1)
+    }
+
+    var budgetRemaining: Decimal? {
+        guard let maximumBudget else { return nil }
+        return maximumBudget - savedProductsTotal
+    }
+
+    var formattedBudgetRemaining: String {
+        moneyFormatter.formatCurrency(budgetRemaining.map { max($0, 0) })
+    }
+
+    var formattedBudgetExceededAmount: String {
+        guard let budgetRemaining, budgetRemaining < 0 else { return moneyFormatter.formatCurrency(Decimal(0)) }
+        return moneyFormatter.formatCurrency(abs(budgetRemaining))
     }
 
     var scannedBarcodeValue: String? {
@@ -130,6 +166,7 @@ final class MainCalculatorViewModel: ObservableObject {
         self.productLookupErrorMessage = nil
         self.savedProducts = productStore.products
 
+        updateBudgetState()
         enforceSettings()
         observeSettings()
         observeProducts()
@@ -180,7 +217,6 @@ final class MainCalculatorViewModel: ObservableObject {
         self.selectedDiscountRate = result.discountRate
         discountAmount = result.discountAmount
         finalPrice = result.finalPrice
-        updateBudgetState()
     }
 
     @discardableResult
@@ -329,7 +365,9 @@ private extension MainCalculatorViewModel {
     func observeProducts() {
         productStore.$products
             .sink { [weak self] products in
-                self?.savedProducts = products
+                guard let self else { return }
+                self.savedProducts = products
+                self.updateBudgetState()
             }
             .store(in: &cancellables)
     }
@@ -369,32 +407,18 @@ private extension MainCalculatorViewModel {
     }
 
     func updateBudgetState() {
-        guard let finalPrice, settings.hasMaximumBudget else {
+        guard settings.hasMaximumBudget else {
             isOverBudget = false
-            clearBudgetErrorIfNeeded()
             return
         }
 
-        isOverBudget = !settings.isWithinBudget(finalPrice)
-
-        if isOverBudget {
-            errorMessage = "Le prix final depasse le budget maximum."
-        } else {
-            clearBudgetErrorIfNeeded()
-        }
+        isOverBudget = !settings.isWithinBudget(savedProductsTotal)
     }
 
     func clearCalculation(keepingOriginalPrice originalPrice: Decimal? = nil) {
         self.originalPrice = originalPrice
         discountAmount = nil
         finalPrice = nil
-        isOverBudget = false
-    }
-
-    func clearBudgetErrorIfNeeded() {
-        if errorMessage == "Le prix final depasse le budget maximum." {
-            errorMessage = nil
-        }
     }
 
     func matchingCategory(named categoryName: String?) -> Category? {

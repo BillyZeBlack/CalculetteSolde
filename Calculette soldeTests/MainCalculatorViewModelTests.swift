@@ -95,26 +95,27 @@ final class MainCalculatorViewModelTests: XCTestCase {
         XCTAssertEqual(viewModel.errorMessage, "La remise personnalisee doit etre un nombre entier.")
     }
 
-    func testComparesFinalPriceAgainstBudget() {
+    func testComparesSavedProductsTotalAgainstBudget() {
         let settingsStore = SettingsStore(settings: AppSettings(maximumBudget: Decimal(50)))
-        let viewModel = makeViewModel(settingsStore: settingsStore)
+        let productStore = ProductStore()
+        let viewModel = makeViewModel(productStore: productStore, settingsStore: settingsStore)
 
-        viewModel.originalPriceText = "80"
-        viewModel.selectDiscountRate(DiscountRate(percentage: 25))
-        viewModel.calculate()
+        productStore.add(Product(name: "Pull", originalPrice: Decimal(80), discountRate: DiscountRate(percentage: 25)))
 
-        XCTAssertEqual(viewModel.finalPrice, Decimal(60))
+        XCTAssertEqual(viewModel.savedProductsTotal, Decimal(60))
         XCTAssertTrue(viewModel.isOverBudget)
-        XCTAssertEqual(viewModel.errorMessage, "Le prix final depasse le budget maximum.")
+        XCTAssertNil(viewModel.errorMessage)
     }
 
     func testUpdatesBudgetStateWhenSettingsChange() {
         let settingsStore = SettingsStore(settings: AppSettings(maximumBudget: Decimal(50)))
-        let viewModel = makeViewModel(settingsStore: settingsStore)
+        let productStore = ProductStore(products: [
+            Product(name: "Pull", originalPrice: Decimal(80), discountRate: DiscountRate(percentage: 25))
+        ])
+        let viewModel = makeViewModel(productStore: productStore, settingsStore: settingsStore)
 
-        viewModel.originalPriceText = "80"
-        viewModel.selectDiscountRate(DiscountRate(percentage: 25))
-        viewModel.calculate()
+        XCTAssertTrue(viewModel.isOverBudget)
+
         settingsStore.settings = AppSettings(maximumBudget: Decimal(70))
 
         XCTAssertFalse(viewModel.isOverBudget)

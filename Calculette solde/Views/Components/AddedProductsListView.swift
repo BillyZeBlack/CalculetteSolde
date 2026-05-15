@@ -4,13 +4,19 @@ struct AddedProductsListView: View {
     @EnvironmentObject private var premiumManager: PremiumManager
     @ObservedObject var viewModel: MainCalculatorViewModel
     let productStore: ProductStore?
+    let onBudgetSettingsTap: () -> Void
     @State private var productBeingCategorized: Product?
     @State private var isClearConfirmationPresented = false
     @State private var isPremiumSheetPresented = false
 
-    init(viewModel: MainCalculatorViewModel, productStore: ProductStore? = nil) {
+    init(
+        viewModel: MainCalculatorViewModel,
+        productStore: ProductStore? = nil,
+        onBudgetSettingsTap: @escaping () -> Void = {}
+    ) {
         self.viewModel = viewModel
         self.productStore = productStore
+        self.onBudgetSettingsTap = onBudgetSettingsTap
     }
 
     private let rowHeight: CGFloat = 64
@@ -20,6 +26,7 @@ struct AddedProductsListView: View {
         if !viewModel.savedProducts.isEmpty {
             VStack(alignment: .leading, spacing: 0) {
                 header
+                budgetTracker
 
                 List {
                     ForEach(viewModel.savedProducts) { product in
@@ -141,9 +148,167 @@ struct AddedProductsListView: View {
         .padding(.bottom, 8)
     }
 
+    @ViewBuilder
+    private var budgetTracker: some View {
+        if premiumManager.isPremiumActive {
+            if viewModel.hasMaximumBudget {
+                BudgetGaugeView(
+                    total: viewModel.formattedSavedProductsTotal,
+                    budget: viewModel.formattedMaximumBudget,
+                    progress: viewModel.budgetProgress,
+                    isOverBudget: viewModel.isOverBudget,
+                    footer: budgetFooter,
+                    action: onBudgetSettingsTap
+                )
+                .padding(.horizontal)
+                .padding(.bottom, 12)
+            } else {
+                Button(action: onBudgetSettingsTap) {
+                    HStack(spacing: 10) {
+                        Image(systemName: "gauge.with.dots.needle.67percent")
+                            .font(.subheadline.weight(.semibold))
+                            .foregroundStyle(.green)
+                            .frame(width: 28, height: 28)
+                            .background(Color.green.opacity(0.12), in: Circle())
+
+                        Text("Définir un budget max")
+                            .font(.subheadline.weight(.semibold))
+                            .foregroundStyle(.primary)
+
+                        Spacer()
+
+                        Image(systemName: "chevron.right")
+                            .font(.caption.weight(.bold))
+                            .foregroundStyle(.tertiary)
+                    }
+                    .padding(12)
+                    .background(Color(.secondarySystemGroupedBackground), in: RoundedRectangle(cornerRadius: 12, style: .continuous))
+                }
+                .buttonStyle(.plain)
+                .padding(.horizontal)
+                .padding(.bottom, 12)
+            }
+        } else {
+            Button {
+                isPremiumSheetPresented = true
+            } label: {
+                LockedBudgetPreviewView()
+            }
+            .buttonStyle(.plain)
+            .padding(.horizontal)
+            .padding(.bottom, 12)
+        }
+    }
+
+    private var budgetFooter: String {
+        if viewModel.isOverBudget {
+            return "Dépassement de " + viewModel.formattedBudgetExceededAmount
+        }
+
+        return "Reste " + viewModel.formattedBudgetRemaining
+    }
+
     private var listHeight: CGFloat {
         let visibleRows = min(viewModel.savedProducts.count, maximumVisibleRows)
         return CGFloat(visibleRows) * rowHeight
+    }
+}
+
+private struct BudgetGaugeView: View {
+    let total: String
+    let budget: String
+    let progress: Double
+    let isOverBudget: Bool
+    let footer: String
+    let action: () -> Void
+
+    var body: some View {
+        Button(action: action) {
+            VStack(alignment: .leading, spacing: 8) {
+                HStack {
+                    Label("Budget", systemImage: isOverBudget ? "exclamationmark.triangle.fill" : "gauge.with.dots.needle.67percent")
+                        .font(.caption.weight(.semibold))
+                        .foregroundStyle(isOverBudget ? .red : .secondary)
+
+                    Spacer(minLength: 12)
+
+                    Text(total + " / " + budget)
+                        .font(.caption.weight(.bold))
+                        .foregroundStyle(.primary)
+                        .contentTransition(.numericText())
+                }
+
+                GeometryReader { proxy in
+                    ZStack(alignment: .leading) {
+                        Capsule()
+                            .fill(Color(.tertiarySystemFill))
+
+                        Capsule()
+                            .fill(
+                                LinearGradient(
+                                    colors: [Color.green, Color.yellow, Color.orange],
+                                    startPoint: .leading,
+                                    endPoint: .trailing
+                                )
+                            )
+                            .frame(width: max(proxy.size.width * progress, 6))
+                    }
+                }
+                .frame(height: 8)
+
+                Text(footer)
+                    .font(.caption2.weight(.medium))
+                    .foregroundStyle(isOverBudget ? .red : .secondary)
+            }
+            .padding(12)
+            .background(Color(.secondarySystemGroupedBackground), in: RoundedRectangle(cornerRadius: 12, style: .continuous))
+        }
+        .buttonStyle(.plain)
+    }
+}
+
+private struct LockedBudgetPreviewView: View {
+    var body: some View {
+        VStack(alignment: .leading, spacing: 8) {
+            HStack(spacing: 10) {
+                Image(systemName: "lock.fill")
+                    .font(.caption.weight(.bold))
+                    .foregroundStyle(.orange)
+                    .frame(width: 24, height: 24)
+                    .background(Color.orange.opacity(0.12), in: Circle())
+
+                Text("Suivi du budget avec Premium")
+                    .font(.subheadline.weight(.semibold))
+                    .foregroundStyle(.primary)
+
+                Spacer()
+
+                Image(systemName: "chevron.right")
+                    .font(.caption.weight(.bold))
+                    .foregroundStyle(.tertiary)
+            }
+
+            GeometryReader { proxy in
+                ZStack(alignment: .leading) {
+                    Capsule()
+                        .fill(Color(.tertiarySystemFill))
+
+                    Capsule()
+                        .fill(
+                            LinearGradient(
+                                colors: [Color.green, Color.yellow, Color.orange],
+                                startPoint: .leading,
+                                endPoint: .trailing
+                            )
+                        )
+                        .frame(width: proxy.size.width * 0.62)
+                        .opacity(0.55)
+                }
+            }
+            .frame(height: 8)
+        }
+        .padding(12)
+        .background(Color(.secondarySystemGroupedBackground), in: RoundedRectangle(cornerRadius: 12, style: .continuous))
     }
 }
 

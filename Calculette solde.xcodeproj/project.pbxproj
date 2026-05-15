@@ -55,6 +55,7 @@
 		F116A0012C00000100000001 /* RewardedAdManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F116A0022C00000100000001 /* RewardedAdManager.swift */; };
 		F117A0012C00000100000001 /* ScanLimitSheetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F117A0022C00000100000001 /* ScanLimitSheetView.swift */; };
 		F118A0012C00000100000001 /* CategoryStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = F118A0022C00000100000001 /* CategoryStore.swift */; };
+		F119A0012C00000100000001 /* BudgetSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F119A0022C00000100000001 /* BudgetSettingsView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -120,6 +121,7 @@
 		F116A0022C00000100000001 /* RewardedAdManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RewardedAdManager.swift; sourceTree = "<group>"; };
 		F117A0022C00000100000001 /* ScanLimitSheetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScanLimitSheetView.swift; sourceTree = "<group>"; };
 		F118A0022C00000100000001 /* CategoryStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryStore.swift; sourceTree = "<group>"; };
+		F119A0022C00000100000001 /* BudgetSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BudgetSettingsView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -268,6 +270,7 @@
 				F108A0022C00000100000001 /* AdMobBannerView.swift */,
 				F112A0022C00000100000001 /* PremiumUpgradeView.swift */,
 				F117A0022C00000100000001 /* ScanLimitSheetView.swift */,
+				F119A0022C00000100000001 /* BudgetSettingsView.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -426,6 +429,7 @@
 				F111A0012C00000100000001 /* PremiumManager.swift in Sources */,
 				F112A0012C00000100000001 /* PremiumUpgradeView.swift in Sources */,
 				F117A0012C00000100000001 /* ScanLimitSheetView.swift in Sources */,
+				F119A0012C00000100000001 /* BudgetSettingsView.swift in Sources */,
 				5A01A01D2C00000800000001 /* ProductRecapViewModel.swift in Sources */,
 				5A01A01F2C00000800000001 /* SettingsViewModel.swift in Sources */,
 				9FEAFC6B2FA8E61E00E5ADF9 /* Category.swift in Sources */,
@@ -626,6 +630,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = JW5QDUDC7K;
 				INFOPLIST_FILE = "Calculette solde/Info.plist";
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.shopping";
 				IPHONEOS_DEPLOYMENT_TARGET = 17.6;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -648,6 +653,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = JW5QDUDC7K;
 				INFOPLIST_FILE = "Calculette solde/Info.plist";
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.shopping";
 				IPHONEOS_DEPLOYMENT_TARGET = 17.6;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",

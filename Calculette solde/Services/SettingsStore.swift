@@ -11,9 +11,38 @@ import Foundation
 
 @MainActor
 final class SettingsStore: ObservableObject {
-    @Published var settings: AppSettings
+    @Published var settings: AppSettings {
+        didSet { saveSettingsIfNeeded() }
+    }
 
-    init(settings: AppSettings = .default) {
-        self.settings = settings
+    private let persistsSettings: Bool
+    private let userDefaults: UserDefaults
+    private let storageKey = "appSettings"
+
+    init(
+        settings: AppSettings = .default,
+        persistsSettings: Bool = false,
+        userDefaults: UserDefaults = .standard
+    ) {
+        self.persistsSettings = persistsSettings
+        self.userDefaults = userDefaults
+
+        if persistsSettings, let storedSettings = Self.loadSettings(from: userDefaults, key: storageKey) {
+            self.settings = storedSettings
+        } else {
+            self.settings = settings
+        }
+    }
+}
+
+private extension SettingsStore {
+    static func loadSettings(from userDefaults: UserDefaults, key: String) -> AppSettings? {
+        guard let data = userDefaults.data(forKey: key) else { return nil }
+        return try? JSONDecoder().decode(AppSettings.self, from: data)
+    }
+
+    func saveSettingsIfNeeded() {
+        guard persistsSettings, let data = try? JSONEncoder().encode(settings) else { return }
+        userDefaults.set(data, forKey: storageKey)
     }
 }

@@ -34,7 +34,6 @@
 "Produit introuvable pour ce code-barres." = "No product found for this barcode.";
 "Code-barres invalide." = "Invalid barcode.";
 "Impossible de récupérer les informations du produit." = "Unable to retrieve product information.";
-"Budget maximum dépassé" = "Maximum budget exceeded";
 "Remise" = "Discount";
 "Prix final" = "Final price";
 "Le prix initial est invalide." = "The initial price is invalid.";
@@ -42,5 +41,4 @@
 "Aucun produit valide a enregistrer." = "No valid product to save.";
 "La remise personnalisee doit etre comprise entre 0 et 100." = "The custom discount must be between 0 and 100.";
 "La remise personnalisee doit etre un nombre entier." = "The custom discount must be a whole number.";
-"Le prix final depasse le budget maximum." = "The final price exceeds the maximum budget.";
 "OK" = "OK";
