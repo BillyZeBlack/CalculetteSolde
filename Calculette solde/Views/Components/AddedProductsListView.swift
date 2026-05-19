@@ -9,6 +9,7 @@ struct AddedProductsListView: View {
     @State private var isClearConfirmationPresented = false
     @State private var isPremiumSheetPresented = false
     @State private var premiumContext: PremiumPresentationContext = .general
+    @State private var pendingPremiumContext: PremiumPresentationContext?
 
     init(
         viewModel: MainCalculatorViewModel,
@@ -68,7 +69,7 @@ struct AddedProductsListView: View {
             .clipShape(RoundedRectangle(cornerRadius: 16, style: .continuous))
             .padding(.horizontal)
             .transition(.move(edge: .bottom).combined(with: .opacity))
-            .sheet(item: $productBeingCategorized) { product in
+            .sheet(item: $productBeingCategorized, onDismiss: presentPendingPremiumIfNeeded) { product in
                 CategorySelectionView(
                     product: product,
                     categories: viewModel.availableCategories,
@@ -77,8 +78,8 @@ struct AddedProductsListView: View {
                         viewModel.assignCategory(category, to: product)
                     },
                     onRequestPremium: {
+                        pendingPremiumContext = .categories
                         productBeingCategorized = nil
-                        presentPremium(.categories)
                     },
                     onAddCustomCategory: { name in
                         viewModel.addCustomCategory(named: name)
@@ -215,6 +216,12 @@ struct AddedProductsListView: View {
     private func presentPremium(_ context: PremiumPresentationContext) {
         premiumContext = context
         isPremiumSheetPresented = true
+    }
+
+    private func presentPendingPremiumIfNeeded() {
+        guard let pendingPremiumContext else { return }
+        self.pendingPremiumContext = nil
+        presentPremium(pendingPremiumContext)
     }
 
     private var listHeight: CGFloat {
