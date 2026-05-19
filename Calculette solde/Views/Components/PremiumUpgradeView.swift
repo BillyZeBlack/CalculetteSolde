@@ -1,8 +1,70 @@
 import SwiftUI
 
+enum PremiumPresentationContext {
+    case general
+    case scan
+    case categories
+    case budget
+
+    var title: String {
+        switch self {
+        case .general:
+            return "Premium"
+        case .scan:
+            return "Scanner illimité"
+        case .categories:
+            return "Catégories Premium"
+        case .budget:
+            return "Budget maximum"
+        }
+    }
+
+    var message: String {
+        switch self {
+        case .general:
+            return "Débloquez toutes les fonctions Premium de Solde Facile."
+        case .scan:
+            return "Scannez vos produits sans limite et ajoutez-les plus vite à votre liste."
+        case .categories:
+            return "Accédez aux catégories Premium et créez vos propres catégories."
+        case .budget:
+            return "Fixez un budget maximum et suivez le total de vos produits en temps réel."
+        }
+    }
+
+    var benefits: [String] {
+        let allBenefits = [
+            "Scan illimité",
+            "Catégories Premium et personnalisées",
+            "Fixer un budget maximum",
+            "Supprime les publicités"
+        ]
+
+        switch self {
+        case .general:
+            return allBenefits
+        case .scan:
+            return ["Scan illimité", "Supprime les publicités", "Catégories Premium et personnalisées", "Fixer un budget maximum"]
+        case .categories:
+            return ["Catégories Premium et personnalisées", "Scan illimité", "Fixer un budget maximum", "Supprime les publicités"]
+        case .budget:
+            return ["Fixer un budget maximum", "Scan illimité", "Catégories Premium et personnalisées", "Supprime les publicités"]
+        }
+    }
+}
+
 struct PremiumUpgradeView: View {
     @ObservedObject var premiumManager: PremiumManager
+    let context: PremiumPresentationContext
     @Environment(\.dismiss) private var dismiss
+
+    init(
+        premiumManager: PremiumManager,
+        context: PremiumPresentationContext = .general
+    ) {
+        self.premiumManager = premiumManager
+        self.context = context
+    }
 
     var body: some View {
         NavigationStack {
@@ -13,10 +75,10 @@ struct PremiumUpgradeView: View {
                         .foregroundStyle(premiumManager.isPremiumActive ? .green : .blue)
 
                     VStack(alignment: .leading, spacing: 6) {
-                        Text(premiumManager.isPremiumActive ? "Premium activé" : premiumManager.displayName)
+                        Text(premiumManager.isPremiumActive ? "Premium activé" : context.title)
                             .font(.title3.weight(.semibold))
 
-                        Text(premiumManager.description)
+                        Text(premiumManager.isPremiumActive ? premiumManager.description : context.message)
                             .font(.subheadline)
                             .foregroundStyle(.secondary)
 
@@ -26,9 +88,9 @@ struct PremiumUpgradeView: View {
                 }
 
                 VStack(alignment: .leading, spacing: 10) {
-                    benefitRow("Scan illimité")
-                    benefitRow("Catégories Premium et personnalisées")
-                    benefitRow("Supprime les publicités")
+                    ForEach(context.benefits, id: \.self) { benefit in
+                        benefitRow(benefit)
+                    }
                 }
 
                 if premiumManager.isLoading {

@@ -5,6 +5,7 @@ struct ScanLimitSheetView: View {
     @ObservedObject var rewardedAdManager: RewardedAdManager
     let onWatchAd: () -> Void
 
+    @State private var isPremiumSheetPresented = false
     @Environment(\.dismiss) private var dismiss
 
     var body: some View {
@@ -19,35 +20,22 @@ struct ScanLimitSheetView: View {
                         Text("Scanner illimité avec Premium")
                             .font(.title3.weight(.semibold))
 
-                        Text("Débloquez le scan sans limite et retirez les publicités de Solde facile.")
+                        Text("Vous pouvez passer Premium ou regarder une pub pour débloquer un scan.")
                             .font(.subheadline)
                             .foregroundStyle(.secondary)
-
-                        Text("Achat unique \(premiumManager.displayPrice)")
-                            .font(.subheadline.weight(.semibold))
                     }
                 }
 
-                VStack(alignment: .leading, spacing: 10) {
-                    benefitRow("Scan illimité")
-                    benefitRow("Publicités supprimées")
-                    benefitRow("Activation restaurable sur vos appareils")
-                }
-
-                if premiumManager.isLoading || rewardedAdManager.isLoading {
+                if rewardedAdManager.isLoading {
                     HStack(spacing: 10) {
                         ProgressView()
-                        Text(premiumManager.statusMessage ?? "Chargement...")
+                        Text("Chargement de la publicité...")
                             .font(.subheadline)
                             .foregroundStyle(.secondary)
                     }
-                } else if let statusMessage = premiumManager.statusMessage {
-                    Text(statusMessage)
-                        .font(.subheadline)
-                        .foregroundStyle(premiumManager.isPremiumActive ? .green : .secondary)
                 }
 
-                if let errorMessage = premiumManager.errorMessage ?? rewardedAdManager.errorMessage {
+                if let errorMessage = rewardedAdManager.errorMessage {
                     Text(errorMessage)
                         .font(.caption)
                         .foregroundStyle(.red)
@@ -55,7 +43,7 @@ struct ScanLimitSheetView: View {
                 }
 
                 Button {
-                    premiumManager.purchaseRemoveAds()
+                    isPremiumSheetPresented = true
                 } label: {
                     Text("Passer Premium")
                         .font(.headline.weight(.semibold))
@@ -63,7 +51,6 @@ struct ScanLimitSheetView: View {
                         .padding(.vertical, 14)
                 }
                 .buttonStyle(.borderedProminent)
-                .disabled(premiumManager.isLoading || premiumManager.removeAdsProduct == nil || premiumManager.isPremiumActive)
 
                 Button {
                     onWatchAd()
@@ -86,13 +73,13 @@ struct ScanLimitSheetView: View {
                     Button("Fermer") { dismiss() }
                 }
             }
+            .sheet(isPresented: $isPremiumSheetPresented) {
+                PremiumUpgradeView(
+                    premiumManager: premiumManager,
+                    context: .scan
+                )
+            }
         }
-    }
-
-    private func benefitRow(_ text: String) -> some View {
-        Label(text, systemImage: "checkmark.circle.fill")
-            .font(.subheadline)
-            .foregroundStyle(.primary)
     }
 }
 

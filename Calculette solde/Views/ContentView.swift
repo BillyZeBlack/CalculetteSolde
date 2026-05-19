@@ -9,6 +9,7 @@ struct ContentView: View {
     @StateObject private var interstitialAdManager = InterstitialAdManager()
     @State private var isPremiumSheetPresented = false
     @State private var isSettingsSheetPresented = false
+    @State private var premiumContext: PremiumPresentationContext = .general
     @FocusState var focusedField: Field?
 
     init() {
@@ -53,7 +54,7 @@ struct ContentView: View {
                     AddedProductsListView(
                         viewModel: viewModel,
                         productStore: productStore,
-                        onBudgetSettingsTap: { isSettingsSheetPresented = true }
+                        onBudgetSettingsTap: presentBudgetSettings
                     )
                         .padding(.top, 24)
                     if !premiumManager.isPremiumActive, !viewModel.savedProducts.isEmpty {
@@ -84,13 +85,13 @@ struct ContentView: View {
             .toolbar {
                 ToolbarItemGroup(placement: .topBarTrailing) {
                     Button {
-                        isSettingsSheetPresented = true
+                        presentBudgetSettings()
                     } label: {
                         Label("Réglages", systemImage: "gearshape")
                     }
 
                     Button {
-                        isPremiumSheetPresented = true
+                        presentPremium(.general)
                     } label: {
                         Label("Premium", systemImage: premiumManager.isPremiumActive ? "crown.fill" : "crown")
                     }
@@ -124,13 +125,13 @@ struct ContentView: View {
         }
         .onTapGesture { focusedField = nil }
         .sheet(isPresented: $isPremiumSheetPresented) {
-            PremiumUpgradeView(premiumManager: premiumManager)
+            PremiumUpgradeView(
+                premiumManager: premiumManager,
+                context: premiumContext
+            )
         }
         .sheet(isPresented: $isSettingsSheetPresented) {
-            BudgetSettingsView(
-                settingsStore: settingsStore,
-                premiumManager: premiumManager
-            )
+            BudgetSettingsView(settingsStore: settingsStore)
         }
         .task {
             if !premiumManager.isPremiumActive {
@@ -142,6 +143,21 @@ struct ContentView: View {
                 interstitialAdManager.loadAdIfNeeded()
             }
         }
+    }
+
+
+    private func presentPremium(_ context: PremiumPresentationContext) {
+        premiumContext = context
+        isPremiumSheetPresented = true
+    }
+
+    private func presentBudgetSettings() {
+        guard premiumManager.isPremiumActive else {
+            presentPremium(.budget)
+            return
+        }
+
+        isSettingsSheetPresented = true
     }
 
     private func recordAddedProductIfNeeded() {

@@ -8,6 +8,7 @@ struct AddedProductsListView: View {
     @State private var productBeingCategorized: Product?
     @State private var isClearConfirmationPresented = false
     @State private var isPremiumSheetPresented = false
+    @State private var premiumContext: PremiumPresentationContext = .general
 
     init(
         viewModel: MainCalculatorViewModel,
@@ -77,7 +78,7 @@ struct AddedProductsListView: View {
                     },
                     onRequestPremium: {
                         productBeingCategorized = nil
-                        isPremiumSheetPresented = true
+                        presentPremium(.categories)
                     },
                     onAddCustomCategory: { name in
                         viewModel.addCustomCategory(named: name)
@@ -87,7 +88,10 @@ struct AddedProductsListView: View {
                 .presentationDragIndicator(.visible)
             }
             .sheet(isPresented: $isPremiumSheetPresented) {
-                PremiumUpgradeView(premiumManager: premiumManager)
+                PremiumUpgradeView(
+                    premiumManager: premiumManager,
+                    context: premiumContext
+                )
             }
             .alert("Vider la liste ?", isPresented: $isClearConfirmationPresented) {
                 Button("Annuler", role: .cancel) {}
@@ -190,7 +194,7 @@ struct AddedProductsListView: View {
             }
         } else {
             Button {
-                isPremiumSheetPresented = true
+                presentPremium(.budget)
             } label: {
                 LockedBudgetPreviewView()
             }
@@ -206,6 +210,11 @@ struct AddedProductsListView: View {
         }
 
         return "Reste " + viewModel.formattedBudgetRemaining
+    }
+
+    private func presentPremium(_ context: PremiumPresentationContext) {
+        premiumContext = context
+        isPremiumSheetPresented = true
     }
 
     private var listHeight: CGFloat {
