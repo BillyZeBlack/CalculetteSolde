@@ -197,9 +197,7 @@ struct AddedProductsListView: View {
                 .padding(.bottom, 12)
             }
         } else {
-            Button {
-                presentPremium(.budget)
-            } label: {
+            Button(action: onBudgetSettingsTap) {
                 LockedBudgetPreviewView()
             }
             .buttonStyle(.plain)

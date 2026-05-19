@@ -10,6 +10,7 @@ struct ContentView: View {
     @State private var isPremiumSheetPresented = false
     @State private var isSettingsSheetPresented = false
     @State private var premiumContext: PremiumPresentationContext = .general
+    @State private var shouldPresentBudgetPremiumAfterSettingsDismiss = false
     @FocusState var focusedField: Field?
 
     init() {
@@ -130,8 +131,15 @@ struct ContentView: View {
                 context: premiumContext
             )
         }
-        .sheet(isPresented: $isSettingsSheetPresented) {
-            BudgetSettingsView(settingsStore: settingsStore)
+        .sheet(isPresented: $isSettingsSheetPresented, onDismiss: presentBudgetPremiumIfNeeded) {
+            BudgetSettingsView(
+                settingsStore: settingsStore,
+                isPremiumActive: premiumManager.isPremiumActive,
+                onRequestPremium: {
+                    shouldPresentBudgetPremiumAfterSettingsDismiss = true
+                    isSettingsSheetPresented = false
+                }
+            )
         }
         .task {
             if !premiumManager.isPremiumActive {
@@ -152,12 +160,13 @@ struct ContentView: View {
     }
 
     private func presentBudgetSettings() {
-        guard premiumManager.isPremiumActive else {
-            presentPremium(.budget)
-            return
-        }
-
         isSettingsSheetPresented = true
+    }
+
+    private func presentBudgetPremiumIfNeeded() {
+        guard shouldPresentBudgetPremiumAfterSettingsDismiss else { return }
+        shouldPresentBudgetPremiumAfterSettingsDismiss = false
+        presentPremium(.budget)
     }
 
     private func recordAddedProductIfNeeded() {
