@@ -46,6 +46,18 @@ final class CategoryStore: ObservableObject {
         return category
     }
 
+    @discardableResult
+    func removeCustomCategory(_ category: Category) -> Bool {
+        guard category.isCustom,
+              customCategories.contains(where: { $0.id == category.id })
+        else {
+            return false
+        }
+
+        customCategories.removeAll { $0.id == category.id }
+        return true
+    }
+
     private func saveCustomCategories() {
         guard let data = try? encoder.encode(customCategories) else { return }
         userDefaults.set(data, forKey: storageKey)

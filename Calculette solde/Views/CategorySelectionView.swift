@@ -7,6 +7,7 @@ struct CategorySelectionView: View {
     let onSelect: (Category?) -> Void
     let onRequestPremium: () -> Void
     let onAddCustomCategory: (String) -> Category?
+    let onDeleteCustomCategory: (Category) -> Void
 
     @Environment(\.dismiss) private var dismiss
     @State private var isCustomCategoryAlertPresented = false
@@ -79,6 +80,16 @@ struct CategorySelectionView: View {
                     Section("Personnalisées") {
                         ForEach(customCategories) { category in
                             categoryButton(for: category)
+                                .swipeActions(edge: .trailing) {
+                                    Button(role: .destructive) {
+                                        if product.category == category {
+                                            onSelect(nil)
+                                        }
+                                        onDeleteCustomCategory(category)
+                                    } label: {
+                                        Label("Supprimer", systemImage: "trash")
+                                    }
+                                }
                         }
                     }
                 }
@@ -219,6 +230,7 @@ struct CategorySelectionView: View {
         isPremiumActive: false,
         onSelect: { _ in },
         onRequestPremium: {},
-        onAddCustomCategory: { _ in nil }
+        onAddCustomCategory: { _ in nil },
+        onDeleteCustomCategory: { _ in }
     )
 }

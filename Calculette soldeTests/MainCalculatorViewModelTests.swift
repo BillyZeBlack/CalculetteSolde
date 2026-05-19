@@ -278,6 +278,21 @@ final class MainCalculatorViewModelTests: XCTestCase {
         XCTAssertEqual(reloadedCategoryStore.customCategories, [category])
     }
 
+    func testRemovesCustomCategoriesFromInjectedDefaultsStore() {
+        let suiteName = "CategoryStoreTests.\(UUID().uuidString)"
+        let userDefaults = UserDefaults(suiteName: suiteName)!
+        userDefaults.removePersistentDomain(forName: suiteName)
+        defer { userDefaults.removePersistentDomain(forName: suiteName) }
+
+        let categoryStore = CategoryStore(userDefaults: userDefaults)
+        let category = categoryStore.addCustomCategory(named: "Jeux")!
+
+        XCTAssertTrue(categoryStore.removeCustomCategory(category))
+
+        let reloadedCategoryStore = CategoryStore(userDefaults: userDefaults)
+        XCTAssertTrue(reloadedCategoryStore.customCategories.isEmpty)
+    }
+
     func testLookupScannedProductFillsProductName() async {
         let barcode = Barcode(value: "3017620422003", symbology: .ean13)
         let result = ProductLookupResult(

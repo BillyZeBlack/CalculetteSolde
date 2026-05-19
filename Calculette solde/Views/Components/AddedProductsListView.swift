@@ -83,6 +83,9 @@ struct AddedProductsListView: View {
                     },
                     onAddCustomCategory: { name in
                         viewModel.addCustomCategory(named: name)
+                    },
+                    onDeleteCustomCategory: { category in
+                        viewModel.removeCustomCategory(category)
                     }
                 )
                 .presentationDetents([.medium])

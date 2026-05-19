@@ -254,6 +254,10 @@ final class MainCalculatorViewModel: ObservableObject {
         categoryStore.addCustomCategory(named: name)
     }
 
+    func removeCustomCategory(_ category: Category) {
+        categoryStore.removeCustomCategory(category)
+    }
+
     func applyLookupResult(_ result: ProductLookupResult) {
         productLookupResult = result
         scannedBarcode = result.barcode
