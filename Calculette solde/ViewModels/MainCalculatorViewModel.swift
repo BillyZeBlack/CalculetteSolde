@@ -374,9 +374,8 @@ private extension MainCalculatorViewModel {
 
     func observeCategories() {
         categoryStore.$customCategories
-            .sink { [weak self] _ in
-                guard let self else { return }
-                self.availableCategories = self.categoryStore.allCategories
+            .sink { [weak self] customCategories in
+                self?.availableCategories = Category.defaults + customCategories
             }
             .store(in: &cancellables)
     }
