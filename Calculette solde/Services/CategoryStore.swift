@@ -8,12 +8,15 @@ final class CategoryStore: ObservableObject {
     }
 
     private let storageKey = "com.slideofdigital.Calculette-solde.customCategories"
+    private let userDefaults: UserDefaults
     private let encoder = JSONEncoder()
     private let decoder = JSONDecoder()
 
-    init(customCategories: [Category]? = nil) {
+    init(customCategories: [Category]? = nil, userDefaults: UserDefaults = .standard) {
+        self.userDefaults = userDefaults
         self.customCategories = customCategories ?? Self.loadCustomCategories(
             storageKey: storageKey,
+            userDefaults: userDefaults,
             decoder: decoder
         )
     }
@@ -45,11 +48,15 @@ final class CategoryStore: ObservableObject {
 
     private func saveCustomCategories() {
         guard let data = try? encoder.encode(customCategories) else { return }
-        UserDefaults.standard.set(data, forKey: storageKey)
+        userDefaults.set(data, forKey: storageKey)
     }
 
-    private static func loadCustomCategories(storageKey: String, decoder: JSONDecoder) -> [Category] {
-        guard let data = UserDefaults.standard.data(forKey: storageKey),
+    private static func loadCustomCategories(
+        storageKey: String,
+        userDefaults: UserDefaults,
+        decoder: JSONDecoder
+    ) -> [Category] {
+        guard let data = userDefaults.data(forKey: storageKey),
               let categories = try? decoder.decode([Category].self, from: data)
         else {
             return []
