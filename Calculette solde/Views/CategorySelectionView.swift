@@ -11,6 +11,7 @@ struct CategorySelectionView: View {
     @Environment(\.dismiss) private var dismiss
     @State private var isCustomCategoryAlertPresented = false
     @State private var customCategoryName = ""
+    @State private var customCategoryCreationErrorMessage: String?
 
     private var freeCategories: [Category] {
         categories.filter { !$0.isPremium }
@@ -22,6 +23,25 @@ struct CategorySelectionView: View {
 
     private var customCategories: [Category] {
         categories.filter(\.isCustom)
+    }
+
+    private var trimmedCustomCategoryName: String {
+        customCategoryName.trimmingCharacters(in: .whitespacesAndNewlines)
+    }
+
+    private var customCategoryValidationMessage: String? {
+        guard !trimmedCustomCategoryName.isEmpty else {
+            return "Saisissez un nom de catégorie."
+        }
+
+        let isDuplicate = categories.contains {
+            $0.name.compare(
+                trimmedCustomCategoryName,
+                options: [.caseInsensitive, .diacriticInsensitive]
+            ) == .orderedSame
+        }
+
+        return isDuplicate ? "Cette catégorie existe déjà." : customCategoryCreationErrorMessage
     }
 
     var body: some View {
@@ -70,6 +90,7 @@ struct CategorySelectionView: View {
                             return
                         }
                         customCategoryName = ""
+                        customCategoryCreationErrorMessage = nil
                         isCustomCategoryAlertPresented = true
                     } label: {
                         HStack(spacing: 12) {
@@ -106,14 +127,26 @@ struct CategorySelectionView: View {
             }
             .alert("Nouvelle catégorie", isPresented: $isCustomCategoryAlertPresented) {
                 TextField("Nom", text: $customCategoryName)
+                    .onChange(of: customCategoryName) { _, _ in
+                        customCategoryCreationErrorMessage = nil
+                    }
                 Button("Annuler", role: .cancel) {}
                 Button("Ajouter") {
-                    guard let category = onAddCustomCategory(customCategoryName) else { return }
+                    guard customCategoryValidationMessage == nil else { return }
+                    guard let category = onAddCustomCategory(trimmedCustomCategoryName) else {
+                        customCategoryCreationErrorMessage = "Impossible de créer cette catégorie."
+                        return
+                    }
                     onSelect(category)
                     dismiss()
                 }
+                .disabled(customCategoryValidationMessage != nil)
             } message: {
-                Text("Créez une catégorie personnalisée disponible à chaque ouverture de l’app.")
+                if let customCategoryValidationMessage {
+                    Text(customCategoryValidationMessage)
+                } else {
+                    Text("Créez une catégorie personnalisée disponible à chaque ouverture de l’app.")
+                }
             }
         }
     }
