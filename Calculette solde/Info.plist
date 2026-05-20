@@ -24,6 +24,8 @@
 	<true/>
 	<key>NSCameraUsageDescription</key>
 	<string>La caméra est utilisée pour scanner les codes-barres des produits.</string>
+	<key>NSUserTrackingUsageDescription</key>
+	<string>Cette information sera utilisée pour vous proposer des publicités plus pertinentes.</string>
 	<key>SKAdNetworkItems</key>
 	<array>
 		<dict>
