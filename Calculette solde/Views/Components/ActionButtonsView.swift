@@ -1,4 +1,6 @@
+import AVFoundation
 import SwiftUI
+import UIKit
 
 struct ActionButtonsView: View {
     @EnvironmentObject private var premiumManager: PremiumManager
@@ -8,6 +10,7 @@ struct ActionButtonsView: View {
     @StateObject private var rewardedAdManager = RewardedAdManager()
     @State private var isScannerPresented = false
     @State private var isScanLimitSheetPresented = false
+    @State private var isCameraAccessAlertPresented = false
 
     var body: some View {
         HStack(spacing: 12) {
@@ -30,10 +33,18 @@ struct ActionButtonsView: View {
                 rewardedAdManager.loadAdIfNeeded()
             }
         }
+        .alert("Accès caméra nécessaire", isPresented: $isCameraAccessAlertPresented) {
+            Button("Annuler", role: .cancel) {}
+            Button("Ouvrir Réglages") {
+                openAppSettings()
+            }
+        } message: {
+            Text("Autorisez l’accès à la caméra dans les réglages de l’iPhone pour scanner un code-barres.")
+        }
         .onChange(of: premiumManager.isPremiumActive) { _, isPremiumActive in
             guard isPremiumActive, isScanLimitSheetPresented else { return }
             isScanLimitSheetPresented = false
-            startScan()
+            requestCameraAccessThenStartScan()
         }
     }
 
@@ -67,7 +78,30 @@ struct ActionButtonsView: View {
             return
         }
 
-        startScan()
+        requestCameraAccessThenStartScan()
+    }
+
+    private func requestCameraAccessThenStartScan() {
+        switch AVCaptureDevice.authorizationStatus(for: .video) {
+        case .authorized:
+            startScan()
+
+        case .notDetermined:
+            Task {
+                let isGranted = await AVCaptureDevice.requestAccess(for: .video)
+                if isGranted {
+                    startScan()
+                } else {
+                    isCameraAccessAlertPresented = true
+                }
+            }
+
+        case .denied, .restricted:
+            isCameraAccessAlertPresented = true
+
+        @unknown default:
+            isCameraAccessAlertPresented = true
+        }
     }
 
     private func startScan() {
@@ -79,8 +113,13 @@ struct ActionButtonsView: View {
         rewardedAdManager.presentAd {
             scanAccessManager.grantRewardedScan()
             isScanLimitSheetPresented = false
-            startScan()
+            requestCameraAccessThenStartScan()
         }
+    }
+
+    private func openAppSettings() {
+        guard let settingsURL = URL(string: UIApplication.openSettingsURLString) else { return }
+        UIApplication.shared.open(settingsURL)
     }
 
     private var resetButton: some View {
