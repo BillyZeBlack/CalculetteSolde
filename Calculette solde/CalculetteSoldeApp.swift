@@ -6,6 +6,7 @@ import SwiftUI
 @main
 struct CalculetteSoldeApp: App {
     @StateObject private var premiumManager = PremiumManager()
+    @State private var isIntroPresented = true
 
     init() {
         MobileAds.shared.start()
@@ -13,13 +14,19 @@ struct CalculetteSoldeApp: App {
 
     var body: some Scene {
         WindowGroup {
-            ContentView()
-                .environmentObject(premiumManager)
-                .onAppear {
-                    DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
-                        requestTrackingAuthorization()
-                    }
+            if isIntroPresented {
+                AppIntroView {
+                    isIntroPresented = false
                 }
+            } else {
+                ContentView()
+                    .environmentObject(premiumManager)
+                    .onAppear {
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
+                            requestTrackingAuthorization()
+                        }
+                    }
+            }
         }
     }
 

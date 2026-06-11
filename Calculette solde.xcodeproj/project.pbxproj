@@ -56,6 +56,7 @@
 		F117A0012C00000100000001 /* ScanLimitSheetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F117A0022C00000100000001 /* ScanLimitSheetView.swift */; };
 		F118A0012C00000100000001 /* CategoryStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = F118A0022C00000100000001 /* CategoryStore.swift */; };
 		F119A0012C00000100000001 /* BudgetSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F119A0022C00000100000001 /* BudgetSettingsView.swift */; };
+		F120A0012C00000100000001 /* AppIntroView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F120A0022C00000100000001 /* AppIntroView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -122,6 +123,7 @@
 		F117A0022C00000100000001 /* ScanLimitSheetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScanLimitSheetView.swift; sourceTree = "<group>"; };
 		F118A0022C00000100000001 /* CategoryStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryStore.swift; sourceTree = "<group>"; };
 		F119A0022C00000100000001 /* BudgetSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BudgetSettingsView.swift; sourceTree = "<group>"; };
+		F120A0022C00000100000001 /* AppIntroView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppIntroView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -150,6 +152,7 @@
 			children = (
 				F101A00D2C00000100000001 /* Components */,
 				5A01A0022C00000100000001 /* ContentView.swift */,
+				F120A0022C00000100000001 /* AppIntroView.swift */,
 				F110A0022C00000100000001 /* ProductRecapView.swift */,
 				F105A0022C00000100000001 /* CategorySelectionView.swift */,
 				F106A0022C00000100000001 /* BarcodeScannerView.swift */,
@@ -430,6 +433,7 @@
 				F112A0012C00000100000001 /* PremiumUpgradeView.swift in Sources */,
 				F117A0012C00000100000001 /* ScanLimitSheetView.swift in Sources */,
 				F119A0012C00000100000001 /* BudgetSettingsView.swift in Sources */,
+				F120A0012C00000100000001 /* AppIntroView.swift in Sources */,
 				5A01A01D2C00000800000001 /* ProductRecapViewModel.swift in Sources */,
 				5A01A01F2C00000800000001 /* SettingsViewModel.swift in Sources */,
 				9FEAFC6B2FA8E61E00E5ADF9 /* Category.swift in Sources */,
@@ -628,7 +632,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 9;
+				CURRENT_PROJECT_VERSION = 10;
 				DEVELOPMENT_TEAM = JW5QDUDC7K;
 				INFOPLIST_FILE = "Calculette solde/Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = "Solde facile";
@@ -638,7 +642,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 4.0.5;
+				MARKETING_VERSION = 4.0.6;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.slideofdigital.Calculette-solde";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
@@ -653,7 +657,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 9;
+				CURRENT_PROJECT_VERSION = 10;
 				DEVELOPMENT_TEAM = JW5QDUDC7K;
 				INFOPLIST_FILE = "Calculette solde/Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = "Solde facile";
@@ -663,7 +667,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 4.0.5;
+				MARKETING_VERSION = 4.0.6;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.slideofdigital.Calculette-solde";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
